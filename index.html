@@ -123,8 +123,19 @@
     <script>
         AOS.init();
               function start() {
-                 function alternarSom() {
-                var minhaMusica = document.getElementById("meusom");
+                 
+
+
+                  let nome = document.getElementById("userIn").value;
+                     if(nome != "") {
+                document.getElementById("meusom").play();
+                document.getElementById("msg-boasvindas").innerText = "Bem-vindo(a), " + nome + "!";
+                document.getElementById("bloqueio").style.top = "-110vh";
+                document.getElementById("site").style.display = "block";
+            } else {
+                alert("Digite seu nome para entrar!");
+            function alternarSom() {
+                var meusom = document.getElementById("meusom");
                 var botaoSom = document.getElementById("btnMudo");
 
                if (meusom.paused) {
@@ -138,18 +149,9 @@
         botaoSom.innerHTML = "🔊";
     }
 }
+                  
 
-
-                  let nome = document.getElementById("userIn").value;
-                     if(nome != "") {
-                document.getElementById("meusom").play();
-                document.getElementById("msg-boasvindas").innerText = "Bem-vindo(a), " + nome + "!";
-                document.getElementById("bloqueio").style.top = "-110vh";
-                document.getElementById("site").style.display = "block";
-            } else {
-                alert("Digite seu nome para entrar!");
-            }
-        }
+        
     </script>
 </body>
 </html>
