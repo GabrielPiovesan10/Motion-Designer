@@ -1,72 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Piovesan</title>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        body { font-family: sans-serif; margin: 0; background: #050505; color: white; text-align: center; overflow-x: hidden; }
-        #bloqueio { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; position: fixed; width: 100%; z-index: 99; top: 0; }
-        #site { display: none; padding-top: 40px; }
-        .nome-v { color: #ff3e3e; font-size: 2.5rem; text-transform: uppercase; font-weight: bold; margin: 10px 0; }
-        .boas-vindas { 
-            color: #FFD700; 
-            font-weight: bold; 
-            font-size: 1.1rem; 
-            margin-bottom: 10px;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);}
-        .caixa { background: #111; padding: 20px; border-radius: 15px; border: 2px solid #ff3e3e; width: 260px; }
-        input { background: #000; border: 1px solid #333; color: white; padding: 10px; margin-bottom: 15px; text-align: center; width: 85%; border-radius: 5px; }
-        .btn-w { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
-        .card { background: #111; padding: 25px; margin: 20px; border-radius: 10px; border-left: 5px solid #ff3e3e; text-align: left; }
-        .card h2, .card h3 { 
-            color: #ff3e3e; } 
-      footer { padding: 40px; color: #666; font-size: 0.8rem; border-top: 1px solid #222; background: #000; }
-    </style>
-</head>
-<body>
-    <audio id="player" src="musica.mp3" preload="auto" loop></audio>
-        <div id="bloqueio">
-        <h1 style="color:#ff3e3e">GABRIEL PIOVESAN</h1>
-        <p style="color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: -10px; margin-bottom: 20px;">
-        Especialista em Motion Designer e Ads</p>
-        <p style="color: #aaa; font-style: italic; font-size: 0.9rem; margin-top: -5px; margin-bottom: 20px;">
-       "Elevando o nivel visual dos seus anuncios e conteudos."</p>
-     
-      <div class="caixa">
-            <input type="text" id="n" placeholder="Seu nome/Empresa...">
-            <button onclick="go()" style="background:#ff3e3e;color:white;border:none;padding:10px;width:95%;font-weight:bold;border-radius:5px;cursor:pointer;">ACESSAR PORTFOLIO</button>
+<section class="minha-história">
+    <div class="terminal-card">
+        <div class="terminal-topo">
+            <span class="ponto red"></span>
+            <span class="ponto yellow"></span>
+            <span class="ponto green"></span>
+            <span class="txt-topo">gabriel@iphone: ~/projeto</span>
+        </div>
+        
+        <div class="terminal-corpo">
+            <h2>> Prazer, me chamo Gabriel</h2>
+            <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
+            <p>E aqui está ele: desenvolvido do zero, programando no <strong>Python</strong> e no terminal direto do meu bolso.</p>
+            <p class="blink">_</p>
         </div>
     </div>
-    <div id="site">
-    
-        <p id="ola" class="boas-vindas"></p>
-        <h1 class="nome-v" data-aos="zoom-in">GABRIEL PIOVESAN</h1>
-        <p style="letter-spacing:2px; font-weight:bold;">ESPECIALISTA EM MOTION DESIGNER & ADS</p>
-        <a href="https://wa.me/5519993405480" class="btn-w">WHATSAPP</a>
-        <div class="card" data-aos="fade-right"><h3>Motion Ads</h3><p>Anuncios Animados para trazer mais clientes.</p></div>
-        <div class="card" data-aos="fade-left"><h3>Videos Dinamicos</h3><p>Edicao moderna para redes sociais.</p></div>
-        <div class="card" data-aos="fade-left"><h3>Tempo de entrega?</h3><p>O Tempo de entrega e de 24 HRS a 48 HRS.</p></div>
-        <div class="card" data-aos="fade-left"><h3>Por onde voce pode enviar os arquivos?</h3><p>Pode me enviar por Whatsapp ou google drive.</p></div>
- <footer>
-            <p><span style="color:#ff3e3e;font-weight:bold;">Gabriel Piovesan</span> | Cordeiropolis - SP</p>
-            <p>&copy; 2026 Todos os direitos reservados.</p>
-        </footer>
-    </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        function go(){
-            var v=document.getElementById("n").value;
-            if(v.trim()!=""){
-            var som = document.getElementById("player") ; som.currentTime = 0; som.play();
-                document.getElementById("bloqueio").style.display="none";
-                document.getElementById("site").style.display="block";
-                document.getElementById("ola").innerHTML="Boas Vindas, "+v+"!";
-                AOS.init({duration:1000});
-            }else{alert("Digite seu nome!");}
-        }
-    </script>
-</body>
-</html>
+</section>
+
+<style>
+    .minha-história {
+        margin-top: 50px;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .terminal-card {
+        background: #1e1e1e; /* Cor de fundo de terminal */
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-width: 450px;
+        width: 100%;
+        overflow: hidden;
+        border: 1px solid #333;
+    }
+
+    .terminal-topo {
+        background: #333;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .ponto { height: 12px; width: 12px; border-radius: 50%; }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+    .txt-topo { color: #aaa; font-size: 0.7rem; font-family: monospace; margin-left: 10px; }
+
+    .terminal-corpo {
+        padding: 25px;
+        font-family: 'Courier New', Courier, monospace;
+        color: #ddd;
+        line-height: 1.6;
+    }
+
+    .terminal-corpo h2 {
+        color: #27c93f; /* Verde de código */
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .terminal-corpo strong {
+        color: red; /* O seu vermelho de destaque */
+    }
+
+    .blink {
+        color: #27c93f;
+        font-weight: bold;
+        animation: pisca 1s infinite;
+    }
+
+    @keyframes pisca {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
