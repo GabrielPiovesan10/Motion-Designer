@@ -123,23 +123,22 @@
     <script>
         AOS.init();
               function start() {
-            function alternarSom() {
-    var musica = document.getElementById("meusom");
-    var btn = document.getElementById("btnMudo");
+                 function alternarSom() {
+           var minhaMusica = document.getElementById("meusom");
+         var botaoSom = document.getElementById("btnMudo");
 
-    if (musica.muted) {
-        musica.muted = false;
-        btn.innerText = "🔊";
-        btn.style.borderColor = "#ff3e3e"; // Vermelho quando toca
+         if (minhaMusica.paused) {
+        minhaMusica.play();
+        botaoSom.innerHTML = "🔊";
+        } else if (minhaMusica.muted === false) {
+        minhaMusica.muted = true;
+        botaoSom.innerHTML = "🔇";
     } else {
-        musica.muted = true;
-        btn.innerText = "🔇";
-        btn.style.borderColor = "#555"; // Cinza quando mudo
+        minhaMusica.muted = false;
+        botaoSom.innerHTML = "🔊";
     }
 }
 
-// Dica extra: Deixar o volume em 40% para não assustar
-document.getElementById("meusom").volume = 0.4;
 
                   let nome = document.getElementById("userIn").value;
                      if(nome != "") {
