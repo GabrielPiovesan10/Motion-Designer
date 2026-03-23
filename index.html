@@ -49,7 +49,10 @@
   <audio id="meusom" loop>
     <source src="musica.mp3" type="audio/mpeg">
     </audio>
-        
+        <audio id="meusom" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 
 
   <div id="bloqueio">
@@ -133,7 +136,24 @@
             } else {
                 alert("Digite seu nome para entrar!");
                          }
-                
+                  }
+                  
+                  function alternarSom() {
+    var minhaMusica = document.getElementById("meusom");
+    var botaoSom = document.getElementById("btnMudo");
+
+    if (minhaMusica.paused) {
+        minhaMusica.play();
+        botaoSom.innerHTML = "🔊";
+    } else if (minhaMusica.muted === false) {
+        minhaMusica.muted = true;
+        botaoSom.innerHTML = "🔇";
+    } else {
+        minhaMusica.muted = false;
+        botaoSom.innerHTML = "🔊";
+    
+
+         
     }
 }
                   
