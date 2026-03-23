@@ -108,7 +108,35 @@
                 </div>
             </div>
         </section>
-  
+  <div class="video-clean" data-aos="zoom-in">
+  <iframe 
+    src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" 
+    frameborder="0" 
+    allow="autoplay; encrypted-media" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<style>
+  .video-clean {
+    position: relative;
+    padding-bottom: 177.77%; /* Proporção do Shorts */
+    height: 0;
+    overflow: hidden;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 15px;
+    pointer-events: none; /* Bloqueia cliques para ninguém ver que é YouTube */
+  }
+  .video-clean iframe {
+    position: absolute;
+    top: -10%; /* Esconde as bordas do player */
+    left: 0;
+    width: 100%;
+    height: 120%; 
+  }
+</style>
+
 </style>
 
 
