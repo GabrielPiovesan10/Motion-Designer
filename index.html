@@ -1,78 +1,123 @@
-<section class="minha-história">
-    <div class="terminal-card">
-        <div class="terminal-topo">
-            <span class="ponto red"></span>
-            <span class="ponto yellow"></span>
-            <span class="ponto green"></span>
-            <span class="txt-topo">gabriel@iphone: ~/projeto</span>
-        </div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Piovesan | Motion Designer</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: sans-serif; margin: 0; background: #050505; color: white; text-align: center; overflow-x: hidden; }
         
-        <div class="terminal-corpo">
-            <h2>> Prazer, me chamo Gabriel</h2>
-            <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
-            <p>E aqui está ele: desenvolvido do zero, programando no <strong>Python</strong> e no terminal direto do meu bolso.</p>
-            <p class="blink">_</p>
+        /* Tela de Bloqueio */
+        #bloqueio { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; position: fixed; width: 100%; z-index: 99; top: 0; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        #site { display: none; }
+        
+        .vermelho { color: #ff3e3e; font-size: 2.8rem; text-transform: uppercase; font-weight: bold; margin: 5px 0; }
+        .caixa { background: #111; padding: 25px; border-radius: 15px; border: 2px solid #ff3e3e; width: 280px; box-shadow: 0 0 20px rgba(255,62,62,0.2); }
+        input { background: #000; border: 1px solid #333; color: white; padding: 12px; margin-bottom: 15px; text-align: center; width: 85%; border-radius: 8px; outline: none; }
+        
+        /* Estilo do Terminal Card (Sua escolha!) */
+        .minha-história { margin: 40px 20px; display: flex; justify-content: center; }
+        .terminal-card { background: #1a1a1a; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); max-width: 450px; width: 100%; overflow: hidden; border: 1px solid #333; text-align: left; }
+        .terminal-topo { background: #2d2d2d; padding: 12px; display: flex; align-items: center; gap: 8px; }
+        .ponto { height: 12px; width: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        .txt-topo { color: #aaa; font-size: 0.75rem; font-family: monospace; margin-left: 5px; }
+        .terminal-corpo { padding: 25px; font-family: 'Courier New', Courier, monospace; color: #ddd; line-height: 1.6; }
+        .terminal-corpo h2 { color: #27c93f; font-size: 1.1rem; margin-bottom: 15px; }
+        .terminal-corpo strong { color: #ff3e3e; }
+        .blink { color: #27c93f; font-weight: bold; animation: pisca 1s infinite; }
+        @keyframes pisca { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Botões de Contato */
+        .btn-whats { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; animation: pulse 2s infinite; }
+        .btn-insta { background: #E1306C; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; }
+        @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
+
+        /* Grade de Serviços */
+        .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
+        .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
+        
+        footer { padding: 50px; color: #444; font-size: 0.8rem; background: #000; border-top: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+    <div id="bloqueio">
+        <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem;">GABRIEL PIOVESAN</h1>
+        <div class="caixa">
+            <input type="text" id="userIn" placeholder="Digite seu nome...">
+            <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHECER TRABALHO</button>
         </div>
     </div>
-</section>
 
-<style>
-    .minha-história {
-        margin-top: 50px;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-    }
+    <div id="site">
+        <header style="padding: 60px 20px 20px;">
+            <p id="msg-boasvindas" style="color: #888; margin-bottom: 10px;"></p>
+            <h1 class="vermelho" data-aos="zoom-in">GABRIEL PIOVESAN</h1>
+            <p style="letter-spacing: 3px; font-weight: bold; color: #eee; font-size: 0.9rem;">MOTION DESIGNER & ADS</p>
+            
+            <div style="margin-top: 25px;">
+                <a href="https://wa.me/5519993405480" class="btn-whats"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                <a href="#" class="btn-insta"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+            </div>
+        </header>
 
-    .terminal-card {
-        background: #1e1e1e; /* Cor de fundo de terminal */
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        max-width: 450px;
-        width: 100%;
-        overflow: hidden;
-        border: 1px solid #333;
-    }
+        <section class="minha-história" data-aos="fade-up">
+            <div class="terminal-card">
+                <div class="terminal-topo">
+                    <span class="ponto red"></span>
+                    <span class="ponto yellow"></span>
+                    <span class="ponto green"></span>
+                    <span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span>
+                </div>
+                <div class="terminal-corpo">
+                    <h2>> Prazer, me chamo Gabriel</h2>
+                    <p>Moro em <strong>Cordeirópolis-SP</strong> e trabalho na <strong>Embramaco</strong>.</p>
+                    <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
+                    <p>Aqui está ele: desenvolvido do zero, programando <strong>Python</strong> e terminal direto do meu bolso.</p>
+                    <span class="blink">_</span>
+                </div>
+            </div>
+        </section>
 
-    .terminal-topo {
-        background: #333;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+        <h2 style="color: #ff3e3e; margin-top: 50px;">O QUE EU FAÇO?</h2>
+        <div class="servicos">
+            <div class="card" data-aos="fade-up">
+                <i class="fas fa-play-circle"></i>
+                <h3>Motion Ads</h3>
+                <p>Criação de anúncios animados de alta conversão para redes sociais.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-bolt"></i>
+                <h3>Vídeos Dinâmicos</h3>
+                <p>Edição rápida e moderna com efeitos visuais que prendem a atenção.</p>
+            </div>
+        </div>
 
-    .ponto { height: 12px; width: 12px; border-radius: 50%; }
-    .red { background: #ff5f56; }
-    .yellow { background: #ffbd2e; }
-    .green { background: #27c93f; }
-    .txt-topo { color: #aaa; font-size: 0.7rem; font-family: monospace; margin-left: 10px; }
+        <footer>
+            © 2026 Gabriel Piovesan <br>
+            Desenvolvido via iSH (Alpine Linux) no iPhone
+        </footer>
+    </div>
 
-    .terminal-corpo {
-        padding: 25px;
-        font-family: 'Courier New', Courier, monospace;
-        color: #ddd;
-        line-height: 1.6;
-    }
-
-    .terminal-corpo h2 {
-        color: #27c93f; /* Verde de código */
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
-
-    .terminal-corpo strong {
-        color: red; /* O seu vermelho de destaque */
-    }
-
-    .blink {
-        color: #27c93f;
-        font-weight: bold;
-        animation: pisca 1s infinite;
-    }
-
-    @keyframes pisca {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-</style>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        function start() {
+            let nome = document.getElementById("userIn").value;
+            if(nome != "") {
+                document.getElementById("msg-boasvindas").innerText = "Bem-vindo(a), " + nome + "!";
+                document.getElementById("bloqueio").style.top = "-110vh";
+                document.getElementById("site").style.display = "block";
+            } else {
+                alert("Digite seu nome para entrar!");
+            }
+        }
+    </script>
+</body>
+</html>
