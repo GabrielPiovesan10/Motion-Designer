@@ -49,9 +49,9 @@
   <audio id="meusom" loop>
     <source src="musica.mp3" type="audio/mpeg">
     </audio>
-<button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-    🔊
-</button>
+        <button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+         🔊
+    </button>
 
 
   <div id="bloqueio">
@@ -124,17 +124,17 @@
         AOS.init();
               function start() {
                  function alternarSom() {
-           var minhaMusica = document.getElementById("meusom");
-         var botaoSom = document.getElementById("btnMudo");
+                var minhaMusica = document.getElementById("meusom");
+                var botaoSom = document.getElementById("btnMudo");
 
-         if (minhaMusica.paused) {
-        minhaMusica.play();
-        botaoSom.innerHTML = "🔊";
-        } else if (minhaMusica.muted === false) {
-        minhaMusica.muted = true;
+               if (meusom.paused) {
+               meusom.play();
+             botaoSom.innerHTML = "🔊";
+           } else if (meusom.muted === false) {
+        meusom.muted = true;
         botaoSom.innerHTML = "🔇";
     } else {
-        minhaMusica.muted = false;
+        meusom.muted = false;
         botaoSom.innerHTML = "🔊";
     }
 }
