@@ -46,10 +46,10 @@
     </style>
 </head>
 <body>
-  <audio id="minhaMusica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-</audio>
+  <audio id="meusom" loop>
+    <source src="música.mp3" type="audio/mpeg">
+    </audio>
+
 
   <div id="bloqueio">
     <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem; margin-bottom: 5px;">GABRIEL PIOVESAN</h1>
@@ -121,8 +121,8 @@
         AOS.init();
         
              let nome = document.getElementById("userIn").value;
-              if(nome != "") {
-                document.getElementById("minhaMusica").play();
+                     if(nome != "") {
+                document.getElementById("meusom").play();
                 document.getElementById("msg-boasvindas").innerText = "Bem-vindo(a), " + nome + "!";
                 document.getElementById("bloqueio").style.top = "-110vh";
                 document.getElementById("site").style.display = "block";
