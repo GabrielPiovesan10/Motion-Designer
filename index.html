@@ -308,73 +308,56 @@ summary::-webkit-details-marker {
                          }
                   }
                   
-                  function alternarSom() {
-    var minhaMusica = document.getElementById("meusom");
-    var botaoSom = document.getElementById("btnMudo");
+                function alternarSom() {
+        var minhaMusica = document.getElementById("meusom");
+        var botaoSom = document.getElementById("btnMudo");
 
-    if (minhaMusica.paused) {
-        minhaMusica.play();
-        botaoSom.innerHTML = "🔊";
-    } else if (minhaMusica.muted === false) {
-        minhaMusica.muted = true;
-        botaoSom.innerHTML = "🔇";
-    } else {
-        minhaMusica.muted = false;
-        botaoSom.innerHTML = "🔊";
-    
-
-         
-    }
-}
-                  
-<div id="chat-icon" onclick="toggleChat()">
-    <i class="fas fa-robot"></i>
-</div>
-
-<div id="chat-window" style="display: none;">
-    <div style="background:#ff3e3e;color:white;padding:10px;text-align:center;font-weight:bold;font-size:12px;">GABRIEL MOTION IA</div>
-    <div id="chat-content" style="height:200px;overflow-y:auto;padding:10px;color:white;font-size:13px;">
-        <p><strong>Robô:</strong> Olá! Como posso te chamar?</p>
-    </div>
-    <div style="padding:10px;display:flex;background:#111;">
-        <input type="text" id="user-input" placeholder="Diga algo..." style="flex:1;background:#000;color:#fff;border:1px solid #444;padding:5px;border-radius:5px;font-size:12px;">
-        <button onclick="sendMessage()" style="background:#ff3e3e;color:white;border:none;margin-left:5px;padding:5px 10px;border-radius:5px;">OK</button>
-    </div>
-</div>
-
-<script>
-let etapaChat = 1;
-
-function toggleChat() {
-    const j = document.getElementById('chat-window');
-    if (j.style.display === 'none' || j.style.display === '') {
-        j.style.display = 'block';
-    } else {
-        j.style.display = 'none';
-    }
-}
-
-function sendMessage() {
-    const i = document.getElementById('user-input');
-    const c = document.getElementById('chat-content');
-    const txt = i.value.trim();
-    if (!txt) return;
-
-    c.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${txt}</p>`;
-    i.value = "";
-
-    setTimeout(() => {
-        if (etapaChat === 1) {
-            c.innerHTML += `<p><strong>Robô:</strong> Prazer, ${txt}! O que busca? (Artes / Site)</p>`;
-            etapaChat = 2;
+        if (minhaMusica.paused) {
+            minhaMusica.play();
+            botaoSom.innerHTML = "🔊";
+        } else if (minhaMusica.muted === false) {
+            minhaMusica.muted = true;
+            botaoSom.innerHTML = "🔇";
         } else {
-            c.innerHTML += `<p><strong>Robô:</strong> Show! Me chama no WhatsApp ali no topo!</p>`;
-            etapaChat = 1;
+            minhaMusica.muted = false;
+            botaoSom.innerHTML = "🔊";
         }
-        c.scrollTop = c.scrollHeight;
-    }, 800);
-}
+    }
+
+    // --- CÉREBRO DA IA ---
+    let etapaChat = 1;
+
+    function toggleChat() {
+        const j = document.getElementById('chat-window');
+        if (j.style.display === 'none' || j.style.display === '') {
+            j.style.display = 'block';
+        } else {
+            j.style.display = 'none';
+        }
+    }
+
+    function sendMessage() {
+        const i = document.getElementById('user-input');
+        const c = document.getElementById('chat-content');
+        const txt = i.value.trim();
+        if (!txt) return;
+
+        c.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${txt}</p>`;
+        i.value = "";
+
+        setTimeout(() => {
+            if (etapaChat === 1) {
+                c.innerHTML += `<p><strong>Robô:</strong> Prazer, ${txt}! O que busca? (Artes / Site)</p>`;
+                etapaChat = 2;
+            } else {
+                c.innerHTML += `<p><strong>Robô:</strong> Show! Me chama no WhatsApp ali no topo!</p>`;
+                etapaChat = 1;
+            }
+            c.scrollTop = c.scrollHeight;
+        }, 800);
+    }
 </script>
 
 </body>
 </html>
+      
