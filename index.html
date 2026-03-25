@@ -28,26 +28,49 @@
 
         header {
             width: 100%;
-            padding: 20px 0;
+            padding: 0; 
             background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9));
             background-color: var(--deck-dark);
             text-align: center;
             border-bottom: 4px solid var(--deck-red);
         }
 
-        /* --- CSS ALTERADO PARA AUMENTAR A IMAGEM --- */
         .header-logo-img {
-            max-width: 320px; /* AUMENTADO: De 180px para 320px */
-            width: 100%;       /* ADICIONADO: Faz ela crescer até o max-width */
+            width: 100%;
             height: auto;
-            display: inline-block;
-            margin: 10px auto;
+            display: block;
+            margin: 0;
+        }
+
+        /* --- NOVO CSS PARA O TÍTULO DE SATISFAÇÃO --- */
+        .page-titles {
+            width: 90%;
+            max-width: 450px;
+            margin: 30px auto 0 auto; /* Espaço após a imagem */
+            text-align: center;
+        }
+
+        .main-brand-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--deck-red); /* Usando o vermelho da marca */
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .survey-subtitle {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #eee; /* Branco suave */
+            margin-top: 5px;
+            font-weight: 400;
         }
 
         .container {
             width: 90%;
             max-width: 450px;
-            margin: 20px auto 40px;
+            margin: 20px auto 40px; /* Margem padrão abaixo do título */
         }
 
         .card {
@@ -126,6 +149,11 @@
     <header>
         <img src="logo-deck.JPG" alt="Deck Churrascaria Logo" class="header-logo-img" data-aos="fade-down">
     </header>
+
+    <div class="page-titles" data-aos="fade-up" data-aos-delay="300">
+        <h1 class="main-brand-title">Deck Churrascaria</h1>
+        <p class="survey-subtitle">pesquisa de satisfação</p>
+    </div>
 
     <div class="container">
         <div class="card" data-aos="zoom-in" id="card-principal">
