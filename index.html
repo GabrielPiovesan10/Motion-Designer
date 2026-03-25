@@ -293,41 +293,51 @@
                 j.style.display = 'none';
             }
         }
+function sendMessage() {
+    const input = document.getElementById('user-input');
+    const content = document.getElementById('chat-content');
+    const msgOriginal = input.value.trim();
+    // Transforma em minúsculo para o robô não se perder
+    const msg = msgOriginal.toLowerCase();
 
-        // Envia Mensagem
-        function sendMessage() {
-            const i = document.getElementById('user-input');
-            const c = document.getElementById('chat-content');
-            const txt = i.value.trim();
-            
-            if (!txt) return;
+    if (!msg) return;
 
-            // Mostra sua mensagem
-            c.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${txt}</p>`;
-            i.value = ""; // Limpa campo
+    // Mostra o que o usuário digitou
+    content.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOriginal}</p>`;
+    input.value = "";
 
-            // Resposta da IA (com delay para parecer que está pensando)
-            setTimeout(() => {
-                if (etapaChat === 1) {
-                    nomeCliente = txt;
-                    c.innerHTML += `<p><strong>Robô:</strong> Prazer, ${nomeCliente}! O que você busca hoje? (Artes / Site)</p>`;
-                    etapaChat = 2;
-                } else if (etapaChat === 2) {
-                    let resp = txt.toLowerCase();
-                    if (resp.includes("arte") || resp.includes("combo")) {
-                        c.innerHTML += `<p><strong>Robô:</strong>💡 Temos combos de 3 artes por R$ 27 ou 5 por R$ 45!</p>`;
-                    } else if (resp.includes("site")) {
-                        c.innerHTML += `<p><strong>Robô:</strong>🌐 Eu crio sites incríveis. Vou avisar o Gabriel!</p>`;
-                    } else {
-                        c.innerHTML += `<p><strong>Robô:</strong>🤔 Não entendi muito bem, mas o Gabriel vai te explicar!</p>`;
-                    }
-                    c.innerHTML += `<p><strong>Robô:</strong> Me chama no WhatsApp ali no topo para fecharmos!</p>`;
-                    etapaChat = 1; // Reseta fluxo
-                }
-                // Faz o chat rolar para baixo automaticamente
-                c.scrollTop = c.scrollHeight;
-            }, 1000);
+    setTimeout(() => {
+        let r = ""; // Variável da Resposta
+
+        // --- LÓGICA DE PALAVRAS-CHAVE ---
+        if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) {
+            r = "Trabalho com pacotes a partir de **R$ 27**! Veja a tabela abaixo para detalhes.";
+        } 
+        else if (msg.includes("tempo") || msg.includes("prazo") || msg.includes("demora")) {
+            r = "Artes em até 48h e vídeos Motion dependem do projeto, mas sou rápido!";
         }
+        else if (msg.includes("onde") || msg.includes("cidade") || msg.includes("mora")) {
+            r = "Estou em **Cordeirópolis-SP**, mas atendo o mundo todo via internet! 🌍";
+        }
+        else if (msg.includes("site") || msg.includes("web") || msg.includes("program")) {
+            r = "Sim! Eu criei este site do zero pelo celular. Quer um pro seu negócio?";
+        }
+        else if (msg.includes("oi") || msg.includes("olá") || msg.includes("bom dia")) {
+            r = "Olá! Prazer em te receber. O que você precisa hoje? (Artes, Vídeos ou Sites)";
+        }
+        else {
+            r = "Boa! Não conheço tudo ainda, mas o Gabriel te explica no Zap. Quer o link?";
+        }
+
+        // Adiciona a resposta do robô
+        content.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
+        
+        // Rola o chat para o fim
+        content.scrollTop = content.scrollHeight;
+    }, 800);
+}
+
+    
     </script>
 </body>
 </html>
