@@ -26,20 +26,19 @@
             min-height: 100vh;
         }
 
-        /* Topo Premium com a nova logo */
         header {
             width: 100%;
             padding: 20px 0;
-            /* Mantive o gradiente sutil para dar profundidade */
             background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9));
             background-color: var(--deck-dark);
             text-align: center;
             border-bottom: 4px solid var(--deck-red);
         }
 
-        /* Estilização da nova logo imagem */
+        /* --- CSS ALTERADO PARA AUMENTAR A IMAGEM --- */
         .header-logo-img {
-            max-width: 180px; /* Tamanho ideal para mobile */
+            max-width: 320px; /* AUMENTADO: De 180px para 320px */
+            width: 100%;       /* ADICIONADO: Faz ela crescer até o max-width */
             height: auto;
             display: inline-block;
             margin: 10px auto;
@@ -48,7 +47,7 @@
         .container {
             width: 90%;
             max-width: 450px;
-            margin: 20px auto 40px; /* Ajuste de margem para compensar o topo */
+            margin: 20px auto 40px;
         }
 
         .card {
@@ -102,7 +101,6 @@
 
         .btn-enviar:active { transform: scale(0.98); }
 
-        /* Mensagem de Sucesso */
         #sucesso {
             display: none;
             padding: 40px 20px;
@@ -187,7 +185,6 @@
             const btn = document.getElementById('btn-demo');
             btn.innerText = "PROCESSANDO...";
             
-            // Simula o tempo de rede para ela ver que o site "pensa"
             setTimeout(() => {
                 form.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
