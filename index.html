@@ -209,7 +209,7 @@
 
         // 1. Respostas para SIM ou OK
         if (msg === "sim" || msg === "pode ser" || msg === "quero" || msg === "ok") {
-            r = `Perfeito, ${nomeUser}! Só clicar no botão abaixo para me chamar:`;
+            r = `Perfeito, ${nomeUser}! Só clicar no botão abaixo para chamar o Gabriel:`;
             btn = true;
         }
         // 2. Respostas para NÃO
@@ -218,7 +218,7 @@
         }
         // 3. Palavras-chave que já tínhamos
         else if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) {
-            r = `${nomeUser}, meus pacotes começam em **R$ 27**! Veja a tabela abaixo.`;
+            r = `${nomeUser}, meus pacotes começam em R$ 27! Veja a tabela abaixo.`;
         }
         else if (msg.includes("prazo") || msg.includes("tempo")) {
             r = "Consigo te entregar artes em 48h! Vídeos a gente combina no Zap.";
