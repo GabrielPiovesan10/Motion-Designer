@@ -27,7 +27,7 @@
         .caixa { background: #111; padding: 25px; border-radius: 15px; border: 2px solid #ff3e3e; width: 280px; box-shadow: 0 0 20px rgba(255,62,62,0.2); }
         input[type="text"] { background: #000; border: 1px solid #333; color: white; padding: 12px; margin-bottom: 15px; text-align: center; width: 85%; border-radius: 8px; outline: none; }
         
-        /* Estilo do Terminal Card */
+        /* Terminal Card */
         .minha-história { margin: 40px 20px; display: flex; justify-content: center; }
         .terminal-card { background: #1a1a1a; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); max-width: 450px; width: 100%; overflow: hidden; border: 1px solid #333; text-align: left; }
         .terminal-topo { background: #2d2d2d; padding: 12px; display: flex; align-items: center; gap: 8px; }
@@ -46,21 +46,32 @@
         .btn-whats { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
 
+        /* Vídeo e Serviços */
         .video-clean { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; max-width: 400px; margin: 20px auto; border-radius: 15px; pointer-events: none; }
         .video-clean iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; }
+        .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
+        .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
 
+        /* Tabela de Preços */
+        summary { list-style: none; cursor: pointer; outline: none; }
+        summary::-webkit-details-marker { display: none; }
+        .detalhes-combo { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; text-align: left; }
+        .detalhes-combo li { font-size: 1em; margin-bottom: 8px; color: #ff3e3e; font-weight: bold; list-style: none; }
+
+        /* Footer */
         footer { padding: 50px; color: #555; font-size: 0.8rem; border-top: 1px solid #111; background: #000; text-align: center; }
 
         /* --- ESTILO DA IA (GABRIEL MOTION) --- */
         #chat-icon { position: fixed; top: 80px; right: 15px; background: #ff3e3e; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); }
-        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 62, 62, 0.3); border-top: 4px solid #ff3e3e; border-radius: 12px; z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 62, 62, 0.3); border-top: 4px solid #ff3e3e; border-radius: 12px; z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
         #chat-content { height: 250px; padding: 15px; overflow-y: auto; color: white; font-size: 13px; text-align: left; }
         .chat-input-area { padding: 10px; border-top: 1px solid #333; display: flex; background: #111; }
         .chat-input-area input { flex: 1; background: #000; color: #fff; border: 1px solid #444; padding: 5px; border-radius: 5px; outline: none; font-size: 12px; }
         .chat-input-area button { background: #ff3e3e; color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        /* Animação de Digitando */
-        .typing { color: #888; font-style: italic; margin-bottom: 10px; display: block; }
+        /* Animação Digitando */
+        .typing { color: #888; font-style: italic; margin-bottom: 10px; }
         .typing span { animation: blink 1.4s infinite both; }
         .typing span:nth-child(2) { animation-delay: .2s; }
         .typing span:nth-child(3) { animation-delay: .4s; }
@@ -87,7 +98,7 @@
         <p style="color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Especialista em Motion Design e ADS</p>
         <div class="caixa">
             <input type="text" id="userIn" placeholder="Seu nome/Empresa...">
-            <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHECA MEU TRABALHO</button>
+            <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHEÇA MEU TRABALHO</button>
         </div>
     </div>
 
@@ -104,8 +115,9 @@
                 <div class="terminal-topo"><span class="ponto red"></span><span class="ponto yellow"></span><span class="ponto green"></span><span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span></div>
                 <div class="terminal-corpo">
                     <h2>> Prazer, me chamo Gabriel</h2>
-                    <p>Sou <strong>Motion Designer</strong>. Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong>...</p>
-                    <p>Aqui está ele: desenvolvido do zero, programando <strong>Python</strong> direto do meu bolso.</p>
+                    <p>Sou <strong>Motion Designer</strong> e ajudo suas imagens a ganharem vida através do movimento.</p>
+                    <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong>...</p>
+                    <p>Aqui está o resultado: programando <strong>Python</strong> direto do meu bolso.</p>
                     <span class="blink">_</span>
                 </div>
             </div>
@@ -113,6 +125,30 @@
 
         <div class="video-clean" data-aos="zoom-in">
             <iframe src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <h2 style="color: #ff3e3e; margin-top: 50px;">O QUE EU FAÇO?</h2>
+        <div class="servicos">
+            <div class="card" data-aos="fade-up"><i class="fas fa-play-circle"></i><h3>Motion Ads</h3><p>Anúncios animados de alta conversão.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-bolt"></i><h3>Vídeos Dinâmicos</h3><p>Edição moderna que prende a atenção.</p></div>
+        </div>
+
+        <div class="card" data-aos="fade-up" style="margin: 20px;">
+            <h3 style="text-align: center; color: #ff3e3e;"><i class="fas fa-layer-group"></i> Meus Pacotes</h3>
+            <div class="tabela-precos">
+                <details class="item-preco">
+                    <summary style="background:#222; padding:15px; border-radius:8px; margin-bottom:10px;">
+                        <h4>Combo Essencial - <span style="color:#ff3e3e;">R$ 27</span></h4>
+                    </summary>
+                    <div class="detalhes-combo"><ul><li>✅ 3 Artes Estáticas</li><li>✅ Entrega em 48h</li></ul></div>
+                </details>
+                <details class="item-preco">
+                    <summary style="background:#222; padding:15px; border-radius:8px; border: 2px solid #ff3e3e;">
+                        <h4>Combo Profissional - <span style="color:#ff3e3e;">R$ 45</span></h4>
+                    </summary>
+                    <div class="detalhes-combo"><ul><li>✅ 5 Artes Estáticas</li><li>✅ 1 Ajuste por arte</li></ul></div>
+                </details>
+            </div>
         </div>
 
         <footer>© 2026 <span style="color: #ff3e3e; font-weight: bold;">GABRIEL PIOVESAN</span><br>Desenvolvido via ISH. Cordeiropolis-SP</footer>
@@ -158,20 +194,18 @@
             area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
             input.value = "";
 
-            // Efeito "Digitando"
-            const typingId = "typing-" + Date.now();
-            area.innerHTML += `<div id="${typingId}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
+            // Efeito digitando
+            const tid = "t-" + Date.now();
+            area.innerHTML += `<div id="${tid}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
             area.scrollTop = area.scrollHeight;
 
             setTimeout(() => {
-                const typingElem = document.getElementById(typingId);
-                if (typingElem) typingElem.remove();
-
+                const te = document.getElementById(tid); if (te) te.remove();
                 let r = "";
-                if (msg.includes("valor") || msg.includes("preço")) { r = `${nomeUser}, meus pacotes começam em **R$ 27**!`; }
-                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Artes em 48h, vídeos a combinar!"; }
-                else if (msg.includes("onde") || msg.includes("cidade")) { r = "Moro em **Cordeirópolis-SP**!"; }
-                else { r = `Entendi, ${nomeUser}! O Gabriel te explica melhor no Zap.`; }
+                if (msg.includes("valor") || msg.includes("preço")) { r = `${nomeUser}, meus pacotes começam em **R$ 27**! Veja a tabela abaixo.`; }
+                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Artes em 48h! Vídeos a gente combina."; }
+                else if (msg.includes("onde") || msg.includes("mora")) { r = "Moro em **Cordeirópolis-SP**!"; }
+                else { r = `Boa, ${nomeUser}! O Gabriel te explica melhor no Zap. Quer o link?`; }
 
                 area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
                 area.scrollTop = area.scrollHeight;
