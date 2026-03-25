@@ -9,134 +9,218 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        :root { --pacheco-red: #e63946; --pacheco-dark: #121212; }
-
-        html, body {
-            margin: 0; padding: 0; width: 100%; overflow-x: hidden; position: relative;
-            /* FUNDO PRETO SÓLIDO */
-            background: black;
-            color: white; font-family: 'Segoe UI', sans-serif;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+        /* Trava Global */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
+        :root {
+            --pacheco-red: #e63946;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            background-color: #000; /* Fundo Preto Sólido */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Topo com a imagem pacheco.JPG */
         header {
-            width: 100%; background: var(--pacheco-dark); text-align: center;
-            border-bottom: 2px solid var(--pacheco-red); padding: 10px 0;
-            line-height: 1.2;
+            width: 100%;
+            padding: 0; 
+            background: #000;
+            text-align: center;
+            line-height: 0;
+        }
+
+        .header-logo-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .page-titles {
+            text-align: center;
+            margin: 30px 20px 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
         }
 
         .main-brand-title {
-            font-size: 2rem; font-weight: 900; color: var(--pacheco-red);
-            text-transform: uppercase; margin: 0; letter-spacing: 2px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--pacheco-red);
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 2px;
         }
 
+        /* Subtítulo Grande, Branco e Maiúsculo */
         .survey-subtitle {
-            font-size: 1rem; color: #fff; text-transform: uppercase;
-            font-weight: 300; letter-spacing: 2px; margin: 5px 0 0;
+            font-size: 1.6rem; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            margin-top: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        .container { width: 90%; max-width: 450px; margin: 20px auto 40px; }
+        .container {
+            width: 90%;
+            max-width: 450px;
+            margin: 10px auto 40px;
+        }
 
+        /* Card Seo Pacheco */
         .card {
-            background: #1e1e1e; padding: 25px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); text-align: center;
+            background: rgba(30, 30, 30, 0.9);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            text-align: center;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
 
-        label { display: block; text-align: left; margin: 15px 0 5px; font-size: 0.9rem; font-weight: bold; }
+        label {
+            display: block;
+            text-align: left;
+            margin: 20px 0 8px;
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: bold;
+        }
 
         input, select, textarea {
-            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px;
-            color: white; font-size: 1rem; outline: none; transition: 0.3s;
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
         }
-        input:focus, select:focus { border-color: var(--pacheco-red); background: rgba(0,0,0,0.8); }
+
+        input:focus, select:focus { border-color: var(--pacheco-red); }
 
         .btn-enviar {
-            background: var(--pacheco-red); color: white; border: none; padding: 15px; width: 100%;
-            border-radius: 10px; font-weight: bold; font-size: 1.1rem; margin-top: 25px; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            background: var(--pacheco-red);
+            color: white;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
         }
-        .btn-enviar:active { transform: scale(0.97); }
 
-        #sucesso { display: none; padding: 30px 10px; }
-        .check-icon { font-size: 3.5rem; color: #27c93f; margin-bottom: 15px; }
+        .btn-enviar:active { transform: scale(0.96); }
 
-        footer { margin-top: auto; padding: 20px; font-size: 0.75rem; color: #999; text-align: center; background: #000; width: 100%; }
+        #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+            background: #000;
+            width: 100%;
+        }
+
         .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header data-aos="fade-down">
-        <h1 class="main-brand-title">SEO PACHECO</h1>
-        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
+    <header>
+        <img src="pacheco.PNG" alt="Seo Pacheco Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
+    <div class="page-titles" data-aos="fade-up">
+        <h1 class="main-brand-title">SEO PACHECO</h1>
+        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
+    </div>
+
     <div class="container">
-        <div class="card" data-aos="zoom-in">
-            <h2>Como foi sua experiência hoje</h2>
+        <div class="card" data-aos="zoom-in" id="card-principal">
+            <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
                 <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" name="nome" placeholder="Digite Seu nome" required>
-                
-                <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
-                <input type="tel" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required>
-              
-                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
-                <select name="carne" required>
+                <input type="text" placeholder="Seu nome (Opcional)" required>
+
+                <label><i class="fab fa-whatsapp"></i> WhatsApp para contato:</label>
+                <input type="tel" placeholder="(19) 99999-9999" required>
+
+                <label><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
+                <select required>
                     <option value="">Selecione...</option>
-                    <option value="5">5 Estrelas (Impecável)</option>
-                    <option value="4">4 Estrelas (Muito bom)</option>
-                    <option value="3">3 Estrelas (Regular)</option>
-                    <option value="1">1 Estrela (Ruim)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
+                    <option value="1">⭐ (Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
-                <select name="atendimento" required>
+                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
+                <select required>
                     <option value="">Selecione...</option>
-                    <option value="5">5 Estrelas (Excepcional)</option>
-                    <option value="4">4 Estrelas (Bom)</option>
-                    <option value="1">1 Estrela (Lento/Ruim)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option value="1">⭐ (Lento/Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
-                <select name="bebida" required>
+                <label><i class="fas fa-beer"></i> Bebidas geladas?</label>
+                <select required>
                     <option value="">Selecione...</option>
-                    <option value="Sim">Sim, no ponto!</option>
+                    <option value="Sim">Sim, geladíssimas!</option>
                     <option value="Nao">Poderiam estar mais geladas</option>
                 </select>
 
-                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
-                <select name="limpeza" required>
+                <label><i class="fas fa-broom"></i> Limpeza do ambiente:</label>
+                <select required>
                     <option value="">Selecione...</option>
-                    <option value="5">5 Estrelas (Excelente)</option>
-                    <option value="1">1 Estrela (Regular/Ruim)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Impecável)</option>
+                    <option value="1">⭐ (Pode melhorar)</option>
                 </select>
 
-                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
-                <select name="recomendacao" required>
+                <label><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
+                <select required>
                     <option value="">Selecione...</option>
                     <option value="Sim">Com certeza!</option>
-                    <option value="Talvez">Talvez</option>
                     <option value="Nao">Não</option>
                 </select>
 
-                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
-                <textarea name="comentario" rows="3" placeholder="Conte-nos sua experiência..."></textarea>
+                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
+                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
 
-                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>Obrigado!</h3>
-                <p>Sua opinião ajuda a manter nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:5px 10px; border-radius:5px; margin-top:10px;">Voltar</button>
+                <p style="color: #aaa;">Sua avaliação foi registrada com sucesso.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
@@ -150,20 +234,16 @@
     <script>
         AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
-        
         f.onsubmit = (e) => {
-            // Validação de segurança HTML
             if (!f.checkValidity()) { return; }
-
             e.preventDefault();
-            const btn = document.getElementById('btn-submit');
-            btn.innerText = "ENVIANDO...";
-            btn.disabled = true;
-
+            document.getElementById('btn-demo').innerText = "ENVIANDO...";
+            document.getElementById('btn-demo').disabled = true;
             setTimeout(() => {
                 f.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
+                AOS.refresh();
             }, 1500);
         };
     </script>
