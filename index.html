@@ -51,11 +51,37 @@
         .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
         .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
         
-        footer { padding: 50px; color: #444; font-size: 0.8rem; background: #000; border-top: 1px solid #111; }
-   /* Estilo do Chat da IA */
-#chat-icon { position: fixed; bottom: 20px; right: 20px; background: #ff3e3e; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; }
-#chat-icon:hover { transform: scale(1.1); }
-#chat-window { display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; background: #111; border: 1px solid #ff3e3e; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
+        footer { padding: 50px; color: #444; font-size: 0.8rem; background: #000; border-top: 1px solid #
+/* Botão da IA - Agora lá no topo */
+#chat-icon { 
+    position: fixed; 
+    top: 20px;       /* 20px de distância do teto */
+    right: 20px;     /* Mantido na direita */
+    background: #ff3e3e; 
+    color: white; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    z-index: 1000; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+}
+
+/* Janela do Chat - Agora abre de cima para baixo */
+#chat-window { 
+    display: none; 
+    position: fixed; 
+    top: 90px;       /* Começa logo abaixo do botão (20px + 60px + 10px de folga) */
+    right: 20px; 
+    width: 300px; 
+    background: #111; 
+    border: 1px solid #ff3e3e; 
+    border-radius: 15px; 
+    z-index: 1000; 
+}
 
     </style>
 </head>
