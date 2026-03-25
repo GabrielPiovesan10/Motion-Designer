@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        :root { --pacheco-red: #e63946; }
 
         html, body {
             width: 100%;
@@ -18,18 +20,19 @@
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* --- HEADER COM CORTE AUTOMÁTICO --- */
+        /* --- HEADER COM ZOOM PARA TIRAR AS BORDAS DA FOTO --- */
         header {
             width: 100%;
-            height: 280px; /* Definimos uma altura fixa para o topo */
-            overflow: hidden; /* Tudo que sobrar da foto vai ser cortado */
+            height: 250px; /* Define a altura da janela da foto */
+            overflow: hidden;
             background: #000;
             display: flex;
             align-items: center;
@@ -39,15 +42,13 @@
         .header-logo-img {
             width: 100%;
             height: 100%;
-            /* O PULO DO GATO: Ele faz o zoom e corta as bordas pretas da foto */
-            object-fit: cover; 
+            object-fit: cover; /* Corta as bordas pretas se a foto for maior */
             object-position: center;
         }
 
         .brand-text-block {
             text-align: center;
-            /* PUXA AS LETRAS PARA CIMA DA FOTO COM FORÇA */
-            margin-top: -50px; 
+            margin-top: -60px; /* PUXA O TÍTULO PARA CIMA DA FOTO */
             position: relative;
             z-index: 10;
         }
@@ -55,9 +56,10 @@
         .main-brand-title {
             font-size: 2.2rem;
             font-weight: 900;
-            color: #e63946; /* Vermelho Seo Pacheco */
+            color: var(--pacheco-red);
             text-transform: uppercase;
             text-shadow: 2px 2px 15px rgba(0,0,0,1);
+            letter-spacing: 2px;
         }
 
         .survey-subtitle {
@@ -67,81 +69,151 @@
             font-weight: bold; 
             letter-spacing: 2px;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
+            margin-top: 5px;
         }
 
         .container { width: 92%; max-width: 450px; margin: 20px auto 40px; }
 
+        /* Estilo Glassmorphism do Card */
         .card {
             background: rgba(30, 30, 30, 0.95);
             padding: 25px;
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        label { display: block; text-align: left; margin: 18px 0 6px; font-weight: bold; font-size: 0.9rem; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid var(--pacheco-red); padding-bottom: 10px; }
+
+        label { display: block; text-align: left; margin: 20px 0 8px; font-weight: bold; font-size: 0.95rem; color: #eee; }
 
         input, select, textarea {
-            width: 100%; padding: 14px; background: #000;
-            border: 1px solid #333; border-radius: 12px; color: white;
+            width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
+            color: white; font-size: 1rem; outline: none; transition: 0.3s;
         }
+
+        input:focus, select:focus { border-color: var(--pacheco-red); background: rgba(0,0,0,0.8); }
 
         .btn-enviar {
-            background: #e63946; color: white; border: none; padding: 18px;
+            background: var(--pacheco-red); color: white; border: none; padding: 18px;
             width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-            margin-top: 30px; cursor: pointer;
+            margin-top: 30px; cursor: pointer; box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
         }
 
+        .btn-enviar:active { transform: scale(0.96); }
+
         #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+
+        /* --- RODAPÉ --- */
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+            background: #000;
+            width: 100%;
+        }
+        .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="pacheco.PNG" alt="Logo" class="header-logo-img">
+        <img src="pacheco.PNG" alt="Seo Pacheco Logo" class="header-logo-img">
     </header>
 
-    <div class="brand-text-block">
+    <div class="brand-text-block" data-aos="fade-up">
         <h1 class="main-brand-title">SEO PACHECO</h1>
         <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
-        <div class="card" id="card-principal">
+        <div class="card" data-aos="zoom-in" id="card-principal">
+            <h2>Como foi sua experiência hoje</h2>
+            
             <form id="feedback-form">
-                <label>Qual o seu nome?</label>
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
                 <input type="text" placeholder="Digite seu nome" required>
 
-                <label>Seu WhatsApp:</label>
+                <label><i class="fab fa-whatsapp"></i> WhatsApp para contato:</label>
                 <input type="tel" placeholder="(19) 99999-9999" required>
 
-                <label>A carne estava no ponto?</label>
+                <label><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
                 <select required>
                     <option value="">Selecione...</option>
-                    <option>⭐⭐⭐⭐⭐ (Perfeito)</option>
-                    <option>⭐⭐⭐⭐ (Bom)</option>
-                    <option>⭐ (Ruim)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
+                    <option value="3">⭐⭐⭐ (Regular)</option>
+                    <option value="1">⭐ (Ruim)</option>
                 </select>
+
+                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="1">⭐ (Lento/Ruim)</option>
+                </select>
+
+                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="Sim">Sim, geladíssimas!</option>
+                    <option value="Nao">Poderiam estar mais geladas</option>
+                </select>
+
+                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Impecável)</option>
+                    <option value="1">⭐ (Pode melhorar)</option>
+                </select>
+
+                <label><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="Sim">Com certeza!</option>
+                    <option value="Nao">Não</option>
+                </select>
+
+                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
+                <textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
-                <i class="fas fa-check-circle" style="font-size: 4rem; color: #27c93f;"></i>
-                <h3>Avaliação Enviada!</h3>
-                <button onclick="location.reload()" style="background:none; border:1px solid #555; color:#fff; padding:10px; border-radius:8px; margin-top:20px;">Voltar</button>
+                <i class="fas fa-check-circle check-icon"></i>
+                <h3>Obrigado!</h3>
+                <p style="color: #aaa;">Sua avaliação foi enviada com sucesso.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
 
+    <footer>
+        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
+        <span class="footer-highlight">Tecnologia Pacheco Satisfaction</span> © 2026
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         f.onsubmit = (e) => {
+            if (!f.checkValidity()) { return; }
             e.preventDefault();
             document.getElementById('btn-demo').innerText = "ENVIANDO...";
+            document.getElementById('btn-demo').disabled = true;
             setTimeout(() => {
                 f.style.display = 'none';
+                document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
+                AOS.refresh();
             }, 1200);
         };
     </script>
