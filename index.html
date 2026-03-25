@@ -113,7 +113,7 @@
                     <h2>> Prazer, me chamo Gabriel</h2>
                     <p>Sou <strong>Motion Designer</strong> e ajudo suas imagens a ganharem vida através do movimento.</p>
                     <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
-                    <p>Aqui está ele: desenvolvido do zero, programando <strong>Python</strong> e terminal direto do meu bolso.</p>
+                    <p>Aqui está o resultado: programando <strong>Python</strong> direto do meu bolso.</p>
                     <p>Achou <strong>interessante</strong> e quer ter seu próprio site? Me chame no WhatsApp e me conte sua ideia!</p>
                     <span class="blink">_</span>
                 </div>
@@ -140,12 +140,14 @@
                 <details class="item-preco">
                     <summary style="background:#222; padding:15px; border-radius:8px; margin-bottom:10px;">
                         <h4>Combo Essencial - <span style="color:#ff3e3e;">R$ 27</span></h4>
+                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
                     </summary>
                     <div class="detalhes-combo"><ul><li>✅ 3 Artes Estáticas</li><li>✅ Entrega em 48h</li></ul></div>
                 </details>
                 <details class="item-preco">
                     <summary style="background:#222; padding:15px; border-radius:8px; border: 2px solid #ff3e3e;">
                         <h4>Combo Profissional - <span style="color:#ff3e3e;">R$ 45</span></h4>
+                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
                     </summary>
                     <div class="detalhes-combo"><ul><li>✅ 5 Artes Estáticas</li><li>✅ 1 Ajuste por arte</li></ul></div>
                 </details>
@@ -203,11 +205,11 @@
                 const te = document.getElementById(tid); if (te) te.remove();
                 let r = "";
                 if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) { 
-                    r = `${nomeUser}, meus pacotes começam em **R$ 27**! Tá logo abaixo no site.`; 
+                    r = `${nomeUser}, meus pacotes começam em **R$ 27**! Veja a tabela abaixo.`; 
                 }
-                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Artes em 48h! Vídeos a gente combina no Zap."; }
+                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Consigo te entregar artes em 48h!"; }
                 else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) { r = "Moro em **Cordeirópolis-SP**!"; }
-                else { r = `Boa, ${nomeUser}! O Gabriel te explica melhor no Zap. Quer o link?`; }
+                else { r = `Boa, ${nomeUser}! O Gabriel te explica isso melhor no Zap. Quer o link?`; }
 
                 area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
                 area.scrollTop = area.scrollHeight;
