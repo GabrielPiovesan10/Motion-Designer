@@ -9,46 +9,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        :root { --pacheco-red: #e63946; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
-            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            width: 100%;
+            overflow-x: hidden;
             background-color: #000;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif; color: white;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- HEADER ULTRA COMPACTO --- */
+        /* --- HEADER COM CORTE AUTOMÁTICO --- */
         header {
             width: 100%;
+            height: 280px; /* Definimos uma altura fixa para o topo */
+            overflow: hidden; /* Tudo que sobrar da foto vai ser cortado */
             background: #000;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            line-height: 0;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .header-logo-img {
             width: 100%;
-            max-width: 500px; /* Limita um pouco o tamanho para não esticar tanto */
-            height: auto;
-            display: inline-block;
-            /* MARGEM NEGATIVA: Puxa o que está embaixo para cima da foto */
-            margin-bottom: -40px; 
-            /* MARGEM NEGATIVA NO TOPO: Puxa a foto para o limite da tela */
-            margin-top: -10px;
+            height: 100%;
+            /* O PULO DO GATO: Ele faz o zoom e corta as bordas pretas da foto */
+            object-fit: cover; 
+            object-position: center;
         }
 
-        .page-titles {
+        .brand-text-block {
             text-align: center;
-            /* PUXA O TÍTULO PARA CIMA DA LOGO */
-            margin: -20px 20px 10px; 
+            /* PUXA AS LETRAS PARA CIMA DA FOTO COM FORÇA */
+            margin-top: -50px; 
             position: relative;
             z-index: 10;
         }
@@ -56,10 +55,9 @@
         .main-brand-title {
             font-size: 2.2rem;
             font-weight: 900;
-            color: var(--pacheco-red);
+            color: #e63946; /* Vermelho Seo Pacheco */
             text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
 
         .survey-subtitle {
@@ -67,39 +65,34 @@
             color: #ffffff; 
             text-transform: uppercase; 
             font-weight: bold; 
-            letter-spacing: 2px; 
-            margin-top: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,1);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
 
-        .container { width: 90%; max-width: 450px; margin: 5px auto 40px; }
+        .container { width: 92%; max-width: 450px; margin: 20px auto 40px; }
 
         .card {
-            background: rgba(30, 30, 30, 0.95); padding: 25px; border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            background: rgba(30, 30, 30, 0.95);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
 
-        h2 { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid var(--pacheco-red); padding-bottom: 10px; }
-
-        label { display: block; text-align: left; margin: 18px 0 6px; font-size: 0.9rem; font-weight: bold; }
+        label { display: block; text-align: left; margin: 18px 0 6px; font-weight: bold; font-size: 0.9rem; }
 
         input, select, textarea {
-            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px;
-            color: white; font-size: 1rem; outline: none;
+            width: 100%; padding: 14px; background: #000;
+            border: 1px solid #333; border-radius: 12px; color: white;
         }
 
         .btn-enviar {
-            background: var(--pacheco-red); color: white; border: none; padding: 18px;
+            background: #e63946; color: white; border: none; padding: 18px;
             width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-            margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            margin-top: 30px; cursor: pointer;
         }
 
-        #sucesso { display: none; padding: 30px; }
-        .check-icon { font-size: 3.5rem; color: #27c93f; margin-bottom: 15px; }
-
-        footer { padding: 25px; font-size: 0.8rem; color: #999; text-align: center; background: #000; width: 100%; }
+        #sucesso { display: none; padding: 40px 20px; }
     </style>
 </head>
 <body>
@@ -108,23 +101,21 @@
         <img src="pacheco.PNG" alt="Logo" class="header-logo-img">
     </header>
 
-    <div class="page-titles">
+    <div class="brand-text-block">
         <h1 class="main-brand-title">SEO PACHECO</h1>
         <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
         <div class="card" id="card-principal">
-            <h2>Sua experiência hoje</h2>
-            
             <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Nome:</label>
-                <input type="text" placeholder="Seu nome" required>
+                <label>Qual o seu nome?</label>
+                <input type="text" placeholder="Digite seu nome" required>
 
-                <label><i class="fab fa-whatsapp"></i> WhatsApp:</label>
+                <label>Seu WhatsApp:</label>
                 <input type="tel" placeholder="(19) 99999-9999" required>
 
-                <label><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
+                <label>A carne estava no ponto?</label>
                 <select required>
                     <option value="">Selecione...</option>
                     <option>⭐⭐⭐⭐⭐ (Perfeito)</option>
@@ -132,28 +123,16 @@
                     <option>⭐ (Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-concierge-bell"></i> Atendimento:</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option>⭐⭐⭐⭐⭐ (Ótimo)</option>
-                    <option>⭐ (Ruim)</option>
-                </select>
-
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
-                <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
+                <i class="fas fa-check-circle" style="font-size: 4rem; color: #27c93f;"></i>
+                <h3>Avaliação Enviada!</h3>
+                <button onclick="location.reload()" style="background:none; border:1px solid #555; color:#fff; padding:10px; border-radius:8px; margin-top:20px;">Voltar</button>
             </div>
         </div>
     </div>
-
-    <footer>
-        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        Tecnologia Pacheco Satisfaction © 2026
-    </footer>
 
     <script>
         const f = document.getElementById('feedback-form');
@@ -162,7 +141,6 @@
             document.getElementById('btn-demo').innerText = "ENVIANDO...";
             setTimeout(() => {
                 f.style.display = 'none';
-                document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
             }, 1200);
         };
