@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -12,15 +12,15 @@
         :root {
             --deck-red: #e63946;
             --deck-dark: #121212;
-            --deck-gold: #ffb703;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1a1a1a;
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
+            /* Fundo de madeira local */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: contain;
             background-position: center;
             background-attachment: fixed;
@@ -36,9 +36,11 @@
         header {
             width: 100%;
             padding: 0; 
-            background: rgba(0, 0, 0, 0.85);
+            background: #000;
             text-align: center;
-            border-bottom: 4px solid var(--deck-red);
+            /* LINHA VERMELHA REMOVIDA AQUI */
+            border-bottom: none; 
+            line-height: 0;
         }
 
         .header-logo-img {
@@ -51,7 +53,7 @@
         .page-titles {
             text-align: center;
             margin: 30px 20px 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
         }
 
         .main-brand-title {
@@ -60,12 +62,14 @@
             color: var(--deck-red);
             text-transform: uppercase;
             margin: 0;
+            letter-spacing: 2px;
         }
 
         .survey-subtitle {
-            font-size: 1.1rem;
-            color: #eee;
+            font-size: 1rem;
+            color: #fff;
             margin-top: 5px;
+            letter-spacing: 2px;
         }
 
         .container {
@@ -74,19 +78,19 @@
             margin: 10px auto 40px;
         }
 
-        /* --- CAIXA TRANSPARENTE (GLASSMORPHISM) --- */
+        /* EFEITO GLASSMORPHISM (TRANSPARENTE) */
         .card {
-            background: rgba(0, 0, 0, 0.35); /* Transparência em 35% */
-            backdrop-filter: blur(12px);    /* O "pulo do gato": desfoca a madeira atrás */
-            -webkit-backdrop-filter: blur(12px); /* Suporte para Safari/iPhone */
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 30px;
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda fininha pra dar reflexo */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 25px; color: #fff; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; color: #fff; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
 
         label {
             display: block;
@@ -99,8 +103,8 @@
 
         input, select, textarea {
             width: 100%;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.5); /* Inputs também mais leves */
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             color: white;
@@ -109,7 +113,7 @@
             outline: none;
         }
 
-        input:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.7); }
+        input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
 
         .btn-enviar {
             background: var(--deck-red);
@@ -135,9 +139,9 @@
             margin-top: auto;
             padding: 30px;
             font-size: 0.8rem;
-            color: #fff;
+            color: #ccc;
             text-align: center;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             width: 100%;
         }
 
@@ -160,27 +164,48 @@
             <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
-                <label>Qual o seu nome?</label>
-                <input type="text" placeholder="Seu nome...">
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
+                <input type="text" placeholder="Digite seu nome (Opcional)">
 
-                <label>Como estava o ponto da carne?</label>
-                <select>
-                    <option>⭐⭐⭐⭐⭐ (Impecável)</option>
-                    <option>⭐⭐⭐⭐ (Muito bom)</option>
-                    <option>⭐⭐⭐ (Regular)</option>
-                    <option>⭐⭐ (Pode melhorar)</option>
-                    <option>⭐ (Ruim)</option>
+                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava a seu gosto?</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
+                    <option value="3">⭐⭐⭐ (Regular)</option>
+                    <option value="2">⭐⭐ (Pode melhorar)</option>
+                    <option value="1">⭐ (Ruim)</option>
                 </select>
 
-                <label>Nota para o atendimento:</label>
-                <select>
-                    <option>⭐⭐⭐⭐⭐ (Excelente)</option>
-                    <option>⭐⭐⭐⭐ (Bom)</option>
-                    <option>⭐ (Ruim)</option>
+                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito Bom)</option>
+                    <option value="3">⭐⭐⭐ (Normal)</option>
+                    <option value="1">⭐ (Precisa melhorar muito)</option>
                 </select>
 
-                <label>Algum comentário adicional?</label>
-                <textarea rows="3" placeholder="Sugestões ou elogios..."></textarea>
+                <label><i class="fas fa-wine-glass-alt"></i> As bebidas estavam na temperatura ideal?</label>
+                <select required>
+                    <option value="Sim">Sim, geladas!</option>
+                    <option value="Nao">Poderiam estar mais geladas</option>
+                </select>
+
+                <label><i class="fas fa-sparkles"></i> Nota para a limpeza e ambiente:</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Muito limpo)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="1">⭐ (Deixou a desejar)</option>
+                </select>
+
+                <label><i class="fas fa-heart"></i> Você recomendaria o Deck para um amigo?</label>
+                <select required>
+                    <option value="Sim">Com certeza!</option>
+                    <option value="Talvez">Talvez</option>
+                    <option value="Nao">Não</option>
+                </select>
+
+                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
+                <textarea rows="3" placeholder="Conte-nos mais..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
@@ -188,7 +213,7 @@
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>Obrigado pela visita!</h3>
-                <p style="color: #aaa;">Sua avaliação foi registrada com sucesso.</p>
+                <p style="color: #aaa;">Sua avaliação foi registrada e ajuda a melhorar nossa qualidade.</p>
                 <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
             </div>
         </div>
