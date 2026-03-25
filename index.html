@@ -70,18 +70,52 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
 }
 
-/* Janela do Chat - Agora abre de cima para baixo */
-#chat-window { 
-    display: none; 
+/* --- ESTILO CORRIGIDO DO CHAT DA IA (GABRIEL MOTION) --- */
+
+/* O Ícone (O Robô) - Agora mais baixo e na direita */
+#chat-icon { 
     position: fixed; 
-    top: 90px;       /* Começa logo abaixo do botão (20px + 60px + 10px de folga) */
-    right: 20px; 
-    width: 300px; 
-    background: #111; 
-    border: 1px solid #ff3e3e; 
-    border-radius: 15px; 
-    z-index: 1000; 
+    top: 70px; /* Baixamos para não cobrir o topo do site */
+    right: 15px; /* Alinhado levemente na direita */
+    background: #ff3e3e; /* Vermelho Motion */
+    color: white; 
+    width: 50px; /* Um pouco menor para celular */
+    height: 50px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    z-index: 1001; /* Garante que fique acima de tudo */
+    box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); /* Sombra vermelha foda */
+    transition: 0.3s; 
 }
+#chat-icon:hover { transform: scale(1.1) rotate(10deg); }
+
+/* A Janela do Chat - Agora abre escondida e com estilo 'Glass' */
+#chat-window { 
+    display: none; /* ISTO AQUI GARANTE QUE ELE COMECE ESCONDIDO */
+    position: fixed; 
+    top: 130px; /* Começa logo abaixo do ícone */
+    right: 15px; 
+    width: 280px; /* Tamanho ideal para tela de iPhone */
+    
+    /* Efeito 'menos preto' e elegante de Motion Designer */
+    background: rgba(26, 26, 26, 0.9); /* Um cinza muito escuro com 90% de opacidade */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo (Glassmorphism) */
+    
+    border: 1px solid rgba(255, 62, 62, 0.3); /* Borda vermelha bem sutil */
+    border-top: 3px solid #ff3e3e; /* Detalhe forte no topo */
+    border-radius: 12px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    z-index: 1000; 
+    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
+    overflow: hidden; 
+}
+
+/* Outros estilos internos (apenas para referência, use os mesmos) */
+#chat-content p { margin-bottom: 8px; line-height: 1.4; }
+#chat-content strong { color: #ff3e3e; } /* Destaque em vermelho */
 
     </style>
 </head>
