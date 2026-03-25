@@ -24,14 +24,13 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            overflow-x: hidden; /* A VACINA contra o erro de arrastar pro lado */
+            overflow-x: hidden;
             position: relative;
             background-color: #1a1a1a;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Fundo de Madeira Local */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: contain;
             background-position: center;
@@ -44,13 +43,12 @@
             min-height: 100vh;
         }
 
-        /* Topo sem a linha vermelha */
         header {
             width: 100%;
             padding: 0; 
             background: #000;
             text-align: center;
-            border-bottom: none; /* LINHA REMOVIDA */
+            border-bottom: none;
             line-height: 0;
         }
 
@@ -77,11 +75,12 @@
         }
 
         .survey-subtitle {
-            font-size: 1rem;
-            color: #fff;
-            margin-top: 5px;
-            letter-spacing: 2px;
-            text-transform: lowercase;
+            font-size: 1.6rem; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .container {
@@ -90,7 +89,6 @@
             margin: 10px auto 40px;
         }
 
-        /* Efeito Transparente Glassmorphism */
         .card {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(15px);
@@ -168,9 +166,7 @@
 
     <div class="page-titles" data-aos="fade-up">
         <h1 class="main-brand-title">Deck Churrascaria</h1>
-        <p class="survey-subtitle" style="font-size: 1.6rem; color: #ffffff; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">PESQUISA DE SATISFAÇÃO</p>
-
-
+        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
@@ -179,13 +175,14 @@
             
             <form id="feedback-form">
                 <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite Seu nome">
+                <input type="text" placeholder="Digite Seu nome" required>
                 
                 <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
-                <input type="text" placeholder="Digite Seu número">
+                <input type="tel" placeholder="Digite Seu número" required>
               
                 <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
                 <select required>
+                    <option value="">Selecione...</option>
                     <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
                     <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
                     <option value="3">⭐⭐⭐ (Regular)</option>
@@ -195,6 +192,7 @@
 
                 <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
                 <select required>
+                    <option value="">Selecione...</option>
                     <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
                     <option value="4">⭐⭐⭐⭐ (Bom)</option>
                     <option value="3">⭐⭐⭐ (Normal)</option>
@@ -203,12 +201,14 @@
 
                 <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
                 <select required>
+                    <option value="">Selecione...</option>
                     <option value="Sim">Sim, no ponto!</option>
                     <option value="Nao">Poderiam estar mais geladas</option>
                 </select>
 
                 <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
                 <select required>
+                    <option value="">Selecione...</option>
                     <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
                     <option value="4">⭐⭐⭐⭐ (Bom)</option>
                     <option value="1">⭐ (Regular/Ruim)</option>
@@ -216,6 +216,7 @@
 
                 <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
                 <select required>
+                    <option value="">Selecione...</option>
                     <option value="Sim">Com certeza!</option>
                     <option value="Talvez">Talvez</option>
                     <option value="Nao">Não</option>
@@ -245,9 +246,19 @@
     <script>
         AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
+        
         f.onsubmit = (e) => {
+            // Se o formulário não passar na validação do navegador, ele para aqui
+            if (!f.checkValidity()) {
+                return; 
+            }
+
             e.preventDefault();
-            document.getElementById('btn-demo').innerText = "ENVIANDO...";
+            const btn = document.getElementById('btn-demo');
+            btn.innerText = "ENVIANDO...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
             setTimeout(() => {
                 f.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
