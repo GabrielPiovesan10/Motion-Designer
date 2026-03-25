@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,16 +16,15 @@
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1a1a1a;
-            /* Usando um degradê sutil para o fundo de madeira para ajudar a misturar */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
-            background-size: cover;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
+            background-size: contain;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             color: white;
             display: flex;
             flex-direction: column;
@@ -34,19 +33,15 @@
             overflow-x: hidden;
         }
 
-        /* --- CABEÇALHO INTEGRADO (SEM CORTES BRUSCOS) --- */
         header {
             width: 100%;
             padding: 0; 
-            background: #121212; /* Fundo base para o degradê */
+            background: rgba(0, 0, 0, 0.85);
             text-align: center;
-            /* Degradê suave que faz a foto de fachada se misturar com o fundo escuro abaixo */
-            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            border-bottom: 2px solid var(--deck-red); /* Barra de destaque mais fina e sutil */
+            border-bottom: 4px solid var(--deck-red);
         }
 
-        .header-fachada-img {
+        .header-logo-img {
             width: 100%;
             height: auto;
             display: block;
@@ -55,7 +50,7 @@
 
         .page-titles {
             text-align: center;
-            margin: 20px 20px 10px;
+            margin: 30px 20px 10px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
         }
 
@@ -79,11 +74,15 @@
             margin: 10px auto 40px;
         }
 
+        /* --- CAIXA TRANSPARENTE (GLASSMORPHISM) --- */
         .card {
-            background: rgba(20, 20, 20, 0.96); 
+            background: rgba(0, 0, 0, 0.35); /* Transparência em 35% */
+            backdrop-filter: blur(12px);    /* O "pulo do gato": desfoca a madeira atrás */
+            -webkit-backdrop-filter: blur(12px); /* Suporte para Safari/iPhone */
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda fininha pra dar reflexo */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             text-align: center;
         }
 
@@ -94,15 +93,15 @@
             text-align: left;
             margin: 20px 0 8px;
             font-size: 0.9rem;
-            color: #bbb;
+            color: #eee;
             font-weight: bold;
         }
 
         input, select, textarea {
             width: 100%;
             padding: 15px;
-            background: #121212;
-            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.5); /* Inputs também mais leves */
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             color: white;
             font-size: 1rem;
@@ -110,7 +109,7 @@
             outline: none;
         }
 
-        input:focus { border-color: var(--deck-red); }
+        input:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.7); }
 
         .btn-enviar {
             background: var(--deck-red);
@@ -123,8 +122,11 @@
             font-size: 1.2rem;
             margin-top: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+            transition: 0.3s;
         }
+
+        .btn-enviar:active { transform: scale(0.96); }
 
         #sucesso { display: none; padding: 40px 20px; }
         .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
@@ -135,7 +137,7 @@
             font-size: 0.8rem;
             color: #fff;
             text-align: center;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             width: 100%;
         }
 
@@ -145,7 +147,7 @@
 <body>
 
     <header>
-        <img src="logo-deck.JPG" alt="Deck Churrascaria Facade" class="header-fachada-img" data-aos="fade-down">
+        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
     <div class="page-titles" data-aos="fade-up">
@@ -187,7 +189,7 @@
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>Obrigado pela visita!</h3>
                 <p style="color: #aaa;">Sua avaliação foi registrada com sucesso.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
             </div>
         </div>
     </div>
@@ -201,14 +203,13 @@
     <script>
         AOS.init();
         const f = document.getElementById('feedback-form');
-        const sucesso = document.getElementById('sucesso');
         f.onsubmit = (e) => {
             e.preventDefault();
             document.getElementById('btn-demo').innerText = "ENVIANDO...";
             setTimeout(() => {
                 f.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
-                sucesso.style.display = 'block';
+                document.getElementById('sucesso').style.display = 'block';
                 AOS.refresh();
             }, 1500);
         };
