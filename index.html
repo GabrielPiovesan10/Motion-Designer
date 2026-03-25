@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPR39RXFKC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-NPR39RXFKC');
+
+      // Função para rastrear cliques no WhatsApp (Conversão)
+      function trackZap() {
+        gtag('event', 'clique_whatsapp_marcio', {
+          'event_category': 'Conversão',
+          'event_label': 'Botão Principal'
+        });
+      }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deck Churrascaria | Sua Opinião</title>
@@ -18,19 +34,28 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: var(--deck-dark);
+            /* --- CSS ALTERADO PARA ADICIONAR FUNDO DE MADEIRA --- */
+            background-color: #1a1a1a; /* Cor de fallback */
+            /* Link para textura de madeira escura premium do Unsplash */
+            background-image: url('https://images.unsplash.com/photo-1596707338006-03f41ae917b2?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;       /* Preenche toda a tela */
+            background-position: center;  /* Centraliza a textura */
+            background-attachment: fixed; /* Efeito parallax premium: fundo fixo, conteúdo rola */
+            background-repeat: no-repeat;
+            
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
             width: 100%;
             padding: 0; 
             background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9));
-            background-color: var(--deck-dark);
+            background-color: rgba(18, 18, 18, 0.9); /* Ligeiramente transparente */
             text-align: center;
             border-bottom: 4px solid var(--deck-red);
         }
@@ -73,7 +98,8 @@
         }
 
         .card {
-            background: #1e1e1e;
+            /* --- AJUSTE NA OPACIDADE DO CARTÃO PARA MELHORAR LEITURA SOBRE MADEIRA --- */
+            background: rgba(30, 30, 30, 0.95); /* Aumentada a opacidade */
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
@@ -142,7 +168,6 @@
             text-align: center;
         }
 
-        /* --- CSS PARA O DESTAQUE NO RODAPÉ --- */
         .footer-highlight {
             color: var(--deck-red);
             font-weight: bold;
