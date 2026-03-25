@@ -19,14 +19,19 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            /* CONFIGURAÇÃO DO FUNDO DE MADEIRA LOCAL */
+            
+            /* --- CONFIGURAÇÃO CORRIGIDA PARA FUNDO FLUIDO E NÍTIDO --- */
             background-color: #1a1a1a;
-            /* Nome do arquivo local no GitHub */
+            /* Usando JPG, com overlay escuro para leitura */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('madeira.JPG'); 
-            background-size: cover;
+            
+            /* ALTERAÇÃO PRINCIPAL: NÃO ESTICA A IMAGEM */
+            background-size: contain; /* Encolhe a imagem para que os pixels fiquem nítidos */
             background-position: center;
-            background-attachment: fixed; /* Efeito de parallax */
-            background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantém o efeito parallax fluído */
+            
+            /* ALTERAÇÃO PRINCIPAL: CRIA UM PADRÃO CONTINUO */
+            background-repeat: repeat;    /* Repete a imagem nítida para preencher toda a tela */
             
             color: white;
             display: flex;
