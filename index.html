@@ -279,65 +279,78 @@
                 botaoSom.innerHTML = "🔊";
             }
         }
+<script>
+// 1. Variáveis Globais (A memória do robô)
+let nomeUser = "Visitante"; 
 
-        // --- CÉREBRO DA IA GABRIEL MOTION ---
-        let etapaChat = 1;
-        let nomeCliente = "";
+// 2. Função de Entrada (Login)
+function start() {
+    const campo = document.getElementById("userIn");
+    const nome = campo.value.trim();
 
-        // Abre/Fecha Janela
-        function toggleChat() {
-            const j = document.getElementById('chat-window');
-            if (j.style.display === 'none' || j.style.display === '') {
-                j.style.display = 'block';
-            } else {
-                j.style.display = 'none';
-            }
-        }
+    if(nome !== "") {
+        nomeUser = nome; // Guarda o nome
+        
+        // Já prepara a primeira fala do robô
+        const chat = document.getElementById("chat-content");
+        chat.innerHTML = `<p><strong>Robô:</strong> Olá, ${nomeUser}! 😊 Vi que você chegou. No que posso te ajudar?</p>`;
+
+        document.getElementById("meusom").play();
+        document.getElementById("msg-boasvindas").innerText = "Bem-vindo, " + nomeUser + "!";
+        document.getElementById("bloqueio").style.top = "-110vh";
+        document.getElementById("site").style.display = "block";
+    } else {
+        alert("Digite seu nome para entrar!");
+    }
+}
+
+// 3. Controle da Janela do Chat
+function toggleChat() {
+    const j = document.getElementById('chat-window');
+    const display = j.style.display;
+    j.style.display = (display === 'none' || display === '') ? 'block' : 'none';
+}
+
+// 4. Conversa Inteligente
 function sendMessage() {
     const input = document.getElementById('user-input');
-    const content = document.getElementById('chat-content');
-    const msgOriginal = input.value.trim();
-    // Transforma em minúsculo para o robô não se perder
-    const msg = msgOriginal.toLowerCase();
+    const area = document.getElementById('chat-content');
+    const msgOrig = input.value.trim();
+    const msg = msgOrig.toLowerCase();
 
     if (!msg) return;
 
-    // Mostra o que o usuário digitou
-    content.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOriginal}</p>`;
+    area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
     input.value = "";
 
     setTimeout(() => {
-        let r = ""; // Variável da Resposta
+        let r = ""; // Resposta
 
-        // --- LÓGICA DE PALAVRAS-CHAVE ---
         if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) {
-            r = "Trabalho com pacotes a partir de **R$ 27**! Veja a tabela abaixo para detalhes.";
+            r = `${nomeUser}, meus pacotes começam em **R$ 27**! Tá logo abaixo no site.`;
         } 
-        else if (msg.includes("tempo") || msg.includes("prazo") || msg.includes("demora")) {
-            r = "Artes em até 48h e vídeos Motion dependem do projeto, mas sou rápido!";
+        else if (msg.includes("tempo") || msg.includes("prazo")) {
+            r = "Consigo te entregar artes em 48h. Vídeos a gente alinha no Zap!";
         }
-        else if (msg.includes("onde") || msg.includes("cidade") || msg.includes("mora")) {
-            r = "Estou em **Cordeirópolis-SP**, mas atendo o mundo todo via internet! 🌍";
+        else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) {
+            r = "Moro em **Cordeirópolis-SP**, mas atendo o mundo todo!";
         }
-        else if (msg.includes("site") || msg.includes("web") || msg.includes("program")) {
-            r = "Sim! Eu criei este site do zero pelo celular. Quer um pro seu negócio?";
-        }
-        else if (msg.includes("oi") || msg.includes("olá") || msg.includes("bom dia")) {
-            r = "Olá! Prazer em te receber. O que você precisa hoje? (Artes, Vídeos ou Sites)";
+        else if (msg.includes("oi") || msg.includes("olá")) {
+            r = `Oi, ${nomeUser}! Como posso te ajudar hoje?`;
         }
         else {
-            r = "Prazer!,Ainda estou aprendendo,sou apenas um robô estagiario. mas o Gabriel pode te explicar tudo no Zap. Quer o link?";
+            r = `Entendi, ${nomeUser}! O Gabriel te explica isso melhor no WhatsApp. Quer o link?`;
         }
 
-        // Adiciona a resposta do robô
-        content.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
-        
-        // Rola o chat para o fim
-        content.scrollTop = content.scrollHeight;
+        area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
+        area.scrollTop = area.scrollHeight;
     }, 800);
 }
 
-    
-    </script>
+// Inicializa as animações
+AOS.init();
+</script>
+
+        
 </body>
 </html>
