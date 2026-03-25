@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPR39RXFKC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-NPR39RXFKC');
-
-      // Função para rastrear cliques no WhatsApp (Conversão)
-      function trackZap() {
-        gtag('event', 'clique_whatsapp_marcio', {
-          'event_category': 'Conversão',
-          'event_label': 'Botão Principal'
-        });
-      }
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deck Churrascaria | Sua Opinião</title>
@@ -34,13 +18,12 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            /* --- CSS ALTERADO PARA ADICIONAR FUNDO DE MADEIRA --- */
-            background-color: #1a1a1a; /* Cor de fallback */
-            /* Link para textura de madeira escura premium do Unsplash */
-            background-image: url('https://images.unsplash.com/photo-1596707338006-03f41ae917b2?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;       /* Preenche toda a tela */
-            background-position: center;  /* Centraliza a textura */
-            background-attachment: fixed; /* Efeito parallax premium: fundo fixo, conteúdo rola */
+            /* --- CONFIGURAÇÃO DA MADEIRA LOCAL --- */
+            background-color: #1a1a1a; 
+            background-image: url('madeira.JPG’); /* Nome do arquivo que você vai subir */
+            background -size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efeito que deixa a madeira parada e o site corre */
             background-repeat: no-repeat;
             
             color: white;
@@ -54,8 +37,7 @@
         header {
             width: 100%;
             padding: 0; 
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9));
-            background-color: rgba(18, 18, 18, 0.9); /* Ligeiramente transparente */
+            background: rgba(0, 0, 0, 0.85); /* Preto transparente para ver a madeira no fundo */
             text-align: center;
             border-bottom: 4px solid var(--deck-red);
         }
@@ -70,14 +52,14 @@
         .page-titles {
             width: 90%;
             max-width: 450px;
-            margin: 30px auto 0 auto;
+            margin: 30px auto 10px auto;
             text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra para o texto não sumir na madeira */
         }
 
         .main-brand-title {
             font-size: 1.8rem;
             font-weight: 900;
-            letter-spacing: 2px;
             color: var(--deck-red);
             text-transform: uppercase;
             margin: 0;
@@ -85,21 +67,19 @@
 
         .survey-subtitle {
             font-size: 1rem;
-            letter-spacing: 1px;
             color: #eee;
             margin-top: 5px;
-            font-weight: 400;
         }
 
         .container {
             width: 90%;
             max-width: 450px;
-            margin: 20px auto 40px;
+            margin: 10px auto 40px;
         }
 
         .card {
-            /* --- AJUSTE NA OPACIDADE DO CARTÃO PARA MELHORAR LEITURA SOBRE MADEIRA --- */
-            background: rgba(30, 30, 30, 0.95); /* Aumentada a opacidade */
+            /* Cartão levemente transparente para o cliente "sentir" a madeira atrás dele */
+            background: rgba(30, 30, 30, 0.96); 
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
@@ -127,10 +107,7 @@
             font-size: 1rem;
             box-sizing: border-box;
             outline: none;
-            transition: 0.3s;
         }
-
-        input:focus, select:focus { border-color: var(--deck-red); }
 
         .btn-enviar {
             background: var(--deck-red);
@@ -144,34 +121,22 @@
             margin-top: 30px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
-            transition: 0.3s;
         }
 
-        .btn-enviar:active { transform: scale(0.98); }
-
-        #sucesso {
-            display: none;
-            padding: 40px 20px;
-        }
-        
-        .check-icon {
-            font-size: 4rem;
-            color: #27c93f;
-            margin-bottom: 20px;
-        }
+        #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
 
         footer {
             margin-top: auto;
             padding: 30px;
             font-size: 0.8rem;
-            color: #555;
+            color: #fff;
             text-align: center;
+            background: rgba(0,0,0,0.6); /* Fundo no rodapé para ler melhor */
+            width: 100%;
         }
 
-        .footer-highlight {
-            color: var(--deck-red);
-            font-weight: bold;
-        }
+        .footer-highlight { color: var(--deck-red); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -220,7 +185,7 @@
                 <div class="check-icon"><i class="fas fa-check-circle"></i></div>
                 <h3>Obrigado pela preferência!</h3>
                 <p style="color: #aaa;">Sua avaliação ajuda a manter nossa qualidade.</p>
-                <button onclick="window.location.reload()" style="background:transparent; color:#555; border:1px solid #333; padding:10px; border-radius:8px; margin-top:20px; cursor:pointer;">Voltar</button>
+                <button onclick="window.location.reload()" style="background:transparent; color:#ccc; border:1px solid #444; padding:10px; border-radius:8px; margin-top:20px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
@@ -233,16 +198,12 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-
         const form = document.getElementById('form-teste');
-        const card = document.getElementById('card-principal');
         const sucesso = document.getElementById('sucesso');
 
         form.onsubmit = (e) => {
             e.preventDefault();
-            const btn = document.getElementById('btn-demo');
-            btn.innerText = "PROCESSANDO...";
-            
+            document.getElementById('btn-demo').innerText = "PROCESSANDO...";
             setTimeout(() => {
                 form.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
