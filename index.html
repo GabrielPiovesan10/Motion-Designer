@@ -327,33 +327,18 @@ summary::-webkit-details-marker {
     }
 }
                   
+<div id="chat-icon" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
+<div id="chat-window">
+    <div style="background: #ff3e3e; color: white; padding: 10px; font-weight: bold; text-align: center; font-size: 12px;">GABRIEL MOTION IA</div>
+    <div id="chat-content">
+        <p><strong>Robô:</strong> Olá! Como posso te chamar?</p>
+    </div>
+    <div style="padding: 10px; border-top: 1px solid #333; display: flex; background: #111;">
+        <input type="text" id="user-input" style="flex: 1; background: #000; color: #fff; border: 1px solid #444; padding: 5px; border-radius: 5px; outline: none; font-size: 12px;">
+        <button onclick="sendMessage()" style="background: #ff3e3e; color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer;">OK</button>
+    </div>
+</div>
 
-  </script>
-<script>
-let etapa = 1;
-function toggleChat() {
-    const chat = document.getElementById('chat-window');
-    chat.style.display = chat.style.display === 'none' ? 'block' : 'none';
-}
-function sendMessage() {
-    const input = document.getElementById('user-input');
-    const content = document.getElementById('chat-content');
-    const msg = input.value.trim();
-    if (!msg) return;
-    content.innerHTML += `<p style="text-align: right;"><strong>Você:</strong> ${msg}</p>`;
-    input.value = "";
-    setTimeout(() => {
-        if (etapa === 1) {
-            content.innerHTML += `<p><strong style="color: #ff3e3e;">Robô:</strong> Prazer ${msg}! O que você busca? (Artes ou Site)</p>`;
-            etapa = 2;
-        } else {
-            content.innerHTML += `<p><strong style="color: #ff3e3e;">Robô:</strong> Entendi! Me chama no Whats lá no topo para fecharmos!</p>`;
-            etapa = 1;
-        }
-        content.scrollTop = content.scrollHeight;
-    }, 800);
-}
-</script>
-
+  
 </body>
 </html>
