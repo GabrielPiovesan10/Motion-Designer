@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ESTILOS GERAIS DO SITE --- */
         body { font-family: sans-serif; margin: 0; background: #050505; color: white; text-align: center; overflow-x: hidden; }
         
         /* Tela de Bloqueio */
@@ -43,91 +42,40 @@
         .blink { color: #27c93f; font-weight: bold; animation: pisca 1s infinite; }
         @keyframes pisca { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Botões de Contato */
+        /* Botões */
         .btn-whats { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
 
-        /* Grade de Serviços */
-        .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
-        .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
-        .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
-        
-        /* Vídeo Shorts Customizado */
         .video-clean { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; max-width: 400px; margin: 20px auto; border-radius: 15px; pointer-events: none; }
         .video-clean iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; }
 
-        /* Tabela de Preços (<details>) */
-        summary { list-style: none; cursor: pointer; outline: none; }
-        summary::-webkit-details-marker { display: none; }
-        .detalhes-combo { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; text-align: left; }
-        .detalhes-combo ul { list-style: none; padding: 0; }
-        .detalhes-combo li { font-size: 1em; margin-bottom: 8px; color: #ff3e3e; font-weight: bold; }
-
-        /* Footer */
         footer { padding: 50px; color: #555; font-size: 0.8rem; border-top: 1px solid #111; background: #000; text-align: center; }
 
-        /* --- ESTILO FINAL DA IA (GABRIEL MOTION) --- */
-        #chat-icon { 
-            position: fixed; 
-            top: 80px; /* Alinhado no topo, abaixo do nome */
-            right: 15px; 
-            background: #ff3e3e; 
-            color: white; 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            z-index: 1001; 
-            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); 
-            transition: 0.3s; 
-        }
-        #chat-icon:hover { transform: scale(1.1); }
-
-        #chat-window { 
-            display: none; /* COMEÇA ESCONDIDO */
-            position: fixed; 
-            top: 140px; /* Abre logo abaixo do ícone */
-            right: 15px; 
-            width: 280px; 
-            background: rgba(20, 20, 20, 0.95); 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 62, 62, 0.3); 
-            border-top: 4px solid #ff3e3e; 
-            border-radius: 12px; 
-            z-index: 1000; 
-            font-family: 'Courier New', Courier, monospace; 
-            overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
+        /* --- ESTILO DA IA (GABRIEL MOTION) --- */
+        #chat-icon { position: fixed; top: 80px; right: 15px; background: #ff3e3e; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); }
+        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 62, 62, 0.3); border-top: 4px solid #ff3e3e; border-radius: 12px; z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         #chat-content { height: 250px; padding: 15px; overflow-y: auto; color: white; font-size: 13px; text-align: left; }
-        #chat-content strong { color: #ff3e3e; }
-        
         .chat-input-area { padding: 10px; border-top: 1px solid #333; display: flex; background: #111; }
         .chat-input-area input { flex: 1; background: #000; color: #fff; border: 1px solid #444; padding: 5px; border-radius: 5px; outline: none; font-size: 12px; }
         .chat-input-area button { background: #ff3e3e; color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        /* Animação de Digitando */
+        .typing { color: #888; font-style: italic; margin-bottom: 10px; display: block; }
+        .typing span { animation: blink 1.4s infinite both; }
+        .typing span:nth-child(2) { animation-delay: .2s; }
+        .typing span:nth-child(3) { animation-delay: .4s; }
+        @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
     </style>
 </head>
 <body>
 
-    <audio id="meusom" loop>
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-    
-    <button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">
-        🔊
-    </button>
+    <audio id="meusom" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    <button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">🔊</button>
 
     <div id="chat-icon" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
-    
     <div id="chat-window">
         <div style="background:#ff3e3e; color:white; padding:10px; text-align:center; font-weight:bold; font-size:12px;">GABRIEL MOTION IA</div>
-        <div id="chat-content">
-            <p><strong>Robô:</strong> Olá! Como posso te chamar?</p>
-        </div>
+        <div id="chat-content"><p><strong>Robô:</strong> Olá! Como posso te chamar?</p></div>
         <div class="chat-input-area">
             <input type="text" id="user-input" placeholder="Diga algo...">
             <button onclick="sendMessage()">OK</button>
@@ -135,222 +83,100 @@
     </div>
 
     <div id="bloqueio">
-        <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem; margin-bottom: 5px;">GABRIEL PIOVESAN</h1>
-        <p style="color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; opacity: 0.9;">
-            Especialista em Motion Design e ADS
-        </p>
+        <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem;">GABRIEL PIOVESAN</h1>
+        <p style="color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Especialista em Motion Design e ADS</p>
         <div class="caixa">
-            <input type="text" id="userIn" placeholder="Digite seu nome/Empresa...">
+            <input type="text" id="userIn" placeholder="Seu nome/Empresa...">
             <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHECA MEU TRABALHO</button>
         </div>
     </div>
 
     <div id="site">
         <header style="padding: 60px 20px 20px;">
-            <p id="msg-boasvindas" style="color: #888; margin-bottom: 10px;"></p>
+            <p id="msg-boasvindas" style="color: #888;"></p>
             <h1 class="vermelho" data-aos="zoom-in">GABRIEL PIOVESAN</h1>
             <p style="letter-spacing: 3px; font-weight: bold; color: #eee; font-size: 0.9rem;">ESPECIALISTA EM MOTION DESIGN & ADS</p>
-            <div style="margin-top: 25px;">
-                <a href="https://wa.me/5519993405480" class="btn-whats"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-            </div>
+            <div style="margin-top: 25px;"><a href="https://wa.me/5519993405480" class="btn-whats"><i class="fab fa-whatsapp"></i> WHATSAPP</a></div>
         </header>
 
         <section class="minha-história" data-aos="fade-up">
             <div class="terminal-card">
-                <div class="terminal-topo">
-                    <span class="ponto red"></span>
-                    <span class="ponto yellow"></span>
-                    <span class="ponto green"></span>
-                    <span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span>
-                </div>
+                <div class="terminal-topo"><span class="ponto red"></span><span class="ponto yellow"></span><span class="ponto green"></span><span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span></div>
                 <div class="terminal-corpo">
                     <h2>> Prazer, me chamo Gabriel</h2>
-                    <p>Sou <strong>Motion Designer</strong> e ajudo suas imagens a ganharem vida através do movimento.</p>
-                    <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
-                    <p>Aqui está ele: desenvolvido do zero, programando <strong>python</strong> e terminal direto do meu bolso.</p>
-                    <p>Achou <strong>interessante</strong> e quer ter seu proprio site? me chame no Whatsapp e me conte sua ideia!.</p>
+                    <p>Sou <strong>Motion Designer</strong>. Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong>...</p>
+                    <p>Aqui está ele: desenvolvido do zero, programando <strong>Python</strong> direto do meu bolso.</p>
                     <span class="blink">_</span>
                 </div>
             </div>
         </section>
 
         <div class="video-clean" data-aos="zoom-in">
-            <iframe 
-                src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" 
-                frameborder="0" 
-                allow="autoplay; encrypted-media" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        <div style="text-align: center; margin-top: 10px; margin-bottom: 30px;" data-aos="fade-up">
-            <p style="color: #ffffff; font-family: sans-serif; font-size: 16px; font-weight: bold;">Esse foi um dos vídeos que fiz.</p>
-            <span style="color: #ff3e3e; font-size: 14px;">Motion Design | Edição & Sonorização</span>
+            <iframe src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
-        <h2 style="color: #ff3e3e; margin-top: 50px;">O QUE EU FAÇO?</h2>
-        <div class="servicos">
-            <div class="card" data-aos="fade-up">
-                <i class="fas fa-play-circle"></i>
-                <h3>Motion Ads</h3>
-                <p>Criação de anúncios animados de alta conversão para redes sociais.</p>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-bolt"></i>
-                <h3>Vídeos Dinâmicos</h3>
-                <p>Edição rápida e moderna com efeitos visuais que prendem a atenção.</p>
-            </div>
-        </div>
-
-        <div class="card" data-aos="fade-up" style="margin: 20px;">
-            <h3 style="text-align: center; color: #ff3e3e; margin-bottom: 20px;">
-                <i class="fas fa-layer-group"></i> Meus Pacotes de Artes
-            </h3>
-            <div class="tabela-precos">
-                <details class="item-preco">
-                    <summary style="color:white; background:#222; padding:15px; border-radius:8px; margin-bottom:10px;">
-                        <h4 style="margin:0;">Combo Essencial</h4>
-                        <div class="valor" style="color:#ff3e3e; font-size:1.5rem; font-weight:bold;">R$ 27</div>
-                        <small style="color:#888;">Clique para ver detalhes</small>
-                    </summary>
-                    <div class="detalhes-combo">
-                        <ul>
-                            <li>✅ 3 Artes Estáticas</li>
-                            <li>✅ Formato Feed ou Stories</li>
-                            <li>✅ Entrega em 48h</li>
-                        </ul>
-                        <p style="font-size: 0.8em; color: #666;">Dica: Me chama no Whats para fechar!</p>
-                    </div>
-                </details>
-                <details class="item-preco destaque">
-                    <summary style="color:white; background:#222; padding:15px; border-radius:8px; border: 2px solid #ff3e3e;">
-                        <div class="selo" style="background:#ff3e3e; color:white; font-size:0.7rem; padding:2px 5px; display:inline-block; border-radius:4px;">Mais Vendido</div>
-                        <h4 style="margin:5px 0 0;">Combo Profissional</h4>
-                        <div class="valor" style="color:#ff3e3e; font-size:1.5rem; font-weight:bold;">R$ 45</div>
-                        <small style="color:#888;">Clique para ver detalhes</small>
-                    </summary>
-                    <div class="detalhes-combo">
-                        <ul>
-                            <li>✅ 5 Artes Estáticas</li>
-                            <li>✅ Legendas Sugeridas</li>
-                            <li>✅ 1 Ajuste por arte</li>
-                        </ul>
-                        <p style="font-size: 0.8em; color: #666;">Dica: Use o botão de contato no topo!</p>
-                    </div>
-                </details>
-            </div>
-        </div>
-
-        <footer>
-            © 2026 <span style="color: #ff3e3e; font-weight: bold;">GABRIEL PIOVESAN</span> <br>
-            Desenvolvido via ISH. Cordeiropolis-SP
-        </footer>
+        <footer>© 2026 <span style="color: #ff3e3e; font-weight: bold;">GABRIEL PIOVESAN</span><br>Desenvolvido via ISH. Cordeiropolis-SP</footer>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicializa Animações
         AOS.init();
-        
-        // Função de Login/Entrada
+        let nomeUser = "Visitante";
+
         function start() {
-            let nome = document.getElementById("userIn").value.trim();
+            const campo = document.getElementById("userIn");
+            const nome = campo.value.trim();
             if(nome !== "") {
+                nomeUser = nome;
+                const chat = document.getElementById("chat-content");
+                chat.innerHTML = `<p><strong>Robô:</strong> Olá, ${nomeUser}! 😊 Vi que você chegou. No que posso te ajudar?</p>`;
                 document.getElementById("meusom").play();
-                document.getElementById("msg-boasvindas").innerText = "Bem-vindo(a), " + nome + "!";
+                document.getElementById("msg-boasvindas").innerText = "Bem-vindo, " + nomeUser + "!";
                 document.getElementById("bloqueio").style.top = "-110vh";
                 document.getElementById("site").style.display = "block";
-            } else {
-                alert("Digite seu nome para entrar!");
-            }
+            } else { alert("Digite seu nome!"); }
         }
-        
-        // Função do Botão Mudo
+
         function alternarSom() {
-            var minhaMusica = document.getElementById("meusom");
-            var botaoSom = document.getElementById("btnMudo");
-            if (minhaMusica.paused) {
-                minhaMusica.play();
-                botaoSom.innerHTML = "🔊";
-            } else if (minhaMusica.muted === false) {
-                minhaMusica.muted = true;
-                botaoSom.innerHTML = "🔇";
-            } else {
-                minhaMusica.muted = false;
-                botaoSom.innerHTML = "🔊";
-            }
-        }
-<script>
-// 1. Variáveis Globais (A memória do robô)
-let nomeUser = "Visitante"; 
-
-// 2. Função de Entrada (Login)
-function start() {
-    const campo = document.getElementById("userIn");
-    const nome = campo.value.trim();
-
-    if(nome !== "") {
-        nomeUser = nome; // Guarda o nome
-        
-        // Já prepara a primeira fala do robô
-        const chat = document.getElementById("chat-content");
-        chat.innerHTML = `<p><strong>Robô:</strong> Olá, ${nomeUser}! 😊 Vi que você chegou. No que posso te ajudar?</p>`;
-
-        document.getElementById("meusom").play();
-        document.getElementById("msg-boasvindas").innerText = "Bem-vindo, " + nomeUser + "!";
-        document.getElementById("bloqueio").style.top = "-110vh";
-        document.getElementById("site").style.display = "block";
-    } else {
-        alert("Digite seu nome para entrar!");
-    }
-}
-
-// 3. Controle da Janela do Chat
-function toggleChat() {
-    const j = document.getElementById('chat-window');
-    const display = j.style.display;
-    j.style.display = (display === 'none' || display === '') ? 'block' : 'none';
-}
-
-// 4. Conversa Inteligente
-function sendMessage() {
-    const input = document.getElementById('user-input');
-    const area = document.getElementById('chat-content');
-    const msgOrig = input.value.trim();
-    const msg = msgOrig.toLowerCase();
-
-    if (!msg) return;
-
-    area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
-    input.value = "";
-
-    setTimeout(() => {
-        let r = ""; // Resposta
-
-        if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) {
-            r = `${nomeUser}, meus pacotes começam em **R$ 27**! Tá logo abaixo no site.`;
-        } 
-        else if (msg.includes("tempo") || msg.includes("prazo")) {
-            r = "Consigo te entregar artes em 48h. Vídeos a gente alinha no Zap!";
-        }
-        else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) {
-            r = "Moro em **Cordeirópolis-SP**, mas atendo o mundo todo!";
-        }
-        else if (msg.includes("oi") || msg.includes("olá")) {
-            r = `Oi, ${nomeUser}! Como posso te ajudar hoje?`;
-        }
-        else {
-            r = `Entendi, ${nomeUser}! O Gabriel te explica isso melhor no WhatsApp. Quer o link?`;
+            var m = document.getElementById("meusom");
+            var b = document.getElementById("btnMudo");
+            if (m.paused) { m.play(); b.innerHTML = "🔊"; } else { m.muted = !m.muted; b.innerHTML = m.muted ? "🔇" : "🔊"; }
         }
 
-        area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
-        area.scrollTop = area.scrollHeight;
-    }, 800);
-}
+        function toggleChat() {
+            const j = document.getElementById('chat-window');
+            j.style.display = (j.style.display === 'none' || j.style.display === '') ? 'block' : 'none';
+        }
 
-// Inicializa as animações
-AOS.init();
-</script>
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const area = document.getElementById('chat-content');
+            const msgOrig = input.value.trim();
+            const msg = msgOrig.toLowerCase();
+            if (!msg) return;
 
-        
+            area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
+            input.value = "";
+
+            // Efeito "Digitando"
+            const typingId = "typing-" + Date.now();
+            area.innerHTML += `<div id="${typingId}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
+            area.scrollTop = area.scrollHeight;
+
+            setTimeout(() => {
+                const typingElem = document.getElementById(typingId);
+                if (typingElem) typingElem.remove();
+
+                let r = "";
+                if (msg.includes("valor") || msg.includes("preço")) { r = `${nomeUser}, meus pacotes começam em **R$ 27**!`; }
+                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Artes em 48h, vídeos a combinar!"; }
+                else if (msg.includes("onde") || msg.includes("cidade")) { r = "Moro em **Cordeirópolis-SP**!"; }
+                else { r = `Entendi, ${nomeUser}! O Gabriel te explica melhor no Zap.`; }
+
+                area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
+                area.scrollTop = area.scrollHeight;
+            }, 1500);
+        }
+    </script>
 </body>
 </html>
