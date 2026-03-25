@@ -188,33 +188,66 @@
         }
 
         function sendMessage() {
-            const input = document.getElementById('user-input');
-            const area = document.getElementById('chat-content');
-            const msgOrig = input.value.trim();
-            const msg = msgOrig.toLowerCase();
-            if (!msg) return;
+    const input = document.getElementById('user-input');
+    const area = document.getElementById('chat-content');
+    const msgOrig = input.value.trim();
+    const msg = msgOrig.toLowerCase();
 
-            area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
-            input.value = "";
+    if (!msg) return;
 
-            const tid = "t-" + Date.now();
-            area.innerHTML += `<div id="${tid}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
-            area.scrollTop = area.scrollHeight;
+    area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
+    input.value = "";
 
-            setTimeout(() => {
-                const te = document.getElementById(tid); if (te) te.remove();
-                let r = "";
-                if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) { 
-                    r = `${nomeUser}, meus pacotes começam em **R$ 27**! Veja a tabela abaixo.`; 
-                }
-                else if (msg.includes("prazo") || msg.includes("tempo")) { r = "Consigo te entregar artes em 48h!"; }
-                else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) { r = "Moro em **Cordeirópolis-SP**!"; }
-                else { r = `Boa, ${nomeUser}! O Gabriel te explica isso melhor no Zap. Quer o link?`; }
+    const tid = "t-" + Date.now();
+    area.innerHTML += `<div id="${tid}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
+    area.scrollTop = area.scrollHeight;
 
-                area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
-                area.scrollTop = area.scrollHeight;
-            }, 1500);
+    setTimeout(() => {
+        const te = document.getElementById(tid); if (te) te.remove();
+        let r = ""; 
+        let btn = false; // Controla se o botão de Zap aparece
+
+        // 1. Respostas para SIM ou OK
+        if (msg === "sim" || msg === "pode ser" || msg === "quero" || msg === "ok") {
+            r = `Perfeito, ${nomeUser}! Só clicar no botão abaixo para me chamar:`;
+            btn = true;
         }
+        // 2. Respostas para NÃO
+        else if (msg === "não" || msg === "nao" || msg === "agora não") {
+            r = `Sem problemas! Se mudar de ideia ou quiser saber sobre **preços** e **prazos**, é só digitar.`;
+        }
+        // 3. Palavras-chave que já tínhamos
+        else if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto")) {
+            r = `${nomeUser}, meus pacotes começam em **R$ 27**! Veja a tabela abaixo.`;
+        }
+        else if (msg.includes("prazo") || msg.includes("tempo")) {
+            r = "Consigo te entregar artes em 48h! Vídeos a gente combina no Zap.";
+        }
+        else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) {
+            r = "Moro em **Cordeirópolis-SP**, mas atendo o Brasil todo!";
+        }
+        // 4. Resposta padrão se ele não entender
+        else {
+            r = `Entendi, ${nomeUser}! Como ainda estou aprendendo, o Gabriel pode te explicar isso melhor no WhatsApp. Quer o link?`;
+        }
+
+        area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
+
+        // Se a resposta pediu o botão, ele aparece aqui
+        if (btn) {
+            area.innerHTML += `
+                <div style="text-align:center; margin: 10px 0;">
+                    <a href="https://wa.me/5519993405480?text=Olá Gabriel, vim pelo site!" 
+                       target="_blank" 
+                       style="background:#25d366; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:12px; display:inline-block;">
+                       <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+                    </a>
+                </div>`;
+        }
+        area.scrollTop = area.scrollHeight;
+    }, 1200);
+}
+
     </script>
 </body>
 </html>
