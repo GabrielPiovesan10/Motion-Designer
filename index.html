@@ -42,11 +42,10 @@
             margin: 0;
         }
 
-        /* --- NOVO CSS PARA O TÍTULO DE SATISFAÇÃO --- */
         .page-titles {
             width: 90%;
             max-width: 450px;
-            margin: 30px auto 0 auto; /* Espaço após a imagem */
+            margin: 30px auto 0 auto;
             text-align: center;
         }
 
@@ -54,7 +53,7 @@
             font-size: 1.8rem;
             font-weight: 900;
             letter-spacing: 2px;
-            color: var(--deck-red); /* Usando o vermelho da marca */
+            color: var(--deck-red);
             text-transform: uppercase;
             margin: 0;
         }
@@ -62,7 +61,7 @@
         .survey-subtitle {
             font-size: 1rem;
             letter-spacing: 1px;
-            color: #eee; /* Branco suave */
+            color: #eee;
             margin-top: 5px;
             font-weight: 400;
         }
@@ -70,7 +69,7 @@
         .container {
             width: 90%;
             max-width: 450px;
-            margin: 20px auto 40px; /* Margem padrão abaixo do título */
+            margin: 20px auto 40px;
         }
 
         .card {
@@ -142,12 +141,18 @@
             color: #555;
             text-align: center;
         }
+
+        /* --- CSS PARA O DESTAQUE NO RODAPÉ --- */
+        .footer-highlight {
+            color: var(--deck-red);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-deck.JPG" alt="Deck Churrascaria Logo" class="header-logo-img" data-aos="fade-down">
+        <img src="image_0.png" alt="Deck Churrascaria Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
     <div class="page-titles" data-aos="fade-up" data-aos-delay="300">
@@ -197,7 +202,7 @@
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        Tecnologia Deck Satisfaction © 2026
+        <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
