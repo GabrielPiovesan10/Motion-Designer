@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deck Churrascaria | Sua Opinião</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,20 +12,15 @@
         :root {
             --deck-red: #e63946;
             --deck-dark: #121212;
-            --deck-gold: #ffb703;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            /* --- CONFIGURAÇÃO DA MADEIRA LOCAL --- */
-            background-color: #1a1a1a; 
-            background-image: url('madeira.JPG’); /* Nome do arquivo que você vai subir */
+            padding: 0;
+            /* FUNDO DE MADEIRA PREMIUM */
+            background: #1a1a1a url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?q=80&w=1976&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efeito que deixa a madeira parada e o site corre */
-            background-repeat: no-repeat;
-            
             color: white;
             display: flex;
             flex-direction: column;
@@ -36,25 +31,21 @@
 
         header {
             width: 100%;
-            padding: 0; 
-            background: rgba(0, 0, 0, 0.85); /* Preto transparente para ver a madeira no fundo */
-            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
             border-bottom: 4px solid var(--deck-red);
+            line-height: 0; /* Remove espaço abaixo da imagem */
         }
 
         .header-logo-img {
             width: 100%;
             height: auto;
             display: block;
-            margin: 0;
         }
 
         .page-titles {
-            width: 90%;
-            max-width: 450px;
-            margin: 30px auto 10px auto;
             text-align: center;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Sombra para o texto não sumir na madeira */
+            margin: 30px 20px 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
         }
 
         .main-brand-title {
@@ -67,149 +58,144 @@
 
         .survey-subtitle {
             font-size: 1rem;
-            color: #eee;
-            margin-top: 5px;
+            color: #fff;
+            margin: 5px 0 0;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .container {
             width: 90%;
             max-width: 450px;
-            margin: 10px auto 40px;
+            margin-bottom: 40px;
         }
 
         .card {
-            /* Cartão levemente transparente para o cliente "sentir" a madeira atrás dele */
-            background: rgba(30, 30, 30, 0.96); 
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            text-align: center;
+            background: rgba(20, 20, 20, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            margin-top: 15px;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 25px; color: #fff; }
+        h2 { font-size: 1.2rem; margin-bottom: 20px; }
 
         label {
             display: block;
             text-align: left;
-            margin: 20px 0 8px;
-            font-size: 0.9rem;
+            margin: 15px 0 5px;
+            font-size: 0.85rem;
             color: #bbb;
-            font-weight: bold;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 15px;
-            background: #121212;
+            padding: 12px;
+            background: #000;
             border: 1px solid #333;
-            border-radius: 12px;
+            border-radius: 8px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
-            outline: none;
         }
 
         .btn-enviar {
             background: var(--deck-red);
             color: white;
             border: none;
-            padding: 18px;
+            padding: 15px;
             width: 100%;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: bold;
             font-size: 1.1rem;
-            margin-top: 30px;
+            margin-top: 25px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
         }
 
-        #sucesso { display: none; padding: 40px 20px; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+        #sucesso { display: none; padding: 20px; text-align: center; }
+        .check-icon { font-size: 3rem; color: #27c93f; margin-bottom: 10px; }
 
         footer {
             margin-top: auto;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #fff;
+            padding: 20px;
             text-align: center;
-            background: rgba(0,0,0,0.6); /* Fundo no rodapé para ler melhor */
+            font-size: 0.75rem;
+            color: #999;
+            background: rgba(0,0,0,0.8);
             width: 100%;
         }
 
-        .footer-highlight { color: var(--deck-red); font-weight: bold; }
+        .footer-highlight {
+            color: var(--deck-red);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-deck.JPG" alt="Deck Churrascaria Logo" class="header-logo-img" data-aos="fade-down">
+        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
-    <div class="page-titles" data-aos="fade-up" data-aos-delay="300">
+    <div class="page-titles" data-aos="fade-up">
         <h1 class="main-brand-title">Deck Churrascaria</h1>
         <p class="survey-subtitle">pesquisa de satisfação</p>
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-principal">
+        <div class="card" data-aos="zoom-in" id="card-form">
             <h2>Sua experiência hoje</h2>
-            
-            <form id="form-teste">
+            <form id="feedback-form">
                 <label>Qual o seu nome?</label>
-                <input type="text" placeholder="Ex: Gabriel Piovesan">
+                <input type="text" placeholder="Seu nome...">
 
                 <label>Como estava o ponto da carne?</label>
                 <select>
                     <option>⭐⭐⭐⭐⭐ (Impecável)</option>
                     <option>⭐⭐⭐⭐ (Muito bom)</option>
                     <option>⭐⭐⭐ (Na média)</option>
-                    <option>⭐⭐ (Pode melhorar)</option>
-                    <option>⭐ (Ruim)</option>
+                    <option>⭐ (Pode melhorar)</option>
                 </select>
 
                 <label>O atendimento foi ágil?</label>
                 <select>
                     <option>⭐⭐⭐⭐⭐ (Sim, muito!)</option>
                     <option>⭐⭐⭐⭐ (Sim)</option>
-                    <option>⭐⭐⭐ (Demorou um pouco)</option>
-                    <option>⭐ (Muito lento)</option>
+                    <option>⭐ (Demorou)</option>
                 </select>
 
-                <label>Deixe um recado para a equipe:</label>
-                <textarea rows="3" placeholder="Sugestões ou elogios..."></textarea>
+                <label>Sugestões ou elogios:</label>
+                <textarea rows="3"></textarea>
 
-                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
-                <div class="check-icon"><i class="fas fa-check-circle"></i></div>
-                <h3>Obrigado pela preferência!</h3>
-                <p style="color: #aaa;">Sua avaliação ajuda a manter nossa qualidade.</p>
-                <button onclick="window.location.reload()" style="background:transparent; color:#ccc; border:1px solid #444; padding:10px; border-radius:8px; margin-top:20px; cursor:pointer;">Voltar</button>
+                <i class="fas fa-check-circle check-icon"></i>
+                <h3>Obrigado!</h3>
+                <p>Sua opinião é muito importante.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#999; padding:5px 10px; border-radius:5px; margin-top:10px;">Voltar</button>
             </div>
         </div>
     </div>
 
     <footer>
-        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
+        Desenvolvido por Gabriel Piovesan<br>
         <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
-        const form = document.getElementById('form-teste');
-        const sucesso = document.getElementById('sucesso');
-
-        form.onsubmit = (e) => {
+        AOS.init({ once: true });
+        const f = document.getElementById('feedback-form');
+        f.onsubmit = (e) => {
             e.preventDefault();
-            document.getElementById('btn-demo').innerText = "PROCESSANDO...";
+            document.getElementById('btn-submit').innerText = "ENVIANDO...";
             setTimeout(() => {
-                form.style.display = 'none';
-                document.querySelector('h2').style.display = 'none';
-                sucesso.style.display = 'block';
-                AOS.refresh();
-            }, 1500);
+                f.style.display = 'none';
+                document.getElementById('sucesso').style.display = 'block';
+            }, 1200);
         };
     </script>
 </body>
