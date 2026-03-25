@@ -37,13 +37,13 @@
             min-height: 100vh;
         }
 
-        /* --- CABEÇALHO REFINADO COM RESPIRO NO TOPO --- */
+        /* --- CABEÇALHO COMPACTO --- */
         header {
             width: 100%;
             background: #000;
             text-align: center;
-            /* ADICIONADO ESPAÇAMENTO NO TOPO (PADDIND-TOP) */
-            padding-top: 15px; /* Ajuste este valor se quiser mais ou menos espaço */
+            /* REMOVIDO PADDING-TOP ANTERIOR PARA TRAZER A LOGO PRO TOPO */
+            padding-top: 0; 
             /* Remove espaço extra de linha */
             line-height: 0; 
         }
@@ -58,7 +58,8 @@
 
         .page-titles {
             text-align: center;
-            margin: 20px 20px 10px;
+            /* AJUSTADO: REMOVIDA MARGEM SUPERIOR PARA COLAR NAS LETRAS */
+            margin: 0 20px 10px; /* 0 topo, 20px laterais, 10px baixo */
             text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
         }
 
