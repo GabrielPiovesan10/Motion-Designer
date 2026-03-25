@@ -18,9 +18,15 @@
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            /* FUNDO DE MADEIRA PREMIUM */
-            background: #1a1a1a url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?q=80&w=1976&auto=format&fit=crop') no-repeat center center fixed;
+            /* FUNDO DE MADEIRA RÚSTICA ESCURA */
+            background-color: #1a1a1a;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                              url('https://images.unsplash.com/photo-1589182337358-2cb63099350c?q=80&w=1974&auto=format&fit=crop');
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
             color: white;
             display: flex;
             flex-direction: column;
@@ -31,9 +37,9 @@
 
         header {
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             border-bottom: 4px solid var(--deck-red);
-            line-height: 0; /* Remove espaço abaixo da imagem */
+            line-height: 0;
         }
 
         .header-logo-img {
@@ -45,23 +51,25 @@
         .page-titles {
             text-align: center;
             margin: 30px 20px 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
         }
 
         .main-brand-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
             color: var(--deck-red);
             text-transform: uppercase;
             margin: 0;
+            letter-spacing: 2px;
         }
 
         .survey-subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #fff;
             margin: 5px 0 0;
             font-weight: 300;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            text-transform: lowercase;
         }
 
         .container {
@@ -71,58 +79,66 @@
         }
 
         .card {
-            background: rgba(20, 20, 20, 0.95);
+            background: rgba(20, 20, 20, 0.96); /* Quase preto para ler bem */
             padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             margin-top: 15px;
+            border: 1px solid #333;
         }
 
-        h2 { font-size: 1.2rem; margin-bottom: 20px; }
+        h2 { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid var(--deck-red); padding-bottom: 10px; }
 
         label {
             display: block;
             text-align: left;
             margin: 15px 0 5px;
-            font-size: 0.85rem;
-            color: #bbb;
+            font-size: 0.9rem;
+            color: #ccc;
+            font-weight: bold;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #000;
-            border: 1px solid #333;
-            border-radius: 8px;
+            border: 1px solid #444;
+            border-radius: 10px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
+            outline: none;
         }
+
+        input:focus { border-color: var(--deck-red); }
 
         .btn-enviar {
             background: var(--deck-red);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 16px;
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 25px;
+            font-size: 1.2rem;
+            margin-top: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+            transition: 0.3s;
         }
 
-        #sucesso { display: none; padding: 20px; text-align: center; }
-        .check-icon { font-size: 3rem; color: #27c93f; margin-bottom: 10px; }
+        .btn-enviar:active { transform: scale(0.97); }
+
+        #sucesso { display: none; padding: 30px; text-align: center; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 15px; }
 
         footer {
             margin-top: auto;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #999;
-            background: rgba(0,0,0,0.8);
+            font-size: 0.8rem;
+            color: #fff;
+            background: rgba(0,0,0,0.85);
             width: 100%;
         }
 
@@ -147,47 +163,47 @@
         <div class="card" data-aos="zoom-in" id="card-form">
             <h2>Sua experiência hoje</h2>
             <form id="feedback-form">
-                <label>Qual o seu nome?</label>
-                <input type="text" placeholder="Seu nome...">
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
+                <input type="text" placeholder="Digite seu nome...">
 
-                <label>Como estava o ponto da carne?</label>
+                <label><i class="fas fa-utensils"></i> O ponto da carne estava correto?</label>
                 <select>
-                    <option>⭐⭐⭐⭐⭐ (Impecável)</option>
+                    <option>⭐⭐⭐⭐⭐ (Perfeito!)</option>
                     <option>⭐⭐⭐⭐ (Muito bom)</option>
-                    <option>⭐⭐⭐ (Na média)</option>
+                    <option>⭐⭐⭐ (Regular)</option>
                     <option>⭐ (Pode melhorar)</option>
                 </select>
 
-                <label>O atendimento foi ágil?</label>
+                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
                 <select>
-                    <option>⭐⭐⭐⭐⭐ (Sim, muito!)</option>
-                    <option>⭐⭐⭐⭐ (Sim)</option>
-                    <option>⭐ (Demorou)</option>
+                    <option>⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option>⭐⭐⭐⭐ (Bom)</option>
+                    <option>⭐ (Lento)</option>
                 </select>
 
-                <label>Sugestões ou elogios:</label>
-                <textarea rows="3"></textarea>
+                <label><i class="fas fa-comment"></i> Quer deixar um recado?</label>
+                <textarea rows="3" placeholder="Sugestões ou elogios..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <p>Sua opinião é muito importante.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#999; padding:5px 10px; border-radius:5px; margin-top:10px;">Voltar</button>
+                <h3>Obrigado pela visita!</h3>
+                <p style="color: #bbb;">Sua avaliação foi registrada com sucesso.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #555; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
             </div>
         </div>
     </div>
 
     <footer>
-        Desenvolvido por Gabriel Piovesan<br>
+        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
         <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
+        AOS.init({ once: true, duration: 800 });
         const f = document.getElementById('feedback-form');
         f.onsubmit = (e) => {
             e.preventDefault();
@@ -195,7 +211,7 @@
             setTimeout(() => {
                 f.style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
-            }, 1200);
+            }, 1500);
         };
     </script>
 </body>
