@@ -11,209 +11,154 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-        :root { --pacheco-red: #e63946; }
+        :root { --pacheco-red: #e63946; --star-gold: #ffc107; }
 
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #000;
-        }
+        html, body { width: 100%; overflow-x: hidden; background-color: #000; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* --- HEADER COM ZOOM PARA TIRAR AS BORDAS DA FOTO --- */
+        /* --- HEADER COM ZOOM (SEU AJUSTE PERFEITO) --- */
         header {
-            width: 100%;
-            height: 250px; /* Define a altura da janela da foto */
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%; height: 250px; overflow: hidden; background: #000;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .header-logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Corta as bordas pretas se a foto for maior */
-            object-position: center;
-        }
+        .header-logo-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
         .brand-text-block {
-            text-align: center;
-            margin-top: -60px; /* PUXA O TÍTULO PARA CIMA DA FOTO */
-            position: relative;
-            z-index: 10;
+            text-align: center; margin-top: -60px; position: relative; z-index: 10;
         }
 
         .main-brand-title {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--pacheco-red);
-            text-transform: uppercase;
-            text-shadow: 2px 2px 15px rgba(0,0,0,1);
-            letter-spacing: 2px;
+            font-size: 2.2rem; font-weight: 900; color: var(--pacheco-red);
+            text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,1); letter-spacing: 2px;
         }
 
         .survey-subtitle {
-            font-size: 1.6rem; 
-            color: #ffffff; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,1);
-            margin-top: 5px;
+            font-size: 1.6rem; color: #ffffff; text-transform: uppercase; 
+            font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,1); margin-top: 5px;
+        }
+
+        /* --- SISTEMA DE ESTRELAS --- */
+        .stars-container {
+            display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin: 10px 0;
+        }
+
+        .stars-container input { display: none; } /* Esconde o check do navegador */
+
+        .stars-container label {
+            font-size: 2.5rem; color: #444; cursor: pointer; transition: 0.2s;
+            margin: 0 !important; /* Reseta margem do label comum */
+        }
+
+        /* Faz as estrelas brilharem do clique pra trás */
+        .stars-container input:checked ~ label,
+        .stars-container label:hover,
+        .stars-container label:hover ~ label {
+            color: var(--star-gold);
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
         }
 
         .container { width: 92%; max-width: 450px; margin: 20px auto 40px; }
 
-        /* Estilo Glassmorphism do Card */
         .card {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            background: rgba(30, 30, 30, 0.95); padding: 25px; border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
         h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid var(--pacheco-red); padding-bottom: 10px; }
 
-        label { display: block; text-align: left; margin: 20px 0 8px; font-weight: bold; font-size: 0.95rem; color: #eee; }
+        label.pergunta-label { display: block; text-align: left; margin: 20px 0 8px; font-weight: bold; font-size: 0.95rem; color: #eee; }
 
-        input, select, textarea {
+        input[type="text"], input[type="tel"], textarea {
             width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
-            color: white; font-size: 1rem; outline: none; transition: 0.3s;
+            color: white; font-size: 1rem; outline: none;
         }
-
-        input:focus, select:focus { border-color: var(--pacheco-red); background: rgba(0,0,0,0.8); }
 
         .btn-enviar {
             background: var(--pacheco-red); color: white; border: none; padding: 18px;
             width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-            margin-top: 30px; cursor: pointer; box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+            margin-top: 30px; cursor: pointer;
         }
 
-        .btn-enviar:active { transform: scale(0.96); }
-
-        #sucesso { display: none; padding: 40px 20px; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
-
-        /* --- RODAPÉ --- */
-        footer {
-            margin-top: auto;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #ccc;
-            text-align: center;
-            background: #000;
-            width: 100%;
-        }
+        footer { margin-top: auto; padding: 30px; font-size: 0.8rem; color: #ccc; text-align: center; width: 100%; }
         .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="pacheco.PNG" alt="Seo Pacheco Logo" class="header-logo-img">
+        <img src="pacheco.JPG" alt="Seo Pacheco Logo" class="header-logo-img">
     </header>
 
-    <div class="brand-text-block" data-aos="fade-up">
+    <div class="brand-text-block">
         <h1 class="main-brand-title">SEO PACHECO</h1>
         <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-principal">
-            <h2>Como foi sua experiência hoje</h2>
+        <div class="card" id="card-principal">
+            <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite seu nome" required>
+                <label class="pergunta-label"><i class="fas fa-user"></i> Seu nome:</label>
+                <input type="text" placeholder="Nome (Opcional)">
 
-                <label><i class="fab fa-whatsapp"></i> WhatsApp para contato:</label>
+                <label class="pergunta-label"><i class="fab fa-whatsapp"></i> Seu WhatsApp:</label>
                 <input type="tel" placeholder="(19) 99999-9999" required>
 
-                <label><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
-                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
-                    <option value="3">⭐⭐⭐ (Regular)</option>
-                    <option value="1">⭐ (Ruim)</option>
-                </select>
+                <label class="pergunta-label"><i class="fas fa-drumstick-bite"></i> Nota para a Carne:</label>
+                <div class="stars-container">
+                    <input type="radio" name="nota_carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
+                    <input type="radio" name="nota_carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
+                    <input type="radio" name="nota_carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
+                    <input type="radio" name="nota_carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
+                    <input type="radio" name="nota_carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
+                </div>
 
-                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="1">⭐ (Lento/Ruim)</option>
-                </select>
+                <label class="pergunta-label"><i class="fas fa-concierge-bell"></i> Nota para o Atendimento:</label>
+                <div class="stars-container">
+                    <input type="radio" name="nota_atend" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
+                    <input type="radio" name="nota_atend" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
+                    <input type="radio" name="nota_atend" id="a3" value="3"><label for="a3" class="fas fa-star"></label>
+                    <input type="radio" name="nota_atend" id="a2" value="2"><label for="a2" class="fas fa-star"></label>
+                    <input type="radio" name="nota_atend" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
+                </div>
 
-                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Sim, geladíssimas!</option>
-                    <option value="Nao">Poderiam estar mais geladas</option>
-                </select>
-
-                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Impecável)</option>
-                    <option value="1">⭐ (Pode melhorar)</option>
-                </select>
-
-                <label><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Com certeza!</option>
-                    <option value="Nao">Não</option>
-                </select>
-
-                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
-                <textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
+                <label class="pergunta-label"><i class="fas fa-comment"></i> Alguma sugestão?</label>
+                <textarea rows="3" placeholder="Conte-nos mais..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
-            <div id="sucesso">
-                <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <p style="color: #aaa;">Sua avaliação foi enviada com sucesso.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
+            <div id="sucesso" style="display:none; padding: 40px 0;">
+                <i class="fas fa-check-circle" style="font-size: 4rem; color: #27c93f; margin-bottom: 20px;"></i>
+                <h3>Obrigado, Gabriel!</h3>
+                <p style="color: #aaa; margin-top: 10px;">Sua avaliação foi registrada.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:10px 20px; border-radius:8px; margin-top:20px;">Voltar</button>
             </div>
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        <span class="footer-highlight">Seo Pacheco | Todos os direitos Reservados.</span> © 2026
+        <span class="footer-highlight">Tecnologia Pacheco Satisfaction</span> © 2026
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         f.onsubmit = (e) => {
-            if (!f.checkValidity()) { return; }
             e.preventDefault();
             document.getElementById('btn-demo').innerText = "ENVIANDO...";
-            document.getElementById('btn-demo').disabled = true;
             setTimeout(() => {
                 f.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
-                AOS.refresh();
             }, 1200);
         };
     </script>
