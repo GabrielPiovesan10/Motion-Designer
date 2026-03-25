@@ -9,58 +9,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Trava Global para não vazar nada pro lado e Box-Sizing */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        :root {
-            --pacheco-red: #e63946;
-        }
+        :root { --pacheco-red: #e63946; }
 
         html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden; /* Trava o site lateralmente */
-            position: relative;
-            background-color: #000; /* Fundo Preto Sólido */
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            background-color: #000;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* --- CABEÇALHO COMPACTO --- */
+        /* --- HEADER ULTRA COMPACTO --- */
         header {
             width: 100%;
             background: #000;
             text-align: center;
-            /* REMOVIDO PADDING-TOP ANTERIOR PARA TRAZER A LOGO PRO TOPO */
-            padding-top: 0; 
-            /* Remove espaço extra de linha */
-            line-height: 0; 
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+            overflow: hidden;
         }
 
         .header-logo-img {
             width: 100%;
-            max-width: 100%;
+            max-width: 500px; /* Limita um pouco o tamanho para não esticar tanto */
             height: auto;
-            display: block;
-            margin: 0;
+            display: inline-block;
+            /* MARGEM NEGATIVA: Puxa o que está embaixo para cima da foto */
+            margin-bottom: -40px; 
+            /* MARGEM NEGATIVA NO TOPO: Puxa a foto para o limite da tela */
+            margin-top: -10px;
         }
 
         .page-titles {
             text-align: center;
-            /* AJUSTADO: REMOVIDA MARGEM SUPERIOR PARA COLAR NAS LETRAS */
-            margin: 0 20px 10px; /* 0 topo, 20px laterais, 10px baixo */
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            /* PUXA O TÍTULO PARA CIMA DA LOGO */
+            margin: -20px 20px 10px; 
+            position: relative;
+            z-index: 10;
         }
 
         .main-brand-title {
@@ -72,156 +62,82 @@
             letter-spacing: 2px;
         }
 
-        /* Subtítulo Grande, Branco e Maiúsculo */
         .survey-subtitle {
             font-size: 1.6rem; 
             color: #ffffff; 
             text-transform: uppercase; 
             font-weight: bold; 
             letter-spacing: 2px; 
-            margin-top: 8px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-top: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,1);
         }
 
-        .container {
-            width: 90%;
-            max-width: 450px;
-            margin: 10px auto 40px;
-        }
+        .container { width: 90%; max-width: 450px; margin: 5px auto 40px; }
 
-        /* Card do Formulário (Glassmorphism) */
         .card {
-            background: rgba(30, 30, 30, 0.9); 
-            padding: 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            background: rgba(30, 30, 30, 0.95); padding: 25px; border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+        h2 { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid var(--pacheco-red); padding-bottom: 10px; }
 
-        label {
-            display: block;
-            text-align: left;
-            margin: 20px 0 8px;
-            font-size: 0.95rem;
-            color: #fff;
-            font-weight: bold;
-        }
+        label { display: block; text-align: left; margin: 18px 0 6px; font-size: 0.9rem; font-weight: bold; }
 
         input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
+            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px;
+            color: white; font-size: 1rem; outline: none;
         }
-
-        input:focus, select:focus { border-color: var(--pacheco-red); }
 
         .btn-enviar {
-            background: var(--pacheco-red);
-            color: white;
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 30px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
-            transition: 0.3s;
+            background: var(--pacheco-red); color: white; border: none; padding: 18px;
+            width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
+            margin-top: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
 
-        .btn-enviar:active { transform: scale(0.96); }
+        #sucesso { display: none; padding: 30px; }
+        .check-icon { font-size: 3.5rem; color: #27c93f; margin-bottom: 15px; }
 
-        #sucesso { display: none; padding: 40px 20px; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
-
-        footer {
-            margin-top: auto;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #ccc;
-            text-align: center;
-            background: #000;
-            width: 100%;
-        }
-
-        .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
+        footer { padding: 25px; font-size: 0.8rem; color: #999; text-align: center; background: #000; width: 100%; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="pacheco.PNG" alt="Seo Pacheco Logo" class="header-logo-img" data-aos="fade-down">
+        <img src="pacheco.JPG" alt="Logo" class="header-logo-img">
     </header>
 
-    <div class="page-titles" data-aos="fade-up">
+    <div class="page-titles">
         <h1 class="main-brand-title">SEO PACHECO</h1>
         <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-principal">
+        <div class="card" id="card-principal">
             <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Seu nome (Opcional)" required>
+                <label><i class="fas fa-user"></i> Nome:</label>
+                <input type="text" placeholder="Seu nome" required>
 
-                <label><i class="fab fa-whatsapp"></i> WhatsApp para contato:</label>
+                <label><i class="fab fa-whatsapp"></i> WhatsApp:</label>
                 <input type="tel" placeholder="(19) 99999-9999" required>
 
                 <label><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
                 <select required>
                     <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
-                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
-                    <option value="3">⭐⭐⭐ (Regular)</option>
-                    <option value="1">⭐ (Ruim)</option>
+                    <option>⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option>⭐⭐⭐⭐ (Bom)</option>
+                    <option>⭐ (Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
+                <label><i class="fas fa-concierge-bell"></i> Atendimento:</label>
                 <select required>
                     <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="3">⭐⭐⭐ (Normal)</option>
-                    <option value="1">⭐ (Lento/Ruim)</option>
+                    <option>⭐⭐⭐⭐⭐ (Ótimo)</option>
+                    <option>⭐ (Ruim)</option>
                 </select>
-
-                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Sim, geladas!</option>
-                    <option value="Nao">Poderiam estar mais geladas</option>
-                </select>
-
-                <label><i class="fas fa-broom"></i> Limpeza do ambiente:</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Impecável)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="1">⭐ (Regular/Ruim)</option>
-                </select>
-
-                <label><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Com certeza!</option>
-                    <option value="Talvez">Talvez</option>
-                    <option value="Nao">Não</option>
-                </select>
-
-                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
-                <textarea rows="3" placeholder="Conte-nos como foi..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
@@ -229,32 +145,26 @@
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>Obrigado!</h3>
-                <p style="color: #aaa;">Sua avaliação foi registrada e ajuda a melhorar nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
+                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        <span class="footer-highlight">Tecnologia Pacheco Satisfaction</span> © 2026
+        Tecnologia Pacheco Satisfaction © 2026
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         f.onsubmit = (e) => {
-            if (!f.checkValidity()) { return; }
             e.preventDefault();
             document.getElementById('btn-demo').innerText = "ENVIANDO...";
-            document.getElementById('btn-demo').disabled = true;
             setTimeout(() => {
                 f.style.display = 'none';
                 document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
-                AOS.refresh();
-            }, 1500);
+            }, 1200);
         };
     </script>
 </body>
