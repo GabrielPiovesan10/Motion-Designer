@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -12,19 +12,20 @@
         :root {
             --deck-red: #e63946;
             --deck-dark: #121212;
+            --deck-gold: #ffb703;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            /* FUNDO DE MADEIRA RÚSTICA ESCURA */
+            /* CONFIGURAÇÃO DO FUNDO DE MADEIRA LOCAL */
             background-color: #1a1a1a;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                              url('https://images.unsplash.com/photo-1589182337358-2cb63099350c?q=80&w=1974&auto=format&fit=crop');
+            /* Nome do arquivo local no GitHub */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('madeira.JPG'); 
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Efeito de parallax */
             background-repeat: no-repeat;
             
             color: white;
@@ -37,15 +38,17 @@
 
         header {
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 0; 
+            background: rgba(0, 0, 0, 0.85); /* Fundo sutil */
+            text-align: center;
             border-bottom: 4px solid var(--deck-red);
-            line-height: 0;
         }
 
         .header-logo-img {
             width: 100%;
             height: auto;
             display: block;
+            margin: 0;
         }
 
         .page-titles {
@@ -60,50 +63,45 @@
             color: var(--deck-red);
             text-transform: uppercase;
             margin: 0;
-            letter-spacing: 2px;
         }
 
         .survey-subtitle {
             font-size: 1.1rem;
-            color: #fff;
-            margin: 5px 0 0;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: lowercase;
+            color: #eee;
+            margin-top: 5px;
         }
 
         .container {
             width: 90%;
             max-width: 450px;
-            margin-bottom: 40px;
+            margin: 10px auto 40px;
         }
 
         .card {
-            background: rgba(20, 20, 20, 0.96); /* Quase preto para ler bem */
-            padding: 25px;
+            background: rgba(20, 20, 20, 0.96); 
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-            margin-top: 15px;
-            border: 1px solid #333;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            text-align: center;
         }
 
-        h2 { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 1px solid var(--deck-red); padding-bottom: 10px; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; color: #fff; }
 
         label {
             display: block;
             text-align: left;
-            margin: 15px 0 5px;
+            margin: 20px 0 8px;
             font-size: 0.9rem;
-            color: #ccc;
+            color: #bbb;
             font-weight: bold;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 14px;
-            background: #000;
-            border: 1px solid #444;
-            border-radius: 10px;
+            padding: 15px;
+            background: #121212;
+            border: 1px solid #333;
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
@@ -116,42 +114,36 @@
             background: var(--deck-red);
             color: white;
             border: none;
-            padding: 16px;
+            padding: 18px;
             width: 100%;
             border-radius: 12px;
             font-weight: bold;
             font-size: 1.2rem;
             margin-top: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
-            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
 
-        .btn-enviar:active { transform: scale(0.97); }
-
-        #sucesso { display: none; padding: 30px; text-align: center; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 15px; }
+        #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
 
         footer {
             margin-top: auto;
-            padding: 25px;
-            text-align: center;
+            padding: 30px;
             font-size: 0.8rem;
             color: #fff;
-            background: rgba(0,0,0,0.85);
+            text-align: center;
+            background: rgba(0,0,0,0.6);
             width: 100%;
         }
 
-        .footer-highlight {
-            color: var(--deck-red);
-            font-weight: bold;
-        }
+        .footer-highlight { color: var(--deck-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
+        <img src="logo-deck.JPG" alt="Deck Churrascaria Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
     <div class="page-titles" data-aos="fade-up">
@@ -160,38 +152,40 @@
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-form">
+        <div class="card" data-aos="zoom-in" id="card-principal">
             <h2>Sua experiência hoje</h2>
+            
             <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite seu nome...">
+                <label>Qual o seu nome?</label>
+                <input type="text" placeholder="Seu nome...">
 
-                <label><i class="fas fa-utensils"></i> O ponto da carne estava correto?</label>
+                <label>Como estava o ponto da carne?</label>
                 <select>
-                    <option>⭐⭐⭐⭐⭐ (Perfeito!)</option>
+                    <option>⭐⭐⭐⭐⭐ (Impecável)</option>
                     <option>⭐⭐⭐⭐ (Muito bom)</option>
                     <option>⭐⭐⭐ (Regular)</option>
-                    <option>⭐ (Pode melhorar)</option>
+                    <option>⭐⭐ (Pode melhorar)</option>
+                    <option>⭐ (Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-concierge-bell"></i> Nota para o atendimento:</label>
+                <label>Nota para o atendimento:</label>
                 <select>
-                    <option>⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option>⭐⭐⭐⭐⭐ (Excelente)</option>
                     <option>⭐⭐⭐⭐ (Bom)</option>
-                    <option>⭐ (Lento)</option>
+                    <option>⭐ (Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-comment"></i> Quer deixar um recado?</label>
+                <label>Algum comentário adicional?</label>
                 <textarea rows="3" placeholder="Sugestões ou elogios..."></textarea>
 
-                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>Obrigado pela visita!</h3>
-                <p style="color: #bbb;">Sua avaliação foi registrada com sucesso.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #555; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
+                <p style="color: #aaa;">Sua avaliação foi registrada com sucesso.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
             </div>
         </div>
     </div>
@@ -203,14 +197,17 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 800 });
+        AOS.init();
         const f = document.getElementById('feedback-form');
+        const sucesso = document.getElementById('sucesso');
         f.onsubmit = (e) => {
             e.preventDefault();
-            document.getElementById('btn-submit').innerText = "ENVIANDO...";
+            document.getElementById('btn-demo').innerText = "ENVIANDO...";
             setTimeout(() => {
                 f.style.display = 'none';
-                document.getElementById('sucesso').style.display = 'block';
+                document.querySelector('h2').style.display = 'none';
+                sucesso.style.display = 'block';
+                AOS.refresh();
             }, 1500);
         };
     </script>
