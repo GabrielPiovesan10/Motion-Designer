@@ -9,17 +9,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* Trava Global para não vazar nada pro lado */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         :root {
             --deck-red: #e63946;
             --deck-dark: #121212;
         }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            overflow-x: hidden; /* A VACINA contra o erro de arrastar pro lado */
+            position: relative;
             background-color: #1a1a1a;
-            /* Fundo de madeira local */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fundo de Madeira Local */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: contain;
             background-position: center;
@@ -30,24 +42,23 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
+        /* Topo sem a linha vermelha */
         header {
             width: 100%;
             padding: 0; 
             background: #000;
             text-align: center;
-            /* LINHA VERMELHA REMOVIDA AQUI */
-            border-bottom: none; 
+            border-bottom: none; /* LINHA REMOVIDA */
             line-height: 0;
         }
 
         .header-logo-img {
             width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
-            margin: 0;
         }
 
         .page-titles {
@@ -70,6 +81,7 @@
             color: #fff;
             margin-top: 5px;
             letter-spacing: 2px;
+            text-transform: lowercase;
         }
 
         .container {
@@ -78,19 +90,19 @@
             margin: 10px auto 40px;
         }
 
-        /* EFEITO GLASSMORPHISM (TRANSPARENTE) */
+        /* Efeito Transparente Glassmorphism */
         .card {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 30px;
+            padding: 25px;
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 25px; color: #fff; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
 
         label {
             display: block;
@@ -111,6 +123,7 @@
             font-size: 1rem;
             box-sizing: border-box;
             outline: none;
+            transition: 0.3s;
         }
 
         input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
@@ -127,7 +140,6 @@
             margin-top: 30px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
-            transition: 0.3s;
         }
 
         .btn-enviar:active { transform: scale(0.96); }
@@ -156,18 +168,18 @@
 
     <div class="page-titles" data-aos="fade-up">
         <h1 class="main-brand-title">Deck Churrascaria</h1>
-        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
+        <p class="survey-subtitle">pesquisa de satisfação</p>
     </div>
 
     <div class="container">
         <div class="card" data-aos="zoom-in" id="card-principal">
-            <h2>Como foi sua experiência hoje</h2>
+            <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
                 <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite seu nome (Opcional)">
+                <input type="text" placeholder="Seu nome (Opcional)">
 
-                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava a seu gosto?</label>
+                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
                 <select required>
                     <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
                     <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
@@ -179,42 +191,42 @@
                 <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
                 <select required>
                     <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
-                    <option value="4">⭐⭐⭐⭐ (Muito Bom)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
                     <option value="3">⭐⭐⭐ (Normal)</option>
-                    <option value="1">⭐ (Precisa melhorar muito)</option>
+                    <option value="1">⭐ (Lento/Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-wine-glass-alt"></i> As bebidas estavam na temperatura ideal?</label>
+                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
                 <select required>
-                    <option value="Sim">Sim, geladas!</option>
+                    <option value="Sim">Sim, no ponto!</option>
                     <option value="Nao">Poderiam estar mais geladas</option>
                 </select>
 
-                <label><i class="fas fa-sparkles"></i> Nota para a limpeza e ambiente:</label>
+                <label><i class="fas fa-sparkles"></i> Limpeza e Organização:</label>
                 <select required>
-                    <option value="5">⭐⭐⭐⭐⭐ (Muito limpo)</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
                     <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="1">⭐ (Deixou a desejar)</option>
+                    <option value="1">⭐ (Regular/Ruim)</option>
                 </select>
 
-                <label><i class="fas fa-heart"></i> Você recomendaria o Deck para um amigo?</label>
+                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
                 <select required>
                     <option value="Sim">Com certeza!</option>
                     <option value="Talvez">Talvez</option>
                     <option value="Nao">Não</option>
                 </select>
 
-                <label><i class="fas fa-comment"></i> Sugestões ou Elogios:</label>
-                <textarea rows="3" placeholder="Conte-nos mais..."></textarea>
+                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
+                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado pela visita!</h3>
-                <p style="color: #aaa;">Sua avaliação foi registrada e ajuda a melhorar nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Nova Avaliação</button>
+                <h3>Obrigado!</h3>
+                <p style="color: #aaa;">Sua opinião ajuda a manter nossa qualidade.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
@@ -226,7 +238,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         f.onsubmit = (e) => {
             e.preventDefault();
