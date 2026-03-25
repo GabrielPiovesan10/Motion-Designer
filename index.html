@@ -53,54 +53,45 @@
         
         footer { padding: 50px; color: #444; font-size: 0.8rem; background: #000; border-top: 1px 
    <style>
-/* --- ESTILO CORRIGIDO DO CHAT DA IA (GABRIEL MOTION) --- */
-
-/* O Ícone (O Robô) - Agora mais baixo e na direita */
+/* --- ESTILO FINAL DO ROBÔ --- */
 #chat-icon { 
     position: fixed; 
-    top: 70px; /* Baixamos para não cobrir o topo do site */
-    right: 15px; /* Alinhado levemente na direita */
-    background: #ff3e3e; /* Vermelho Motion */
+    top: 80px; 
+    right: 15px; 
+    background: #ff3e3e; 
     color: white; 
-    width: 50px; /* Um pouco menor para celular */
+    width: 50px; 
     height: 50px; 
     border-radius: 50%; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     cursor: pointer; 
-    z-index: 1001; /* Garante que fique acima de tudo */
-    box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); /* Sombra vermelha foda */
+    z-index: 1001; 
+    box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); 
     transition: 0.3s; 
 }
-#chat-icon:hover { transform: scale(1.1) rotate(10deg); }
 
-/* A Janela do Chat - Agora abre escondida e com estilo 'Glass' */
 #chat-window { 
-    display: none; /* ISTO AQUI GARANTE QUE ELE COMECE ESCONDIDO */
+    display: none; 
     position: fixed; 
-    top: 130px; /* Começa logo abaixo do ícone */
+    top: 140px; 
     right: 15px; 
-    width: 280px; /* Tamanho ideal para tela de iPhone */
-    
-    /* Efeito 'menos preto' e elegante de Motion Designer */
-    background: rgba(26, 26, 26, 0.9); /* Um cinza muito escuro com 90% de opacidade */
-    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo (Glassmorphism) */
-    
-    border: 1px solid rgba(255, 62, 62, 0.3); /* Borda vermelha bem sutil */
-    border-top: 3px solid #ff3e3e; /* Detalhe forte no topo */
+    width: 280px; 
+    background: rgba(20, 20, 20, 0.95); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 62, 62, 0.3); 
+    border-top: 4px solid #ff3e3e; 
     border-radius: 12px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
     z-index: 1000; 
-    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
+    font-family: 'Courier New', Courier, monospace; 
     overflow: hidden; 
 }
 
-/* Outros estilos internos (apenas para referência, use os mesmos) */
-#chat-content p { margin-bottom: 8px; line-height: 1.4; }
-#chat-content strong { color: #ff3e3e; } /* Destaque em vermelho */
+#chat-content { height: 250px; padding: 15px; overflow-y: auto; color: white; font-size: 13px; }
+#chat-content strong { color: #ff3e3e; }
+</style>
 
-    </style>
 </head>
 <body>
   <audio id="meusom" loop>
