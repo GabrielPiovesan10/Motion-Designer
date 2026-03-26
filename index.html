@@ -18,44 +18,43 @@
         body {
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            position: relative; /* Necessário para o avião flutuar na página toda */
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER COM SUPER ZOOM E ANIMAÇÃO DE VOO --- */
         header {
-            width: 100%; height: 250px; overflow: hidden; background: #000;
-            display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            height: 280px; /* Janela fixa do topo */
+            overflow: hidden; /* Corta o que sobrar da foto */
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .header-logo-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-
-        /* --- ANIMAÇÃO DO AVIÃOZINHO VOANDO --- */
-        .flying-plane {
-            position: absolute;
-            top: 20px; /* Distância do topo */
-            right: 20px; /* Distância da lateral direita */
-            width: 60px; /* Tamanho do avião */
-            z-index: 999; /* Garante que fique por cima de tudo */
-            filter: drop-shadow(0px 10px 8px rgba(0,0,0,0.6)); /* Sombra para dar profundidade 3D */
+        
+        .header-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Zoom e enquadramento automático */
+            object-position: center; /* Começa centralizada */
             
-            /* Chama a animação infinita */
-            animation: vooAnimado 4s infinite ease-in-out;
+            /* CHAMANDO A ANIMAÇÃO DO VOO FALSO AQUI */
+            animation: vooFalso 20s infinite ease-in-out;
         }
 
-        @keyframes vooAnimado {
-            0% { 
-                transform: translateY(0px) translateX(0px) rotate(0deg); 
-            }
-            50% { 
-                /* Sobe um pouco, vai pra frente e empina o bico levemente */
-                transform: translateY(-15px) translateX(-10px) rotate(-5deg); 
-            }
-            100% { 
-                transform: translateY(0px) translateX(0px) rotate(0deg); 
-            }
+        /* LÓGICA DO VOO FALSO (A FOTO INTEIRA SE MOVE DENTRO DA JANELA) */
+        @keyframes vooFalso {
+            0% { object-position: 50% 50%; }
+            25% { object-position: 40% 60%; } /* Sobe e inclina */
+            50% { object-position: 60% 40%; } /* Desce e vai pra trás */
+            75% { object-position: 45% 55%; }
+            100% { object-position: 50% 50%; }
         }
 
         .brand-text-block {
-            text-align: center; margin-top: -60px; position: relative; z-index: 10;
+            text-align: center;
+            margin-top: -50px; /* PUXA AS LETRAS PARA CIMA DA FOTO */
+            position: relative;
+            z-index: 10;
         }
         .main-brand-title {
             font-size: 2.2rem; font-weight: 900; color: var(--pacheco-red);
@@ -71,9 +70,8 @@
         /* --- KARD DE PROMOÇÃO PULSANDO FORTE --- */
         .promo-card {
             background: linear-gradient(145deg, #1a1a1a, #000);
-            border: 2px solid var(--pacheco-red);
-            border-radius: 20px; padding: 20px; margin-bottom: 20px;
-            text-align: center;
+            border: 2px solid var(--pacheco-red); border-radius: 20px; padding: 20px;
+            margin-bottom: 20px; text-align: center;
             animation: pulsaGlowForte 2.0s infinite ease-in-out;
             position: relative; z-index: 5; transform-origin: center;
         }
@@ -118,17 +116,16 @@
             margin-top: 20px; cursor: pointer;
         }
 
-        /* --- MENSAGEM DE SUCESSO --- */
+        /* --- SUCESSO --- */
         #sucesso { display: none; padding: 40px 10px; }
         .check-icon { font-size: 4.5rem; color: #27c93f; margin-bottom: 20px; }
         .success-text { font-size: 1.1rem; line-height: 1.6; color: #eee; text-align: center; }
 
-        footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; width: 100%; }
+        footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; width: 100%; background: #000; }
+        .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <img src="pacheco.PNG" alt="Avião Voador" class="flying-plane">
 
     <header>
         <img src="pacheco.PNG" alt="Logo Seo Pacheco" class="header-logo-img">
@@ -188,7 +185,7 @@
                     <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
                 </div>
                 
-                <label class="pergunta-label"><i class="fas fa-comment-dots"></i> Sugestões e Elogios:</label>
+                <label class="pergunta-label"><i class="fas fa-comment-dots"></i> Sugestões ou Elogios:</label>
                 <textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
 
                 <label class="pergunta-label">Seu Nome:</label>
@@ -218,7 +215,7 @@
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        Seo Pacheco | Todos os Direitos Reservados. © 2026
+        <span class="footer-highlight">Tecnologia Pacheco Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
