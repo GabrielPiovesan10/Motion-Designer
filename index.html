@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Seo Pacheco | Pesquisa</title>
+    <title>Seo Pacheco | Pesquisa e Sorteio</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -16,87 +16,83 @@
         html, body { width: 100%; overflow-x: hidden; background-color: #000; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* --- HEADER COM ZOOM (AJUSTE DE ENQUADRAMENTO) --- */
+        /* --- HEADER COM AJUSTE DE ZOOM --- */
         header {
             width: 100%; height: 250px; overflow: hidden; background: #000;
             display: flex; align-items: center; justify-content: center;
         }
-
         .header-logo-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
         .brand-text-block {
             text-align: center; margin-top: -60px; position: relative; z-index: 10;
         }
-
         .main-brand-title {
             font-size: 2.2rem; font-weight: 900; color: var(--pacheco-red);
-            text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,1); letter-spacing: 2px;
+            text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
-
         .survey-subtitle {
             font-size: 1.6rem; color: #ffffff; text-transform: uppercase; 
-            font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,1); margin-top: 5px;
-        }
-
-        /* --- SISTEMA DE ESTRELAS INTERATIVAS --- */
-        .stars-container {
-            display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin: 10px 0 20px;
-        }
-
-        .stars-container input { display: none; }
-
-        .stars-container label {
-            font-size: 2.2rem; color: #333; cursor: pointer; transition: 0.2s;
-            margin: 0 !important;
-        }
-
-        /* Efeito de acender as estrelas */
-        .stars-container input:checked ~ label,
-        .stars-container label:hover,
-        .stars-container label:hover ~ label {
-            color: var(--star-gold);
-            text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+            font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
 
         .container { width: 92%; max-width: 450px; margin: 20px auto 40px; }
 
+        /* --- KARD DE PROMOÇÃO --- */
+        .promo-card {
+            background: linear-gradient(145deg, #1a1a1a, #000);
+            border: 2px solid var(--pacheco-red);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+        }
+        .promo-text {
+            font-size: 1.1rem;
+            font-weight: 800;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        /* --- CARD DE FORMULÁRIO --- */
         .card {
             background: rgba(30, 30, 30, 0.95); padding: 25px; border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        h2 { font-size: 1.2rem; margin-bottom: 25px; border-bottom: 1px solid var(--pacheco-red); padding-bottom: 10px; color: #fff; }
+        /* --- SISTEMA DE ESTRELAS --- */
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin: 10px 0 20px; }
+        .stars-container input { display: none; }
+        .stars-container label { font-size: 2.2rem; color: #333; cursor: pointer; transition: 0.2s; }
+        .stars-container input:checked ~ label, .stars-container label:hover, .stars-container label:hover ~ label {
+            color: var(--star-gold); text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+        }
 
-        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.95rem; color: #eee; }
-
+        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.95rem; }
         input, textarea {
             width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px;
             color: white; font-size: 1rem; outline: none; margin-bottom: 15px;
         }
-
-        /* Estilo para o campo de data (calendário) */
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
         .btn-enviar {
             background: var(--pacheco-red); color: white; border: none; padding: 18px;
             width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-            margin-top: 20px; cursor: pointer; box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+            margin-top: 20px; cursor: pointer;
         }
 
+        /* --- MENSAGEM DE SUCESSO --- */
         #sucesso { display: none; padding: 40px 10px; }
+        .check-icon { font-size: 4.5rem; color: #27c93f; margin-bottom: 20px; }
+        .success-text { font-size: 1.1rem; line-height: 1.6; color: #eee; text-align: center; }
 
-        footer { margin-top: auto; padding: 30px; font-size: 0.8rem; color: #888; text-align: center; width: 100%; background: #000; }
-        .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
+        footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; width: 100%; }
     </style>
 </head>
 <body>
@@ -105,24 +101,31 @@
         <img src="pacheco.PNG" alt="Logo Seo Pacheco" class="header-logo-img">
     </header>
 
-    <div class="brand-text-block" data-aos="fade-up">
+    <div class="brand-text-block">
         <h1 class="main-brand-title">SEO PACHECO</h1>
         <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in">
-            <h2>Sua opinião é fundamental</h2>
-            
+        
+        <div class="promo-card" data-aos="zoom-in">
+            <i class="fas fa-gift" style="color: var(--pacheco-red); font-size: 2rem; margin-bottom: 10px;"></i>
+            <p class="promo-text">
+                Responda nossa avaliação para concorrer a um <br>
+                <span style="color: var(--pacheco-red); font-size: 1.3rem;">Capitão p/2 mais acompanhamento</span>
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up">
             <form id="feedback-form">
                 
-                <label class="pergunta-label"><i class="fas fa-drumstick-bite"></i> O que você achou da Refeição?</label>
+                <label class="pergunta-label"><i class="fas fa-drumstick-bite"></i> A carne estava no ponto?</label>
                 <div class="stars-container">
-                    <input type="radio" name="refeição" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
-                    <input type="radio" name="refeição" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
-                    <input type="radio" name="refeição" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
-                    <input type="radio" name="refeição" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
-                    <input type="radio" name="refeição" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
                 <label class="pergunta-label"><i class="fas fa-concierge-bell"></i> Nota para o Atendimento:</label>
@@ -134,7 +137,14 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                
+                <label class="pergunta-label"><i class="fas fa-beer"></i> Bebidas geladas?</label>
+                <div class="stars-container">
+                    <input type="radio" name="bebida" id="b5" value="5" required><label for="b5" class="fas fa-star"></label>
+                    <input type="radio" name="bebida" id="b4" value="4"><label for="b4" class="fas fa-star"></label>
+                    <input type="radio" name="bebida" id="b3" value="3"><label for="b3" class="fas fa-star"></label>
+                    <input type="radio" name="bebida" id="b2" value="2"><label for="b2" class="fas fa-star"></label>
+                    <input type="radio" name="bebida" id="b1" value="1"><label for="b1" class="fas fa-star"></label>
+                </div>
 
                 <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Organização:</label>
                 <div class="stars-container">
@@ -145,22 +155,8 @@
                     <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label"><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
-                <div class="stars-container">
-                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
-                </div>
-
-                <label class="pergunta-label"><i class="fas fa-comment"></i> Sugestão ou Elogios</label>
-                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
-
-                <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
-
                 <label class="pergunta-label">Seu Nome:</label>
-                <input type="text" placeholder="Digite seu nome" required>
+                <input type="text" placeholder="Nome Completo" required>
 
                 <label class="pergunta-label">Seu WhatsApp:</label>
                 <input type="tel" placeholder="(19) 99999-9999" required>
@@ -172,17 +168,21 @@
             </form>
 
             <div id="sucesso">
-                <i class="fas fa-check-circle" style="font-size: 4rem; color: #27c93f; margin-bottom: 20px;"></i>
-                <h3>Obrigado!</h3>
-                <p style="color: #aaa; margin-top: 10px;">Sua avaliação foi registrada com sucesso.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #555; color:#fff; padding:10px 20px; border-radius:8px; margin-top:20px; cursor:pointer;">Voltar</button>
+                <i class="fas fa-check-circle check-icon"></i>
+                <div class="success-text">
+                    <p><strong>OBRIGADO POR RESPONDER NOSSA AVALIAÇÃO!</strong></p><br>
+                    <p>Agora você está concorrendo a um <strong>Capitão p/2 pessoas</strong>.</p>
+                    <p>Caso você seja sorteado, entraremos em contato.</p><br>
+                    <p style="font-size: 1.4rem; color: var(--pacheco-red); font-weight: 900;">BOA SORTE!</p>
+                </div>
+                <button onclick="location.reload()" style="background:none; border:1px solid #444; color:#fff; padding:10px 20px; border-radius:8px; margin-top:30px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        <span class="footer-highlight">Seo Pacheco| Todos os Direitos Reservados.</span> © 2026
+        Tecnologia Pacheco Satisfaction © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -194,10 +194,10 @@
             e.preventDefault();
             document.getElementById('btn-submit').innerText = "ENVIANDO...";
             setTimeout(() => {
+                document.querySelector('.promo-card').style.display = 'none';
                 f.style.display = 'none';
-                document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
-                AOS.refresh();
+                window.scrollTo(0,0);
             }, 1500);
         };
     </script>
