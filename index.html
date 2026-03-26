@@ -1,253 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH1GH7YKWQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XH1GH7YKWQ');
-    </script>
-
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabriel Piovesan | Especialista em Motion Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { font-family: sans-serif; margin: 0; background: #050505; color: white; text-align: center; overflow-x: hidden; }
-        
-        /* Tela de Bloqueio */
-        #bloqueio { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; position: fixed; width: 100%; z-index: 99; top: 0; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-        #site { display: none; }
-        
-        .vermelho { color: #ff3e3e; font-size: 2.8rem; text-transform: uppercase; font-weight: bold; margin: 5px 0; }
-        .caixa { background: #111; padding: 25px; border-radius: 15px; border: 2px solid #ff3e3e; width: 280px; box-shadow: 0 0 20px rgba(255,62,62,0.2); }
-        input[type="text"] { background: #000; border: 1px solid #333; color: white; padding: 12px; margin-bottom: 15px; text-align: center; width: 85%; border-radius: 8px; outline: none; }
-        
-        /* Terminal Card */
-        .minha-história { margin: 40px 20px; display: flex; justify-content: center; }
-        .terminal-card { background: #1a1a1a; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); max-width: 450px; width: 100%; overflow: hidden; border: 1px solid #333; text-align: left; }
-        .terminal-topo { background: #2d2d2d; padding: 12px; display: flex; align-items: center; gap: 8px; }
-        .ponto { height: 12px; width: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
-        .txt-topo { color: #aaa; font-size: 0.75rem; font-family: monospace; margin-left: 5px; }
-        .terminal-corpo { padding: 25px; font-family: 'Courier New', Courier, monospace; color: #ddd; line-height: 1.6; }
-        .terminal-corpo h2 { color: #27c93f; font-size: 1.1rem; margin-bottom: 15px; }
-        .terminal-corpo strong { color: #ff3e3e; }
-        .blink { color: #27c93f; font-weight: bold; animation: pisca 1s infinite; }
-        @keyframes pisca { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        /* Trava Global para não vazar nada pro lado */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* Botões */
-        .btn-whats { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
+        :root {
+            --deck-red: #e63946;
+            --deck-dark: #121212;
+        }
 
-        .video-clean { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; max-width: 400px; margin: 20px auto; border-radius: 15px; pointer-events: none; }
-        .video-clean iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; }
-        .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
-        .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
-        .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            background-color: #1a1a1a;
+        }
 
-        summary { list-style: none; cursor: pointer; outline: none; }
-        summary::-webkit-details-marker { display: none; }
-        .detalhes-combo { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; text-align: left; }
-        .detalhes-combo li { font-size: 1em; margin-bottom: 8px; color: #ff3e3e; font-weight: bold; list-style: none; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
+            background-size: contain;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-        footer { padding: 50px; color: #555; font-size: 0.8rem; border-top: 1px solid #111; background: #000; text-align: center; }
+        header {
+            width: 100%;
+            padding: 0; 
+            background: #000;
+            text-align: center;
+            border-bottom: none;
+            line-height: 0;
+        }
 
-        /* IA GABRIEL MOTION */
-        #chat-icon { position: fixed; top: 80px; right: 15px; background: #ff3e3e; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); }
-        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 62, 62, 0.3); border-top: 4px solid #ff3e3e; border-radius: 12px; z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
-        #chat-content { height: 250px; padding: 15px; overflow-y: auto; color: white; font-size: 13px; text-align: left; }
-        .chat-input-area { padding: 10px; border-top: 1px solid #333; display: flex; background: #111; }
-        .chat-input-area input { flex: 1; background: #000; color: #fff; border: 1px solid #444; padding: 5px; border-radius: 5px; outline: none; font-size: 12px; }
-        .chat-input-area button { background: #ff3e3e; color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .header-logo-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-        .typing { color: #888; font-style: italic; margin-bottom: 10px; }
-        .typing span { animation: blink 1.4s infinite both; }
-        .typing span:nth-child(2) { animation-delay: .2s; }
-        .typing span:nth-child(3) { animation-delay: .4s; }
-        @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
+        .page-titles {
+            text-align: center;
+            margin: 30px 20px 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+        }
+
+        .main-brand-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deck-red);
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .survey-subtitle {
+            font-size: 1.6rem; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            margin: 10px auto 40px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 20px 0 8px;
+            font-size: 0.9rem;
+            color: #eee;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
+
+        .btn-enviar {
+            background: var(--deck-red);
+            color: white;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-enviar:active { transform: scale(0.96); }
+
+        #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+            background: rgba(0,0,0,0.8);
+            width: 100%;
+        }
+
+        .footer-highlight { color: var(--deck-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <audio id="meusom" loop><source src="musica.mp3" type="audio/mpeg"></audio>
-    <button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">🔊</button>
+    <header>
+        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
+    </header>
 
-    <div id="chat-icon" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
-    <div id="chat-window">
-        <div style="background:#ff3e3e; color:white; padding:10px; text-align:center; font-weight:bold; font-size:12px;">GABRIEL MOTION IA</div>
-        <div id="chat-content"><p><strong>Robô:</strong> Olá! Como posso te chamar?</p></div>
-        <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Diga algo...">
-            <button onclick="sendMessage()">OK</button>
-        </div>
+    <div class="page-titles" data-aos="fade-up">
+        <h1 class="main-brand-title">Deck Churrascaria</h1>
+        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
-    <div id="bloqueio">
-        <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem;">GABRIEL PIOVESAN</h1>
-        <p style="color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Especialista em Motion Design e ADS</p>
-        <div class="caixa">
-            <input type="text" id="userIn" placeholder="Seu nome/Empresa...">
-            <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHEÇA MEU TRABALHO</button>
-        </div>
-    </div>
+    <div class="container">
+        <div class="card" data-aos="zoom-in" id="card-principal">
+            <h2>Como foi sua experiência hoje</h2>
+            
+            <form id="feedback-form">
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
+                <input type="text" placeholder="Digite Seu nome" required>
+                
+                <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
+                <input type="tel" placeholder="Digite Seu número" required>
+              
+                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
+                    <option value="3">⭐⭐⭐ (Regular)</option>
+                    <option value="2">⭐⭐ (Pode melhorar)</option>
+                    <option value="1">⭐ (Ruim)</option>
+                </select>
 
-    <div id="site">
-        <header style="padding: 60px 20px 20px;">
-            <p id="msg-boasvindas" style="color: #888;"></p>
-            <h1 class="vermelho" data-aos="zoom-in">GABRIEL PIOVESAN</h1>
-            <p style="letter-spacing: 3px; font-weight: bold; color: #eee; font-size: 0.9rem;">ESPECIALISTA EM MOTION DESIGN & ADS</p>
-            <div style="margin-top: 25px;"><a href="https://wa.me/5519993405480" class="btn-whats"><i class="fab fa-whatsapp"></i> WHATSAPP</a></div>
-        </header>
+                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="3">⭐⭐⭐ (Normal)</option>
+                    <option value="1">⭐ (Lento/Ruim)</option>
+                </select>
 
-        <section class="minha-história" data-aos="fade-up">
-            <div class="terminal-card">
-                <div class="terminal-topo"><span class="ponto red"></span><span class="ponto yellow"></span><span class="ponto green"></span><span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span></div>
-                <div class="terminal-corpo">
-                    <h2>> Prazer, me chamo Gabriel</h2>
-                    <p>Sou <strong>Motion Designer</strong> e ajudo suas imagens a ganharem vida através do movimento.</p>
-                    <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
-                    <p>Aqui está o resultado: programando <strong>Python</strong> direto do meu bolso.</p>
-                    <p>Achou <strong>interessante</strong> e quer ter seu próprio site? Me chame no WhatsApp e me conte sua ideia!</p>
-                    <span class="blink">_</span>
-                </div>
-            </div>
-        </section>
+                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="Sim">Sim, no ponto!</option>
+                    <option value="Nao">Poderiam estar mais geladas</option>
+                </select>
 
-        <div class="video-clean" data-aos="zoom-in">
-            <iframe src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div style="text-align: center; margin-top: 10px; margin-bottom: 30px;" data-aos="fade-up">
-          <p style="color: #ffffff; font-family: sans-serif; font-size: 16px; font-weight: bold; margin:0;">Esse foi um dos vídeos que fiz.</p>
-          <span style="color: #ff3e3e; font-size: 14px;">Motion Design | Edição & Sonorização</span>
-        </div>
+                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="1">⭐ (Regular/Ruim)</option>
+                </select>
 
-        <h2 style="color: #ff3e3e; margin-top: 50px;">O QUE EU FAÇO?</h2>
-        <div class="servicos">
-            <div class="card" data-aos="fade-up"><i class="fas fa-play-circle"></i><h3>Motion Ads</h3><p>Anúncios animados de alta conversão.</p></div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-bolt"></i><h3>Vídeos Dinâmicos</h3><p>Edição moderna que prende a atenção.</p></div>
-        </div>
+                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
+                <select required>
+                    <option value="">Selecione...</option>
+                    <option value="Sim">Com certeza!</option>
+                    <option value="Talvez">Talvez</option>
+                    <option value="Nao">Não</option>
+                </select>
 
-        <div class="card" data-aos="fade-up" style="margin: 20px;">
-            <h3 style="text-align: center; color: #ff3e3e;"><i class="fas fa-layer-group"></i> Meus Pacotes</h3>
-            <div class="tabela-precos">
-                <details class="item-preco">
-                    <summary style="background:#222; padding:15px; border-radius:8px; margin-bottom:10px;">
-                        <h4>Combo Essencial - <span style="color:#ff3e3e;">R$ 27</span></h4>
-                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
-                    </summary>
-                    <div class="detalhes-combo"><ul><li>✅ 3 Artes Estáticas</li><li>✅ Entrega em 48h</li></ul></div>
-                </details>
-                <details class="item-preco">
-                    <summary style="background:#222; padding:15px; border-radius:8px; border: 2px solid #ff3e3e;">
-                        <h4>Combo Profissional - <span style="color:#ff3e3e;">R$ 45</span></h4>
-                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
-                    </summary>
-                    <div class="detalhes-combo"><ul><li>✅ 5 Artes Estáticas</li><li>✅ 1 Ajuste por arte</li></ul></div>
-                </details>
+                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
+                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
+
+                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
+            </form>
+
+            <div id="sucesso">
+                <i class="fas fa-check-circle check-icon"></i>
+                <h3>Obrigado!</h3>
+                <p style="color: #aaa;">Sua opinião ajuda a manter nossa qualidade.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
-
-        <footer>© 2026 <span style="color: #ff3e3e; font-weight: bold;">GABRIEL PIOVESAN</span><br>Desenvolvido via ISH. Cordeiropolis-SP</footer>
     </div>
+
+    <footer>
+        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
+        <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
-        let nomeUser = "Visitante";
+        AOS.init({ once: true });
+        const f = document.getElementById('feedback-form');
+        
+        f.onsubmit = (e) => {
+            // Se o formulário não passar na validação do navegador, ele para aqui
+            if (!f.checkValidity()) {
+                return; 
+            }
 
-        function start() {
-            const campo = document.getElementById("userIn");
-            const nome = campo.value.trim();
-            if(nome !== "") {
-                nomeUser = nome;
-                const chat = document.getElementById("chat-content");
-                chat.innerHTML = `<p><strong>Robô:</strong> Olá, ${nomeUser}! 😊 Vi que você chegou. No que posso te ajudar?</p>`;
-                document.getElementById("meusom").play();
-                document.getElementById("msg-boasvindas").innerText = "Bem-vindo, " + nomeUser + "!";
-                document.getElementById("bloqueio").style.top = "-110vh";
-                document.getElementById("site").style.display = "block";
-            } else { alert("Digite seu nome!"); }
-        }
+            e.preventDefault();
+            const btn = document.getElementById('btn-demo');
+            btn.innerText = "ENVIANDO...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
 
-        function alternarSom() {
-            var m = document.getElementById("meusom");
-            var b = document.getElementById("btnMudo");
-            if (m.paused) { m.play(); b.innerHTML = "🔊"; } else { m.muted = !m.muted; b.innerHTML = m.muted ? "🔇" : "🔊"; }
-        }
-
-        function toggleChat() {
-            const j = document.getElementById('chat-window');
-            j.style.display = (j.style.display === 'none' || j.style.display === '') ? 'block' : 'none';
-        }
-
-        function sendMessage() {
-    const input = document.getElementById('user-input');
-    const area = document.getElementById('chat-content');
-    const msgOrig = input.value.trim();
-    const msg = msgOrig.toLowerCase();
-
-    if (!msg) return;
-
-    area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
-    input.value = "";
-
-    const tid = "t-" + Date.now();
-    area.innerHTML += `<div id="${tid}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
-    area.scrollTop = area.scrollHeight;
-
-    setTimeout(() => {
-        const te = document.getElementById(tid); if (te) te.remove();
-        let r = ""; 
-        let btn = false; // Controla se o botão de Zap aparece
-
-        // 1. Respostas para SIM ou OK
-        if (msg === "sim" || msg === "pode ser" || msg === "quero" || msg === "ok") {
-            r = `Perfeito, ${nomeUser}! Só clicar no botão abaixo para chamar o Gabriel:`;
-            btn = true;
-        }
-        // 2. Respostas para NÃO
-        else if (msg === "não" || msg === "nao" || msg === "agora não") {
-            r = `Sem problemas! Se mudar de ideia ou quiser saber sobre **preços** e **prazos**, é só digitar.`;
-        }
-        // 3. Palavras-chave que já tínhamos
-        else if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto") || msg.includes("preco")) {
-            r = `${nomeUser}, meus pacotes começam em R$ 27! Veja a tabela abaixo.`;
-        }
-        else if (msg.includes("prazo") || msg.includes("tempo")) {
-            r = "Consigo te entregar artes em 48h! Vídeos a gente combina no Zap.";
-        }
-        else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) {
-            r = "Moro em **Cordeirópolis-SP**, mas atendo o Brasil todo!";
-        }
-        // 4. Resposta padrão se ele não entender
-        else {
-            r = `Entendi, ${nomeUser}! Como ainda estou aprendendo, o Gabriel pode te explicar isso melhor no WhatsApp. Quer o link?`;
-        }
-
-        area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
-
-        // Se a resposta pediu o botão, ele aparece aqui
-        if (btn) {
-            area.innerHTML += `
-                <div style="text-align:center; margin: 10px 0;">
-                    <a href="https://wa.me/5519993405480?text=Olá Gabriel, vim pelo site!" 
-                       target="_blank" 
-                       style="background:#25d366; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:12px; display:inline-block;">
-                       <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
-                    </a>
-                </div>`;
-        }
-        area.scrollTop = area.scrollHeight;
-    }, 1200);
-}
-
+            setTimeout(() => {
+                f.style.display = 'none';
+                document.querySelector('h2').style.display = 'none';
+                document.getElementById('sucesso').style.display = 'block';
+                AOS.refresh();
+            }, 1500);
+        };
     </script>
 </body>
 </html>
