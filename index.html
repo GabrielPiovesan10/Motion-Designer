@@ -20,7 +20,7 @@
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* --- HEADER COM AJUSTE DE ZOOM --- */
+        /* --- HEADER --- */
         header {
             width: 100%; height: 250px; overflow: hidden; background: #000;
             display: flex; align-items: center; justify-content: center;
@@ -41,7 +41,7 @@
 
         .container { width: 92%; max-width: 450px; margin: 20px auto 40px; }
 
-        /* --- KARD DE PROMOÇÃO COM ANIMAÇÃO PULSANDO --- */
+        /* --- KARD DE PROMOÇÃO COM ANIMAÇÃO "MELHORZINHA" (PULSANDO FORTE) --- */
         .promo-card {
             background: linear-gradient(145deg, #1a1a1a, #000);
             border: 2px solid var(--pacheco-red);
@@ -49,24 +49,29 @@
             padding: 20px;
             margin-bottom: 20px;
             text-align: center;
-            /* box-shadow original removido para usar a animação */
             
-            /* AQUI ESTÁ A PULSAÇÃO INFINITA */
-            animation: pulsaGlow 2.5s infinite ease-in-out;
+            /* AQUI ESTÁ A PULSAÇÃO INFINITA E MAIS RÁPIDA (2s) */
+            animation: pulsaGlowForte 2.0s infinite ease-in-out;
             position: relative;
             z-index: 5;
+            
+            /* Prepara o transform para a animação */
+            transform-origin: center;
         }
 
-        /* LÓGICA DA ANIMAÇÃO DE PULSAÇÃO */
-        @keyframes pulsaGlow {
+        /* LÓGICA DA ANIMAÇÃO DE PULSAÇÃO INTENSA */
+        @keyframes pulsaGlowForte {
             0% {
-                box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
             }
             50% {
-                box-shadow: 0 0 25px rgba(230, 57, 70, 0.7); /* Brilho máximo */
+                transform: scale(1.02); /* CRESCE SUTILMENTE */
+                box-shadow: 0 0 35px rgba(230, 57, 70, 0.9); /* BRILHO MÁXIMO E INTENSO */
             }
             100% {
-                box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
             }
         }
 
