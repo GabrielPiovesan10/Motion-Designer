@@ -107,6 +107,29 @@
         }
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
+        /* --- MENSAGEM DE ERRO (A CAIXA ELEGANTE VOLTOU) --- */
+        #mensagem-erro {
+            display: none; /* Começa escondido */
+            background: rgba(230, 57, 70, 0.2);
+            border: 1px solid var(--pacheco-red);
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+            animation: tremer 0.3s;
+        }
+
+        @keyframes tremer {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
         .btn-enviar {
             background: var(--pacheco-red); color: white; border: none; padding: 18px;
             width: 100%; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
@@ -119,7 +142,6 @@
         .success-text { font-size: 1.1rem; line-height: 1.6; color: #eee; text-align: center; }
 
         footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; width: 100%; background: #000; }
-        .footer-highlight { color: var(--pacheco-red); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -182,7 +204,7 @@
                     <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
                 </div>
                 
-                <label class="pergunta-label"><i class="fas fa-comment-dots"></i> Sugestões ou Elogios:</label>
+                <label class="pergunta-label"><i class="fas fa-comment-dots"></i> Sugestões e Elogios:</label>
                 <textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
 
                 <label class="pergunta-label">Seu Nome:</label>
@@ -193,6 +215,10 @@
 
                 <label class="pergunta-label">Sua Data de Nascimento:</label>
                 <input type="date" required>
+
+                <div id="mensagem-erro">
+                    <i class="fas fa-exclamation-triangle"></i> Por favor, preencha todos os campos e marque as estrelinhas!
+                </div>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
@@ -212,17 +238,34 @@
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        <span class="footer-highlight">Tecnologia Pacheco Satisfaction</span> © 2026
+        Seo Pacheco | Todos os Direitos Reservados. © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true });
+        
         const f = document.getElementById('feedback-form');
+        const btnSubmit = document.getElementById('btn-submit');
+        const msgErro = document.getElementById('mensagem-erro');
+
+        // Escuta o clique no botão para mostrar a caixa vermelha se faltar algo
+        btnSubmit.addEventListener('click', () => {
+            if (!f.checkValidity()) {
+                msgErro.style.display = 'block';
+            } else {
+                msgErro.style.display = 'none';
+            }
+        });
+
         f.onsubmit = (e) => {
             if (!f.checkValidity()) { return; }
             e.preventDefault();
-            document.getElementById('btn-submit').innerText = "ENVIANDO...";
+            
+            // Se passou na validação, esconde o erro e continua o fluxo
+            msgErro.style.display = 'none';
+            btnSubmit.innerText = "ENVIANDO...";
+            
             setTimeout(() => {
                 document.querySelector('.promo-card').style.display = 'none';
                 f.style.display = 'none';
