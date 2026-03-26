@@ -3,269 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa</title>
+    <title>Deck Churrascaria | Avaliação</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Trava Global para não vazar nada pro lado */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        :root {
-            --deck-red: #e63946;
-            --deck-dark: #121212;
-        }
-
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            position: relative;
-            background-color: #1a1a1a;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
-            background-size: contain;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: repeat;
+            font-family: 'Segoe UI', sans-serif;
             color: white;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            /* FUNDO DE MADEIRA ESCURA */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         header {
             width: 100%;
-            padding: 0; 
-            background: #000;
+            padding: 40px 20px;
             text-align: center;
-            border-bottom: none;
-            line-height: 0;
         }
 
-        .header-logo-img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .page-titles {
-            text-align: center;
-            margin: 30px 20px 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-        }
-
-        .main-brand-title {
-            font-size: 2rem;
+        .logo-deck {
+            font-size: 2.5rem;
             font-weight: 900;
-            color: var(--deck-red);
+            color: #ff9f43; /* Laranja Churrasco */
             text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
         }
 
-        .survey-subtitle {
-            font-size: 1.6rem; 
-            color: #ffffff; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            letter-spacing: 2px; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
+        .container { width: 92%; max-width: 450px; margin-bottom: 50px; }
 
-        .container {
-            width: 90%;
-            max-width: 450px;
-            margin: 10px auto 40px;
-        }
-
+        /* EFEITO TRANSPARENTE (GLASSMORPHISM) */
         .card {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            text-align: center;
-        }
-
-        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
-
-        label {
-            display: block;
-            text-align: left;
-            margin: 20px 0 8px;
-            font-size: 0.9rem;
-            color: #eee;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .pergunta-label {
+            display: block;
+            margin: 20px 0 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ff9f43;
+            text-transform: uppercase;
+        }
+
+        /* ESTRELAS PERSONALIZADAS */
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .stars-container input { display: none; }
+        .stars-container label { font-size: 2.5rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
+        
+        .stars-container input:checked ~ label,
+        .stars-container label:hover,
+        .stars-container label:hover ~ label {
+            color: #ff9f43;
+            text-shadow: 0 0 15px rgba(255, 159, 67, 0.5);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: white;
             font-size: 1rem;
-            box-sizing: border-box;
+            margin-bottom: 15px;
             outline: none;
-            transition: 0.3s;
         }
-
-        input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
 
         .btn-enviar {
-            background: var(--deck-red);
-            color: white;
+            background: #ff9f43;
+            color: #fff;
             border: none;
-            padding: 18px;
+            padding: 20px;
             width: 100%;
-            border-radius: 12px;
-            font-weight: bold;
+            border-radius: 15px;
+            font-weight: 900;
             font-size: 1.2rem;
-            margin-top: 30px;
+            margin-top: 20px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(255, 159, 67, 0.3);
         }
 
-        .btn-enviar:active { transform: scale(0.96); }
-
-        #sucesso { display: none; padding: 40px 20px; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+        #sucesso { display: none; text-align: center; padding: 20px 0; }
+        .check-icon { font-size: 5rem; color: #2ecc71; margin-bottom: 20px; }
 
         footer {
-            margin-top: auto;
-            padding: 30px;
+            padding: 20px;
             font-size: 0.8rem;
-            color: #ccc;
+            color: rgba(255,255,255,0.5);
             text-align: center;
-            background: rgba(0,0,0,0.8);
-            width: 100%;
         }
-
-        .footer-highlight { color: var(--deck-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
+        <div class="logo-deck.JPG" data-aos="fade-down">DECK</div>
+        <p style="color: #ccc; letter-spacing: 1px;">CHURRASCARIA</p>
     </header>
 
-    <div class="page-titles" data-aos="fade-up">
-        <h1 class="main-brand-title">Deck Churrascaria</h1>
-        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
-    </div>
-
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-principal">
-            <h2>Como foi sua experiência hoje</h2>
+        <div class="card" data-aos="zoom-in">
             
-            <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite Seu nome" required>
-                
-                <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
-                <input type="tel" placeholder="Digite Seu número" required>
-              
-                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
-                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
-                    <option value="3">⭐⭐⭐ (Regular)</option>
-                    <option value="2">⭐⭐ (Pode melhorar)</option>
-                    <option value="1">⭐ (Ruim)</option>
-                </select>
+            <form id="form-deck">
+                <label class="pergunta-label">Qual nota para nossa carne?</label>
+                <div class="stars-container">
+                    <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
+                </div>
 
-                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="3">⭐⭐⭐ (Normal)</option>
-                    <option value="1">⭐ (Lento/Ruim)</option>
-                </select>
+                <label class="pergunta-label">Atendimento e Agilidade:</label>
+                <div class="stars-container">
+                    <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a3" value="3"><label for="a3" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a2" value="2"><label for="a2" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
+                </div>
 
-                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Sim, no ponto!</option>
-                    <option value="Nao">Poderiam estar mais geladas</option>
-                </select>
+                <label class="pergunta-label">Seu Nome:</label>
+                <input type="text" name="nome" placeholder="Ex: Gabriel Piovesan" required>
 
-                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="1">⭐ (Regular/Ruim)</option>
-                </select>
+                <label class="pergunta-label">WhatsApp:</label>
+                <input type="tel" name="whatsapp" id="zap" placeholder="(19) 99999-9999" required>
 
-                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
-                <select required>
-                    <option value="">Selecione...</option>
-                    <option value="Sim">Com certeza!</option>
-                    <option value="Talvez">Talvez</option>
-                    <option value="Nao">Não</option>
-                </select>
-
-                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
-                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
-
-                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-submit">Enviar Avaliação</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <p style="color: #aaa;">Sua opinião ajuda a manter nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
+                <h2>Obrigado!</h2>
+                <p style="margin-top: 10px; color: #eee;">Sua avaliação ajuda o Deck a ser cada vez melhor.</p>
+                <button onclick="location.reload();" style="background:none; border:1px solid #ff9f43; color:#ff9f43; padding:10px 20px; border-radius:10px; margin-top:30px; cursor:pointer;">Nova Avaliação</button>
             </div>
+
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
+        Deck Churrascaria © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
-        const f = document.getElementById('feedback-form');
-        
+        AOS.init();
+        const f = document.getElementById('form-deck');
+        const btn = document.getElementById('btn-submit');
+        const zapInput = document.getElementById('zap');
+
+        // SUBSTITUA PELO SEU LINK DO GOOGLE SCRIPT DO DECK
+        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
+
         f.onsubmit = (e) => {
-            // Se o formulário não passar na validação do navegador, ele para aqui
-            if (!f.checkValidity()) {
-                return; 
+            e.preventDefault();
+            
+            // Lógica antifraude (mesmo zap)
+            let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
+            let atual = zapInput.value.replace(/\D/g,'');
+
+            if(zaps.includes(atual)) {
+                alert("Este WhatsApp já enviou uma avaliação hoje!");
+                return;
             }
 
-            e.preventDefault();
-            const btn = document.getElementById('btn-demo');
             btn.innerText = "ENVIANDO...";
-            btn.style.opacity = "0.7";
             btn.disabled = true;
 
-            setTimeout(() => {
+            fetch(scriptURL, { method: 'POST', body: new FormData(f)})
+            .then(res => {
+                zaps.push(atual);
+                localStorage.setItem('deckZaps', JSON.stringify(zaps));
                 f.style.display = 'none';
-                document.querySelector('h2').style.display = 'none';
                 document.getElementById('sucesso').style.display = 'block';
-                AOS.refresh();
-            }, 1500);
-        };
+            })
+            .catch(err => {
+                btn.innerText = "ERRO AO ENVIAR";
+                btn.disabled = false;
+            });
+        }
     </script>
 </body>
 </html>
