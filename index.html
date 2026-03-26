@@ -20,11 +20,11 @@
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* --- HEADER COM SUPER ZOOM E ANIMAÇÃO DE VOO --- */
+        /* --- HEADER COM NOVO VOO SUAVE (X e Y) --- */
         header {
             width: 100%;
-            height: 280px; /* Janela fixa do topo */
-            overflow: hidden; /* Corta o que sobrar da foto */
+            height: 280px;
+            overflow: hidden; 
             background: #000;
             display: flex;
             align-items: center;
@@ -34,27 +34,24 @@
         .header-logo-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Zoom e enquadramento automático */
-            object-position: center; /* Começa centralizada */
+            object-fit: cover;
             
-            /* CHAMANDO A ANIMAÇÃO DO VOO FALSO AQUI */
-            animation: vooFalso 20s infinite ease-in-out;
+            /* O zoom de 1.15 dá a "sobra" de margem para a foto poder passear sem cortar */
+            transform: scale(1.15);
+            animation: vooFalso 15s infinite ease-in-out;
         }
 
-        /* LÓGICA DO VOO FALSO (A FOTO INTEIRA SE MOVE DENTRO DA JANELA) */
+        /* LÓGICA DO VOO FALSO (FRENTE/TRÁS = X | CIMA/BAIXO = Y) */
         @keyframes vooFalso {
-            0% { object-position: 50% 50%; }
-            25% { object-position: 40% 60%; } /* Sobe e inclina */
-            50% { object-position: 60% 40%; } /* Desce e vai pra trás */
-            75% { object-position: 45% 55%; }
-            100% { object-position: 50% 50%; }
+            0% { transform: scale(1.15) translate(0px, 0px); }
+            25% { transform: scale(1.15) translate(15px, -15px); } /* Frente e Cima */
+            50% { transform: scale(1.15) translate(-10px, 10px); } /* Trás e Baixo */
+            75% { transform: scale(1.15) translate(10px, 15px); }  /* Frente e Baixo */
+            100% { transform: scale(1.15) translate(0px, 0px); }   /* Volta pro Centro */
         }
 
         .brand-text-block {
-            text-align: center;
-            margin-top: -50px; /* PUXA AS LETRAS PARA CIMA DA FOTO */
-            position: relative;
-            z-index: 10;
+            text-align: center; margin-top: -50px; position: relative; z-index: 10;
         }
         .main-brand-title {
             font-size: 2.2rem; font-weight: 900; color: var(--pacheco-red);
