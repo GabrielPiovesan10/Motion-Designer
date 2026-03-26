@@ -66,10 +66,16 @@
         }
 
         /* --- SISTEMA DE ESTRELAS --- */
-        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin: 10px 0 20px; }
-        .stars-container input { display: none; }
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin: 10px 0 20px; position: relative; }
+        
+        /* A CORREÇÃO DO IPHONE: Deixa invisível em vez de deletar o botão */
+        .stars-container input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+        
         .stars-container label { font-size: 2.2rem; color: #333; cursor: pointer; transition: 0.2s; }
-        .stars-container input:checked ~ label, .stars-container label:hover, .stars-container label:hover ~ label {
+        
+        .stars-container input:checked ~ label, 
+        .stars-container label:hover, 
+        .stars-container label:hover ~ label {
             color: var(--star-gold); text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
         }
 
@@ -137,8 +143,6 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                
-
                 <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Organização:</label>
                 <div class="stars-container">
                     <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
@@ -150,14 +154,15 @@
 
                <label class="pergunta-label"><i class="fas fa-heart"></i> Recomendaria o Seo Pacheco?</label>
                 <div class="stars-container">
-                    <input type="radio" name="recomenda" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
                 </div>
+                
                 <label class="pergunta-label"><i class="fas fa-comment-dots"></i> Sugestões e Elogios:</label>
-<textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
+                <textarea rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
 
                 <label class="pergunta-label">Seu Nome:</label>
                 <input type="text" placeholder="Digite seu Nome" required>
