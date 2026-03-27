@@ -47,12 +47,8 @@
         }
 
         .promo-card {
-            background: rgba(0, 0, 0, 0.85); 
-            border: 2px solid var(--deck-wood);
-            border-radius: 18px; 
-            padding: 12px; 
-            margin-bottom: 15px; 
-            text-align: center;
+            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-wood);
+            border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
             animation: promoPulsar 2s ease-in-out infinite, bordaBrilhante 1.5s ease-in-out infinite;
         }
 
@@ -78,6 +74,7 @@
         }
 
         .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; text-shadow: 1px 1px 3px #000; }
+        .pergunta-label i { color: var(--deck-wood); margin-right: 8px; font-size: 0.9rem; }
 
         .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 10px; }
         .stars input { display: none; }
@@ -129,7 +126,7 @@
 
             <form id="feedback-form">
                 
-                <label class="pergunta-label">O que você achou da Refeição?</label>
+                <label class="pergunta-label"><i class="fas fa-utensils"></i>O que você achou da Refeição?</label>
                 <div class="stars">
                     <input type="radio" name="refeicao" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
                     <input type="radio" name="refeicao" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
@@ -138,7 +135,7 @@
                     <input type="radio" name="refeicao" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label">Nota para o Atendimento:</label>
+                <label class="pergunta-label"><i class="fas fa-concierge-bell"></i>Nota para o Atendimento:</label>
                 <div class="stars">
                     <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
                     <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
@@ -147,7 +144,7 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label">Limpeza e Organização:</label>
+                <label class="pergunta-label"><i class="fas fa-broom"></i>Limpeza e Organização:</label>
                 <div class="stars">
                     <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
                     <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
@@ -156,7 +153,7 @@
                     <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label">Recomendaria o Deck?</label>
+                <label class="pergunta-label"><i class="fas fa-thumbs-up"></i>Recomendaria o Deck?</label>
                 <div class="stars">
                     <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
                     <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
@@ -165,16 +162,16 @@
                     <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label">Sugestões e Elogios:</label>
+                <label class="pergunta-label"><i class="fas fa-comment-dots"></i>Sugestões e Elogios:</label>
                 <textarea name="sugestoes" rows="2" placeholder="Sua opinião..."></textarea>
 
-                <label class="pergunta-label">Seu Nome:</label>
+                <label class="pergunta-label"><i class="fas fa-user"></i>Seu Nome:</label>
                 <input type="text" name="nome" placeholder="Digite seu nome" required>
 
-                <label class="pergunta-label">Seu WhatsApp:</label>
+                <label class="pergunta-label"><i class="fab fa-whatsapp"></i>Seu WhatsApp:</label>
                 <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
 
-                <label class="pergunta-label">Sua Data de Nascimento:</label>
+                <label class="pergunta-label"><i class="fas fa-birthday-cake"></i>Sua Data de Nascimento:</label>
                 <input type="date" name="nascimento" required>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR E CONCORRER</button>
