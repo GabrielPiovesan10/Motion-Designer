@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa</title>
+    <title>Deck Churrascaria | Pesquisa e Sorteio</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,18 +12,13 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            --deck-highlight: #ff9f43; 
+            /* Cores de Destaque */
+            --deck-red: #e63946;    /* Cor da borda e título */
+            --deck-highlight: #ff9f43; /* Cor Madeira/Cobre do prêmio e ícone */
             --star-gold: #f1c40f;
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            position: relative;
-            background-color: #000;
-        }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #000; }
 
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -33,75 +28,62 @@
             align-items: center;
             min-height: 100vh;
             
-            /* FUNDO DE MADEIRA TOTAL */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG');
+            /* O FUNDO DE MADEIRA RAIZ QUE VOCÊ GOSTA */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
         }
 
-        header {
-            width: 100%;
-            padding: 20px 20px 0; /* Padding reduzido no topo e zero embaixo */
+        header { width: 100%; padding: 30px 20px; text-align: center; }
+        
+        /* TÍTULOS TEXTUAIS NO ESTILO DO PACHECO */
+        .page-titles { text-align: center; margin-bottom: 20px; }
+        .main-brand-title { font-size: 2.5rem; font-weight: 900; color: var(--deck-red); text-transform: uppercase; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 10px rgba(0,0,0,1); }
+        .survey-subtitle { font-size: 1.6rem; color: #fff; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-top: 5px;}
+
+        .container { width: 92%; max-width: 450px; margin: 10px auto 40px; }
+
+        /* NOVA CAIXA DE PROMOÇÃO DO DECK (IGUAL AO PACHECO) */
+        .promo-card {
+            background-color: rgba(0, 0, 0, 0.9); /* Fundo interno preto sólido para contraste */
+            border: 2px solid var(--deck-red); /* Borda vermelha neon */
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(230, 57, 70, 0.5); /* Glow vermelho */
+            padding: 25px;
+            margin-bottom: 20px;
             text-align: center;
-            background: transparent;
-            line-height: 0;
         }
 
-        /* ANIMAÇÃO PULSAR */
-        @keyframes pulsar {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .promo-icon {
+            font-size: 2.8rem;
+            color: var(--deck-highlight); /* Dourado/Cobre */
+            margin-bottom: 15px;
         }
 
-        .header-logo-img {
-            width: 65%;
-            max-width: 250px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.9));
-            animation: pulsar 2s ease-in-out infinite;
+        .promo-text-white {
+            color: #fff;
+            font-weight: bold;
+            margin: 5px 0;
+            font-size: 1rem;
         }
 
-        .page-titles { 
-            text-align: center; 
-            margin: -25px 20px 20px; /* MARGEM NEGATIVA PARA SUBIR O TEXTO */
-            position: relative;
-            z-index: 10;
-        }
-        
-        .main-brand-title { 
-            font-size: 2.1rem; 
-            font-weight: 900; 
-            color: var(--deck-highlight); 
-            text-transform: uppercase; 
-            margin: 0; 
-            letter-spacing: 2px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,1); 
-        }
-        
-        .survey-subtitle { 
-            font-size: 1.5rem; 
-            color: #fff; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            letter-spacing: 2px; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
-            margin-top: 5px;
+        .promo-text-highlight {
+            color: var(--deck-highlight); /* Dourado/Cobre */
+            font-weight: bold;
+            font-size: 1.2rem; /* Prêmio em destaque */
+            margin: 10px 0;
+            text-transform: uppercase;
         }
 
-        .container { width: 92%; max-width: 450px; margin: 0 auto 40px; }
-
-        /* TRANSPARÊNCIA DE VIDRO */
+        /* CARD PRINCIPAL TRANSPARENTE (GLASS LOOK) */
         .card {
-            background: rgba(0, 0, 0, 0.25); 
+            background: rgba(0, 0, 0, 0.25); /* Transparência fininha de vidro */
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             padding: 25px;
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Bordinha de vidro */
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             text-align: center;
         }
@@ -109,7 +91,7 @@
         h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; color: var(--deck-highlight); text-shadow: 1px 1px 5px #000; }
         label { display: block; text-align: left; margin: 25px 0 10px; font-size: 0.95rem; font-weight: bold; text-shadow: 1px 1px 3px #000; }
 
-        /* ESTRELINHAS */
+        /* SISTEMA DE ESTRELINHAS */
         .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 15px; }
         .stars-container input { display: none; }
         .stars-container label { font-size: 2.5rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
@@ -123,26 +105,26 @@
         input:focus, select:focus, textarea:focus { border-color: var(--deck-highlight); background: rgba(0,0,0,0.7); }
 
         .btn-enviar {
-            background: var(--deck-highlight); color: #000; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.2rem; margin-top: 35px; cursor: pointer; text-transform: uppercase;
+            background: var(--deck-red); /* Botão vermelho para destacar */
+            color: #fff; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.2rem; margin-top: 35px; cursor: pointer; text-transform: uppercase;
         }
 
         #sucesso { display: none; padding: 40px 10px; }
         .check-icon { font-size: 5rem; color: #2ecc71; margin-bottom: 20px; }
-
-        footer {
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #aaa;
-            text-align: center;
-            background: rgba(0,0,0,0.7);
-            width: 100%;
+        
+        #msg-erro-zap {
+            display: none; background: rgba(230, 57, 70, 0.2); border: 1px solid var(--deck-red);
+            color: #fff; padding: 12px; border-radius: 8px; margin-top: 10px; font-weight: bold;
         }
+
+        footer { padding: 30px; font-size: 0.8rem; color: #aaa; text-align: center; background: rgba(0,0,0,0.7); width: 100%; }
+        .footer-highlight { color: var(--deck-highlight); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo-deck.PNG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
+    <header data-aos="fade-down">
+        <img src="logo-deck.PNG" alt="Logo Deck Churrascaria" style="max-width: 200px; height: auto;">
     </header>
 
     <div class="page-titles" data-aos="fade-up">
@@ -151,15 +133,23 @@
     </div>
 
     <div class="container">
-        <div class="card" data-aos="zoom-in" id="card-principal">
+        
+        <div class="promo-card" data-aos="zoom-in">
+            <i class="fas fa-gift promo-icon"></i>
+            <p class="promo-text-white">RESPONDA NOSSA AVALIAÇÃO</p>
+            <p class="promo-text-white">PARA CONCORRER A UM</p>
+            <p class="promo-text-highlight">PICANHA P/2 MAIS ACOMPANHAMENTO</p>
+        </div>
+
+        <div class="card" data-aos="fade-up" id="card-principal">
             <h2 id="titulo-form">Sua experiência hoje</h2>
             
             <form id="feedback-form">
-                <label><i class="fas fa-user"></i> Seu nome:</label>
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
                 <input type="text" name="nome" placeholder="Digite seu nome" required>
                 
                 <label><i class="fab fa-whatsapp"></i> WhatsApp:</label>
-                <input type="tel" name="whatsapp" placeholder="(19) 99999-9999" required>
+                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
               
                 <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
                 <div class="stars-container">
@@ -170,7 +160,7 @@
                     <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-concierge-bell"></i> Atendimento:</label>
+                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
                 <div class="stars-container">
                     <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
                     <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
@@ -179,24 +169,44 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
+                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
+                <div class="stars-container">
+                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
+                </div>
+
+                <label><i class="fas fa-heart"></i> Recomendaria o Deck?</label>
+                <select name="recomendacao" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="Sim">Com certeza!</option>
+                    <option value="Talvez">Talvez</option>
+                    <option value="Nao">Não</option>
+                </select>
+
                 <label><i class="fas fa-comment"></i> Alguma sugestão?</label>
                 <textarea name="comentario" rows="2" placeholder="Opcional..."></textarea>
+                
+                <div id="msg-erro-zap">Você já enviou uma avaliação com este número hoje!</div>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>VALEU, <span id="span-nome" style="color: var(--deck-highlight);"></span>!</h3>
+                <h2 style="color: var(--deck-highlight);">VALEU, <span id="span-nome"></span>!</h2>
                 <p>Sua avaliação foi enviada com sucesso.</p>
-                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-highlight); color:#fff; padding:12px 25px; border-radius:12px; margin-top:25px; cursor:pointer; font-weight: bold;">NOVA AVALIAÇÃO</button>
+                <p>Caso seja o sorteado, entraremos em contato!</p>
+                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-highlight); color:#fff; padding:12px 25px; border-radius:12px; margin-top:25px; cursor:pointer; font-weight: bold;">Fazer Outra</button>
             </div>
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        Tecnologia Deck Satisfaction © 2026
+        <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -205,22 +215,42 @@
         
         const f = document.getElementById('feedback-form');
         const btnSubmit = document.getElementById('btn-submit');
+        const inputZap = document.getElementById('input-zap');
+        const msgErroZap = document.getElementById('msg-erro-zap');
 
-        // TROQUE PELO SEU LINK DA PLANILHA DO DECK
+        // SUBSTITUA PELO SEU LINK DO GOOGLE SCRIPT DO DECK
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
+            
+            // Trava de número repetido no mesmo celular
+            let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
+            let zapAtual = inputZap.value.replace(/\D/g,'');
+
+            if(zaps.includes(zapAtual)) {
+                msgErroZap.style.display = 'block';
+                return;
+            }
+
+            msgErroZap.style.display = 'none';
             btnSubmit.innerText = "ENVIANDO...";
             btnSubmit.disabled = true;
 
-            const nome = f.nome.value.split(' ')[0].toUpperCase();
-            document.getElementById('span-nome').innerText = nome;
+            const nomeCompleto = f.nome.value;
+            const primeiroNome = nomeCompleto.split(' ')[0].toUpperCase();
+            document.getElementById('span-nome').innerText = primeiroNome;
 
+            // Envia para o Google Sheets
             fetch(scriptURL, { method: 'POST', body: new FormData(f) })
                 .then(response => {
+                    // Guarda o número na memória local
+                    zaps.push(zapAtual);
+                    localStorage.setItem('deckZaps', JSON.stringify(zaps));
+                    
+                    // Mostra a tela de sucesso
                     f.style.display = 'none';
-                    document.getElementById('titulo-form').style.display = 'none';
+                    document.getElementById('card-principal').querySelector('h2').style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
                     window.scrollTo(0,0);
                 })
