@@ -62,7 +62,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* ESTILO DA NOVA CAIXINHA DE ALERTA */
         #alerta-zap {
             display: none;
             background: rgba(0, 0, 0, 0.9);
@@ -122,6 +121,7 @@
                 <i class="fas fa-user-check" style="color: var(--deck-wood); font-size: 1.5rem; margin-bottom: 10px;"></i>
                 <p style="margin: 0; font-weight: bold; font-size: 0.9rem;">Este WhatsApp já participou hoje!</p>
                 <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">Agradecemos sua participação.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid var(--deck-wood); color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer; font-size: 0.8rem;">Voltar</button>
             </div>
 
             <form id="feedback-form">
@@ -205,9 +205,11 @@
             let zapAtual = document.getElementById('input-zap').value.replace(/\D/g,'');
 
             if(zaps.includes(zapAtual)) {
-                // EXIBE A CAIXINHA ELEGANTE EM VEZ DO ALERT
+                // AGORA ESCONDE TUDO E MOSTRA SÓ O ALERTA
+                document.getElementById('promo-card').style.display = 'none';
+                document.getElementById('titles').style.display = 'none';
                 alertaZap.style.display = 'block';
-                f.style.display = 'none'; // Esconde o form para focar na mensagem
+                f.style.display = 'none'; 
                 window.scrollTo(0, 0);
                 return;
             }
