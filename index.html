@@ -20,16 +20,22 @@
 
         body {
             font-family: 'Segoe UI', sans-serif;
-            /* FUNDO DE MADEIRA COM CAMADA MAIS CLARA PARA APARECER MELHOR */
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            
+            /* FUNDO DE MADEIRA - AJUSTE PARA NÃO PIXELAR (CAMINHO B) */
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
+            
+            /* Em vez de esticar (cover), vamos repetir (repeat) a imagem no tamanho original dela.
+               Isso impede que ela fique pixelada, mas muda o padrão visual.
+               Usei background-attachment: scroll para iPhone lidar melhor com o repeat. */
+            background-size: 300px; /* Força um tamanho pequeno nativo. Ajuste se as tábuas ficarem muito grandes ou pequenas */
+            background-position: top left;
+            background-repeat: repeat; 
+            background-attachment: scroll; 
         }
 
         header { width: 100%; background: #000; text-align: center; line-height: 0; }
@@ -41,10 +47,10 @@
 
         .container { width: 92%; max-width: 450px; margin: 10px auto 40px; }
 
-        /* AGORA SIM: TRANSPARÊNCIA DE VIDRO (GLASSMORPHISM) */
+        /* TRANSPARÊNCIA DE VIDRO (GLASSMORPHISM) */
         .card {
-            background: rgba(0, 0, 0, 0.25); /* APENAS 25% DE PRETO - A madeira vai aparecer muito! */
-            backdrop-filter: blur(5px); /* Blur bem leve para não esconder os veios da madeira */
+            background: rgba(0, 0, 0, 0.25); /* 25% DE PRETO - Madeira vaza bastante! */
+            backdrop-filter: blur(5px); /* Blur bem leve */
             -webkit-backdrop-filter: blur(5px);
             padding: 25px;
             border-radius: 25px;
