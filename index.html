@@ -12,7 +12,8 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            --deck-gold: #ff9f43; /* Tom Madeira Premium */
+            /* COR DA MADEIRA EXTRAÍDA DA LOGO */
+            --deck-wood: #d2995e; 
             --star-active: #f1c40f;
         }
 
@@ -21,7 +22,6 @@
         body {
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            /* FUNDO DE MADEIRA SEM PIXELAR */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: 350px; background-repeat: repeat; background-attachment: fixed;
         }
@@ -37,22 +37,20 @@
         .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); animation: pulsar 2.5s ease-in-out infinite; }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
-        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-gold); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
+        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-wood); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
         .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; }
 
         .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
 
-        /* CAIXA DE SORTEIO (ESTILO PACHECO) */
         .promo-card {
-            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-gold);
+            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-wood);
             border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
-            box-shadow: 0 0 15px rgba(255, 159, 67, 0.3);
+            box-shadow: 0 0 15px rgba(210, 153, 94, 0.3);
         }
-        .promo-icon { font-size: 1.6rem; color: var(--deck-gold); margin-bottom: 5px; }
+        .promo-icon { font-size: 1.6rem; color: var(--deck-wood); margin-bottom: 5px; }
         .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
-        .promo-prize { font-size: 1rem; color: var(--deck-gold); font-weight: 900; text-transform: uppercase; }
+        .promo-prize { font-size: 1rem; color: var(--deck-wood); font-weight: 900; text-transform: uppercase; }
 
-        /* CARD DE PERGUNTAS TRANSPARENTE */
         .card {
             background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
             padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
@@ -60,7 +58,6 @@
 
         .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; }
 
-        /* ESTRELAS */
         .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 10px; }
         .stars input { display: none; }
         .stars label { font-size: 2rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
@@ -72,7 +69,7 @@
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
         .btn-enviar {
-            background: var(--deck-gold); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
+            background: var(--deck-wood); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
         }
 
         #sucesso { display: none; padding: 30px 10px; }
@@ -156,9 +153,9 @@
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h2 style="color: var(--deck-gold); margin-bottom: 10px;">OBRIGADO!</h2>
+                <h2 style="color: var(--deck-wood); margin-bottom: 10px;">OBRIGADO!</h2>
                 <p>Sua avaliação foi enviada. Boa sorte no sorteio da Picanha!</p>
-                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-gold); color:#fff; padding:10px 20px; border-radius:10px; margin-top:25px; cursor:pointer; font-weight: bold;">NOVA AVALIAÇÃO</button>
+                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-wood); color:#fff; padding:10px 20px; border-radius:10px; margin-top:25px; cursor:pointer; font-weight: bold;">NOVA AVALIAÇÃO</button>
             </div>
         </div>
     </div>
