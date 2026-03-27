@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa Premium</title>
+    <title>Deck Churrascaria | Pesquisa e Sorteio</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -21,76 +21,39 @@
         body {
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            /* FUNDO DE MADEIRA TOTAL SEM PIXELAR */
+            /* FUNDO DE MADEIRA TOTAL */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: 350px; background-repeat: repeat; background-attachment: fixed;
         }
 
-        /* HEADER E ANIMAÇÃO SEPARADA (GLASS LOOK COMPLETO) */
-        header { width: 100%; padding: 15px 10px 0; text-align: center; background: transparent; }
+        /* HEADER E ANIMAÇÃO DA LOGO */
+        header { width: 100%; padding: 20px 10px 0; text-align: center; background: transparent; }
         
-        /* 1. ANIMAÇÃO PULSAR (SUTIL - 3% APENAS) */
-        @keyframes pulsar {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
+        /* NOVA ANIMAÇÃO: GIRO LENTO + PULSAR SUAVE */
+        @keyframes girarEPulsar {
+            0% { 
+                transform: rotate(0deg) scale(1); 
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.03); /* Giro de meia volta e aumento sutil de 3% */
+            }
+            100% { 
+                transform: rotate(360deg) scale(1); /* Volta completa e tamanho normal */
+            }
         }
 
-        /* 2. ANIMAÇÃO DO ANEL GIRANDO (LENTO - 10 SEG) */
-        @keyframes girarLento {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* CONTAINER DA LOGO PULSANTE */
-        .logo-wrapper {
-            position: relative;
-            display: inline-block;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 0;
-            filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.9));
-            /* Aplicação da Animação PULSAR no container inteiro */
-            animation: pulsar 2.5s ease-in-out infinite; 
-        }
-
-        /* A LOGO DO GITHUB (NÃO GIRA SOZINHA) */
         .logo-img { 
             width: 45%; 
             max-width: 160px; 
-            height: auto; 
-            display: block; 
-            margin: 0 auto; 
-            position: relative;
-            z-index: 2; /* Fica acima do anel */
+            filter: drop-shadow(0px 8px 20px rgba(0,0,0,0.9)); /* Sombra para profundidade */
+            
+            /* APLICAÇÃO DA ANIMAÇÃO: 
+               12s (tempo longo para ser lento), 
+               ease-in-out (aceleração/desaceleração suave), 
+               infinite (não para nunca) */
+            animation: girarEPulsar 12s ease-in-out infinite; 
         }
 
-        /* O ANEL QUE GIRA EM VOLTA DA LOGO (FLUÍDO) */
-        .logo-border {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /* Centralização Perfeita */
-            z-index: 1; /* Fica atrás da logo do GitHub */
-            
-            /* Sizing para ser um anel perfeito um pouco maior que a logo */
-            width: 110%; /* Ajuste a porcentagem se o anel ficar muito grande/pequeno */
-            height: 110%;
-            
-            border-radius: 50%;
-            /* Efeito do Anel: Borda dourada com transparências para mostrar o giro */
-            border: 4px solid var(--deck-gold);
-            border-top-color: transparent; /* Cria o efeito de "falha" para o giro ser visível */
-            border-bottom-color: transparent; 
-            
-            /* Glow de Madeira sutil */
-            box-shadow: 0 0 10px rgba(255, 159, 67, 0.3);
-            
-            /* Aplicação da Animação do GIRO LENTO E LINEAR */
-            animation: girarLento 10s linear infinite; 
-        }
-
-        /* TÍTULOS TEXTUAIS MAIS PRÓXIMOS */
         .page-titles { text-align: center; margin: 10px 0 10px; }
         .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-gold); text-transform: uppercase; margin: 0; letter-spacing: 1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.9); }
         .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
@@ -107,7 +70,7 @@
         .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
         .promo-prize { font-size: 1rem; color: var(--deck-gold); font-weight: 900; text-transform: uppercase; }
 
-        /* CARD DE PERGUNTAS TRANSPARENTE */
+        /* CARD DE PERGUNTAS TRANSPARENTE (GLASS) */
         .card {
             background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
             padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
@@ -128,7 +91,8 @@
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
         .btn-enviar {
-            background: var(--deck-gold); color: #000; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
+            background: var(--deck-gold); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
         #sucesso { display: none; padding: 30px 10px; }
@@ -140,8 +104,7 @@
 <body>
 
     <header>
-        <div class="logo-wrapper" data-aos="fade-down">
-            <div class="logo-border"></div> <img src="logo-deck.PNG" alt="Logo Deck Churrascaria" class="logo-img"> </div>
+        <img src="logo-deck.PNG" alt="Logo Deck" class="logo-img">
     </header>
 
     <div class="page-titles">
