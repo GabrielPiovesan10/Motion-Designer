@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa</title>
+    <title>Deck Churrascaria | Pesquisa e Sorteio</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,29 +12,21 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            --deck-gold: #ff9f43; /* Tom de Madeira Premium */
+            --deck-gold: #ff9f43; /* Tom Madeira Premium */
             --star-active: #f1c40f;
         }
 
         html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #1a1a1a; }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            
-            /* MADEIRA ATÉ O TOPO E SEM PIXELAR (REPEAT) */
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            /* FUNDO DE MADEIRA SEM PIXELAR */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
-            background-size: 400px; /* Tamanho fixo para não esticar a imagem */
-            background-repeat: repeat;
-            background-attachment: fixed;
+            background-size: 350px; background-repeat: repeat; background-attachment: fixed;
         }
 
-        /* LOGO PULSANTE E MAIS JUNTA */
-        header { width: 100%; padding: 15px 10px 0; text-align: center; background: transparent; }
+        header { width: 100%; padding: 15px 10px 0; text-align: center; }
         
         @keyframes pulsar {
             0% { transform: scale(1); }
@@ -42,59 +34,45 @@
             100% { transform: scale(1); }
         }
 
-        .logo-img {
-            width: 50%; /* Logo menor e mais elegante */
-            max-width: 180px;
-            filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8));
-            animation: pulsar 2.5s ease-in-out infinite;
-        }
+        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); animation: pulsar 2.5s ease-in-out infinite; }
 
-        /* TÍTULOS MAIS PRÓXIMOS */
-        .page-titles { text-align: center; margin: 5px 0 15px; }
-        .main-title { font-size: 1.8rem; font-weight: 900; color: var(--deck-gold); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
-        .sub-title { font-size: 1.1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; }
+        .page-titles { text-align: center; margin: 5px 0 10px; }
+        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-gold); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
+        .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; }
 
         .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
 
-        /* CAIXA DE SORTEIO COMPACTA (ESTILO PACHECO) */
+        /* CAIXA DE SORTEIO (ESTILO PACHECO) */
         .promo-card {
-            background: rgba(0, 0, 0, 0.85);
-            border: 2px solid var(--deck-gold);
-            border-radius: 18px;
-            padding: 15px;
-            margin-bottom: 15px;
-            text-align: center;
+            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-gold);
+            border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
             box-shadow: 0 0 15px rgba(255, 159, 67, 0.3);
         }
-        .promo-icon { font-size: 1.8rem; color: var(--deck-gold); margin-bottom: 8px; }
-        .promo-txt { font-size: 0.85rem; font-weight: bold; margin: 2px 0; letter-spacing: 0.5px; }
-        .promo-prize { font-size: 1.1rem; color: var(--deck-gold); font-weight: 900; margin-top: 5px; text-transform: uppercase; }
+        .promo-icon { font-size: 1.6rem; color: var(--deck-gold); margin-bottom: 5px; }
+        .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
+        .promo-prize { font-size: 1rem; color: var(--deck-gold); font-weight: 900; text-transform: uppercase; }
 
-        /* CARD DE PERGUNTAS TRANSPARENTE (GLASS) */
+        /* CARD DE PERGUNTAS TRANSPARENTE */
         .card {
-            background: rgba(0, 0, 0, 0.35); /* Transparência para ver a madeira */
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+            background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
         }
 
-        .pergunta-label { display: block; text-align: left; margin: 15px 0 8px; font-weight: bold; font-size: 0.9rem; color: #fff; }
+        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; }
 
-        /* SISTEMA DE ESTRELAS */
+        /* ESTRELAS */
         .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 10px; }
         .stars input { display: none; }
-        .stars label { font-size: 2.2rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
-        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: var(--star-active); text-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
+        .stars label { font-size: 2rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
+        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: var(--star-active); text-shadow: 0 0 8px rgba(241, 196, 15, 0.5); }
 
-        input, textarea {
-            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; font-size: 1rem; outline: none;
+        input, select, textarea {
+            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; font-size: 1rem; outline: none; margin-bottom: 10px;
         }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
         .btn-enviar {
-            background: var(--deck-gold); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 25px; cursor: pointer; text-transform: uppercase;
+            background: var(--deck-gold); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
         }
 
         #sucesso { display: none; padding: 30px 10px; }
@@ -106,7 +84,7 @@
 <body>
 
     <header>
-        <img src="logo-deck.PNG" alt="Deck Logo" class="logo-img">
+        <img src="logo-deck.PNG" alt="Logo Deck" class="logo-img">
     </header>
 
     <div class="page-titles">
@@ -125,22 +103,16 @@
         <div class="card" data-aos="fade-up" id="card-principal">
             <form id="feedback-form">
                 
-                <label><i class="fas fa-user"></i> Seu Nome:</label>
-                <input type="text" name="nome" placeholder="Digite seu nome" required>
-                
-                <label><i class="fab fa-whatsapp"></i> WhatsApp:</label>
-                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
-
-                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
+                <label class="pergunta-label">O que você achou da Refeição?</label>
                 <div class="stars">
-                    <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
+                    <input type="radio" name="refeicao" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
+                    <input type="radio" name="refeicao" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
+                    <input type="radio" name="refeicao" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
+                    <input type="radio" name="refeicao" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
+                    <input type="radio" name="refeicao" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-concierge-bell"></i> Nota para o Atendimento:</label>
+                <label class="pergunta-label">Nota para o Atendimento:</label>
                 <div class="stars">
                     <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
                     <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
@@ -149,8 +121,35 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-comment"></i> Alguma sugestão?</label>
-                <textarea name="comentario" rows="2" placeholder="Opcional..."></textarea>
+                <label class="pergunta-label">Limpeza e Organização:</label>
+                <div class="stars">
+                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
+                </div>
+
+                <label class="pergunta-label">Recomendaria o Deck?</label>
+                <div class="stars">
+                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
+                </div>
+
+                <label class="pergunta-label">Sugestões e Elogios:</label>
+                <textarea name="sugestoes" rows="2" placeholder="Sua opinião..."></textarea>
+
+                <label class="pergunta-label">Seu Nome:</label>
+                <input type="text" name="nome" placeholder="Digite seu nome" required>
+
+                <label class="pergunta-label">Seu WhatsApp:</label>
+                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
+
+                <label class="pergunta-label">Sua Data de Nascimento:</label>
+                <input type="date" name="nascimento" required>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR E CONCORRER</button>
             </form>
@@ -173,11 +172,10 @@
         AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         const btn = document.getElementById('btn-submit');
-        const scriptURL = 'COLOQUE_AQUI_O_LINK_DA_PLANILHA_DO_DECK';
+        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
-            
             let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
             let zapAtual = document.getElementById('input-zap').value.replace(/\D/g,'');
 
