@@ -3,100 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria</title>
+    <title>Deck Churrascaria | Avaliação</title>
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+        :root { --deck-orange: #ff9f43; --star-gold: #ffc107; }
+
+        html, body { width: 100%; overflow-x: hidden; background-color: #000; }
+
         body {
-            font-family: 'Arial', sans-serif;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* FUNDO DE MADEIRA RAIZ */
+            font-family: 'Segoe UI', sans-serif; color: white;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            /* FUNDO DE MADEIRA RÚSTICO E FIXO (Como você queria) */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://www.toptal.com/designers/subtlepatterns/patterns/dark_wood.png');
-            background-color: #1a1a1a;
+                        url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        header { padding: 30px 20px; text-align: center; }
-        .logo-deck { font-size: 2.2rem; font-weight: 900; color: #f39c12; text-transform: uppercase; }
+        header {
+            width: 100%; padding: 30px 20px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .header-logo-img {
+            max-width: 250px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(2px 2px 10px rgba(0,0,0,0.8));
+        }
 
-        .container { width: 90%; max-width: 400px; margin-bottom: 40px; }
+        .container { width: 92%; max-width: 450px; margin: 0 auto 50px; }
 
-        /* CARD TRANSPARENTE SIMPLES (SEM BUGAR) */
+        /* CARDS TRANSPARENTES (Como você queria) */
         .card {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(10, 10, 10, 0.8); /* Preto bem transparente e sólido (não trava) */
+            padding: 30px; border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             text-align: center;
         }
 
         .pergunta-label {
             display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-            color: #f39c12;
+            margin: 20px 0 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--deck-orange);
+            text-transform: uppercase;
             text-align: left;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
-        /* ESTRELAS QUE NÃO TRAVAM */
-        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 5px; margin-bottom: 15px; }
-        .stars-container input { display: none; }
-        .stars-container label { font-size: 2rem; color: #444; cursor: pointer; }
+        /* ESTRELAS QUE FUNCIONAM */
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        .stars-container input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+        .stars-container label { font-size: 2.8rem; color: #444; cursor: pointer; transition: 0.2s; }
         
         .stars-container input:checked ~ label,
         .stars-container label:hover,
-        .stars-container label:hover ~ label { color: #f39c12; }
+        .stars-container label:hover ~ label {
+            color: var(--deck-orange);
+            text-shadow: 0 0 15px rgba(255, 159, 67, 0.5);
+        }
 
-        input {
+        input, textarea {
             width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             outline: none;
         }
 
         .btn-enviar {
-            background: #f39c12;
-            color: #000;
+            background: var(--deck-orange);
+            color: #fff;
             border: none;
-            padding: 15px;
+            padding: 20px;
             width: 100%;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 15px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            cursor: pointer;
             text-transform: uppercase;
+            box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
         }
 
-        #sucesso { display: none; padding: 20px; }
-        .check-icon { font-size: 4rem; color: #27ae60; margin-bottom: 15px; }
+        #sucesso { display: none; padding: 30px 0; text-align: center; }
+        .check-icon { font-size: 6rem; color: #2ecc71; margin-bottom: 20px; }
+        
+        #msg-erro-zap {
+            display: none; background: rgba(255, 0, 0, 0.2); border: 2px solid red;
+            color: #fff; padding: 15px; border-radius: 12px; margin-top: 15px; font-weight: bold;
+        }
 
-        footer { padding: 20px; font-size: 0.7rem; color: #666; }
+        footer {
+            padding: 30px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-deck.JPG">DECK</div>
-        <p style="font-size: 0.8rem; letter-spacing: 2px;">CHURRASCARIA</p>
+    <header data-aos="fade-down">
+        <img src="logo_deck.JPG" alt="Logo Deck Churrascaria" class="header-logo-img">
     </header>
 
     <div class="container">
-        <div class="card">
+        <div class="card" data-aos="zoom-in">
             
-            <form id="form-deck">
-                <label class="pergunta-label">Nota para a Carne:</label>
+            <form id="feedback-form">
+                
+                <label class="pergunta-label"><i class="fas fa-drumstick-bite"></i> Qual nota para a nossa Carne?</label>
                 <div class="stars-container">
                     <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
                     <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
@@ -105,7 +135,7 @@
                     <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label">Atendimento:</label>
+                <label class="pergunta-label"><i class="fas fa-concierge-bell"></i> Nota para o Atendimento:</label>
                 <div class="stars-container">
                     <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
                     <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
@@ -114,49 +144,111 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
+                <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Ambiente:</label>
+                <div class="stars-container">
+                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
+                </div>
+
+                <label class="pergunta-label"><i class="fas fa-heart"></i> Recomendaria o Deck?</label>
+                <div class="stars-container">
+                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
+                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
+                </div>
+                
+                <label class="pergunta-label">Sugestões e Elogios:</label>
+                <textarea name="sugestoes" rows="3" placeholder="Opcional..."></textarea>
+
                 <label class="pergunta-label">Seu Nome:</label>
-                <input type="text" name="nome" placeholder="Seu nome" required>
+                <input type="text" name="nome" id="input-nome" placeholder="Nome completo" required>
 
-                <label class="pergunta-label">WhatsApp:</label>
-                <input type="tel" name="whatsapp" id="zap" placeholder="(19) 99999-9999" required>
+                <label class="pergunta-label">Seu WhatsApp:</label>
+                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
 
-                <button type="submit" class="btn-enviar" id="btn-submit">Enviar</button>
+                <div id="msg-erro-zap">Este número de WhatsApp já avaliou hoje!</div>
+
+                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <p style="margin-top: 10px;">Avaliação enviada com sucesso.</p>
-                <button onclick="location.reload();" style="background:none; border:1px solid #f39c12; color:#f39c12; padding:8px 15px; border-radius:5px; margin-top:20px;">Nova Avaliação</button>
+                <h2 style="font-size: 2rem; color: var(--deck-orange);">OBRIGADO, <span id="nome-sucesso"></span>!</h2>
+                <p style="margin-top: 20px; color: #eee; font-size: 1.1rem; line-height: 1.5;">Sua avaliação ajuda o Deck a ser cada vez melhor.</p>
+                <button onclick="location.reload();" style="background:none; border:2px solid var(--deck-orange); color:var(--deck-orange); padding:12px 25px; border-radius:15px; margin-top:40px; cursor:pointer; font-weight: bold; text-transform: uppercase;">
+                    Fazer Nova Avaliação (Outra Pessoa)
+                </button>
             </div>
-
         </div>
     </div>
 
     <footer>
-        Gabriel Piovesan | Deck Churrascaria © 2026
+        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
+        Deck Churrascaria | 2026
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const f = document.getElementById('form-deck');
-        const btn = document.getElementById('btn-submit');
-        const scriptURL = 'SEU_LINK_AQUI'; // Lembre de trocar pelo link da nova planilha!
+        AOS.init({ once: true });
+        
+        const f = document.getElementById('feedback-form');
+        const btnSubmit = document.getElementById('btn-submit');
+        const inputZap = document.getElementById('input-zap');
+        const msgErroZap = document.getElementById('msg-erro-zap');
+
+        // SUBSTITUA PELO LINK DA NOVA PLANILHA DO DECK
+        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
-            btn.innerText = "ENVIANDO...";
-            btn.disabled = true;
+            
+            // Lógica antifraude (mesmo zap no mesmo celular)
+            let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
+            let zapAtual = inputZap.value.replace(/\D/g,''); // Limpa tudo que não é número
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(f)})
-            .then(res => {
-                f.style.display = 'none';
-                document.getElementById('sucesso').style.display = 'block';
-            })
-            .catch(err => {
-                btn.innerText = "ERRO";
-                btn.disabled = false;
-            });
-        }
+            if(zapAtual === '') {
+                 alert("Por favor, preencha o WhatsApp corretamente.");
+                 return;
+            }
+
+            if(zaps.includes(zapAtual)) {
+                msgErroZap.style.display = 'block';
+                return;
+            }
+
+            msgErroZap.style.display = 'none';
+            btnSubmit.innerText = "ENVIANDO...";
+            btnSubmit.disabled = true;
+
+            // Pega o primeiro nome para a tela final
+            const nomeCompleto = document.getElementById('input-nome').value;
+            const primeiroNome = nomeCompleto.split(' ')[0].toUpperCase();
+            document.getElementById('nome-sucesso').innerText = primeiroNome;
+
+            // Envia para o Google Sheets
+            fetch(scriptURL, { method: 'POST', body: new FormData(f) })
+                .then(response => {
+                    // Guarda o número na memória local
+                    zaps.push(zapAtual);
+                    localStorage.setItem('deckZaps', JSON.stringify(zaps));
+                    
+                    // Mostra a tela de sucesso
+                    f.style.display = 'none';
+                    document.getElementById('sucesso').style.display = 'block';
+                    AOS.refresh();
+                    window.scrollTo(0,0);
+                })
+                .catch(error => {
+                    btnSubmit.innerText = "ERRO! TENTE NOVAMENTE.";
+                    btnSubmit.disabled = false;
+                    console.error('Erro!', error.message);
+                });
+        };
     </script>
 </body>
 </html>
