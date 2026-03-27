@@ -96,13 +96,12 @@
         footer { 
             padding: 25px 15px; 
             font-size: 0.7rem; 
-            color: #bbb; /* COR MAIS FORTE (Cinza Claro) */
+            color: #bbb; 
             text-align: center; 
             width: 100%; 
             line-height: 1.6;
-            background: transparent; 
         }
-        footer strong { color: #fff; } /* NOME EM BRANCO PURO */
+        footer strong { color: #fff; }
     </style>
 </head>
 <body>
@@ -162,7 +161,7 @@
                     <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label"><i class="fas fa-thumbs-up"></i>Recomendaria a Deck?</label>
+                <label class="pergunta-label"><i class="fas fa-thumbs-up"></i>Recomendaria o Deck?</label>
                 <div class="stars">
                     <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
                     <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
@@ -178,7 +177,7 @@
                 <input type="text" name="nome" placeholder="Digite seu nome" required>
 
                 <label class="pergunta-label"><i class="fab fa-whatsapp"></i>Seu WhatsApp:</label>
-                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
+                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" maxlength="15" required>
 
                 <label class="pergunta-label"><i class="fas fa-birthday-cake"></i>Sua Data de Nascimento:</label>
                 <input type="date" name="nascimento" required>
@@ -206,13 +205,32 @@
         const f = document.getElementById('feedback-form');
         const btn = document.getElementById('btn-submit');
         const alertaZap = document.getElementById('alerta-zap');
+        const inputZap = document.getElementById('input-zap');
+
+        // MÁSCARA DE TELEFONE (FORMATO: (19) 99999-9999)
+        inputZap.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, "");
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 10) {
+                value = value.replace(/^(\22)(\d{5})(\d{4}).*/, "($1) $2-$3");
+                // Ajuste dinâmico para celular com 9 dígitos
+                e.target.value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+            } else if (value.length > 6) {
+                e.target.value = value.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+            } else if (value.length > 2) {
+                e.target.value = value.replace(/^(\d{2})(\d{0,5})$/, "($1) $2");
+            } else {
+                e.target.value = value.replace(/^(\d*)$/, "($1");
+            }
+        });
         
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
             let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
-            let zapAtual = document.getElementById('input-zap').value.replace(/\D/g,'');
+            let zapAtual = inputZap.value.replace(/\D/g,'');
 
             if(zaps.includes(zapAtual)) {
                 document.getElementById('promo-card').style.display = 'none';
