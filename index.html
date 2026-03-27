@@ -26,8 +26,6 @@
         }
 
         header { width: 100%; padding: 15px 10px 0; text-align: center; }
-        
-        /* LOGO PARADA CONFORME PEDIDO ANTERIOR */
         .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
@@ -49,12 +47,8 @@
         }
 
         .promo-card {
-            background: rgba(0, 0, 0, 0.85); 
-            border: 2px solid var(--deck-wood);
-            border-radius: 18px; 
-            padding: 12px; 
-            margin-bottom: 15px; 
-            text-align: center;
+            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-wood);
+            border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
             animation: promoPulsar 2s ease-in-out infinite, bordaBrilhante 1.5s ease-in-out infinite;
         }
 
@@ -66,6 +60,19 @@
             background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
             padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* ESTILO DA NOVA CAIXINHA DE ALERTA */
+        #alerta-zap {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--deck-wood);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(210, 153, 94, 0.3);
+            animation: promoPulsar 2s infinite;
         }
 
         .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; text-shadow: 1px 1px 3px #000; }
@@ -110,6 +117,13 @@
         </div>
 
         <div class="card" data-aos="fade-up" id="card-principal">
+            
+            <div id="alerta-zap">
+                <i class="fas fa-user-check" style="color: var(--deck-wood); font-size: 1.5rem; margin-bottom: 10px;"></i>
+                <p style="margin: 0; font-weight: bold; font-size: 0.9rem;">Este WhatsApp já participou hoje!</p>
+                <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">Agradecemos sua participação.</p>
+            </div>
+
             <form id="feedback-form">
                 
                 <label class="pergunta-label">O que você achou da Refeição?</label>
@@ -181,6 +195,7 @@
         AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         const btn = document.getElementById('btn-submit');
+        const alertaZap = document.getElementById('alerta-zap');
         
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
@@ -190,7 +205,10 @@
             let zapAtual = document.getElementById('input-zap').value.replace(/\D/g,'');
 
             if(zaps.includes(zapAtual)) {
-                alert("Este WhatsApp já participou hoje!");
+                // EXIBE A CAIXINHA ELEGANTE EM VEZ DO ALERT
+                alertaZap.style.display = 'block';
+                f.style.display = 'none'; // Esconde o form para focar na mensagem
+                window.scrollTo(0, 0);
                 return;
             }
 
@@ -208,7 +226,7 @@
                     document.getElementById('titles').style.display = 'none';
                     
                     document.getElementById('span-nome').innerText = nomeUsuario;
-                    document.getElementById('msg-agradecimento').innerText = "Sua avaliação foi enviada. agora você está concorrendo a uma picanha P/2 caso você seja sorteado entraremos em contato por WhatsApp";
+                    document.getElementById('msg-agradecimento').innerText = "Sua avaliação foi enviada agora você está concorrendo a uma picanha P/2 caso você seja sorteado entraremos em contato por WhatsApp";
                     
                     f.style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
