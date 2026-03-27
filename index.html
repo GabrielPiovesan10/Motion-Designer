@@ -16,27 +16,28 @@
         }
 
         :root {
-            --deck-red: #e63946;
+            /* NOVA COR DESTAQUE: Dourado Queimado/Madeira Cobre */
+            --deck-highlight: #ff9f43; 
             --deck-dark: #121212;
+            --star-gold: #f1c40f; /* Amarelo ouro para as estrelas marcadas */
         }
 
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            overflow-x: hidden; /* A VACINA contra o erro de arrastar pro lado */
+            overflow-x: hidden;
             position: relative;
             background-color: #1a1a1a;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Fundo de Madeira Local */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
-            background-size: contain;
-            background-position: center;
+            /* Fundo de Madeira */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('madeira.JPG'); 
+            background-size: cover;
+            background-position: center center;
             background-attachment: fixed;
-            background-repeat: repeat;
             color: white;
             display: flex;
             flex-direction: column;
@@ -44,13 +45,12 @@
             min-height: 100vh;
         }
 
-        /* Topo sem a linha vermelha */
         header {
             width: 100%;
             padding: 0; 
             background: #000;
             text-align: center;
-            border-bottom: none; /* LINHA REMOVIDA */
+            border-bottom: none;
             line-height: 0;
         }
 
@@ -68,20 +68,23 @@
         }
 
         .main-brand-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: var(--deck-red);
+            /* Cor Destaque Aplicada no Título */
+            color: var(--deck-highlight);
             text-transform: uppercase;
             margin: 0;
             letter-spacing: 2px;
         }
 
         .survey-subtitle {
-            font-size: 1rem;
-            color: #fff;
-            margin-top: 5px;
+            font-size: 1.6rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: bold;
             letter-spacing: 2px;
-            text-transform: lowercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-top: 5px;
         }
 
         .container {
@@ -90,11 +93,11 @@
             margin: 10px auto 40px;
         }
 
-        /* Efeito Transparente Glassmorphism */
+        /* Efeito Transparente Glassmorphism AJUSTADO (Mais visibilidade da madeira) */
         .card {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.65); /* Preto mais transparente */
+            backdrop-filter: blur(8px); /* Blur mais leve para mostrar o fundo */
+            -webkit-backdrop-filter: blur(8px);
             padding: 25px;
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -102,17 +105,55 @@
             text-align: center;
         }
 
-        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+        h2 { 
+            font-size: 1.3rem; 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            padding-bottom: 10px; 
+            color: var(--deck-highlight); /* Destaque no h2 também */
+        }
 
         label {
             display: block;
             text-align: left;
-            margin: 20px 0 8px;
-            font-size: 0.9rem;
-            color: #eee;
+            margin: 25px 0 10px; /* Mais espaço pra label */
+            font-size: 0.95rem;
+            color: #fff;
             font-weight: bold;
         }
 
+        /* SISTEMA DE ESTRELINHAS (CSS Puro) */
+        .stars-container {
+            display: flex;
+            flex-direction: row-reverse; /* Importante para a lógica do CSS */
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Esconde os inputs de rádio originais */
+        .stars-container input {
+            display: none;
+        }
+
+        /* Estilo das estrelas apagadas */
+        .stars-container label {
+            font-size: 2.5rem;
+            color: #444; /* Cor da estrela vazia */
+            cursor: pointer;
+            margin: 0; /* Remove a margem da label dentro da container */
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        /* Lógica para acender as estrelas (hover e checked) */
+        .stars-container input:checked ~ label,
+        .stars-container label:hover,
+        .stars-container label:hover ~ label {
+            color: var(--star-gold);
+            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+        }
+
+        /* Estilo para dropdowns e textos remanescentes */
         input, select, textarea {
             width: 100%;
             padding: 14px;
@@ -126,20 +167,25 @@
             transition: 0.3s;
         }
 
-        input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
+        input:focus, select:focus, textarea:focus { 
+            border-color: var(--deck-highlight); 
+            background: rgba(0,0,0,0.8); 
+        }
 
         .btn-enviar {
-            background: var(--deck-red);
-            color: white;
+            /* Cor Destaque no Botão */
+            background: var(--deck-highlight);
+            color: #000; /* Texto preto no botão claro para contraste */
             border: none;
             padding: 18px;
             width: 100%;
             border-radius: 12px;
             font-weight: bold;
             font-size: 1.2rem;
-            margin-top: 30px;
+            margin-top: 35px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
         }
 
         .btn-enviar:active { transform: scale(0.96); }
@@ -157,7 +203,8 @@
             width: 100%;
         }
 
-        .footer-highlight { color: var(--deck-red); font-weight: bold; }
+        /* Cor Destaque no Footer */
+        .footer-highlight { color: var(--deck-highlight); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -168,70 +215,73 @@
 
     <div class="page-titles" data-aos="fade-up">
         <h1 class="main-brand-title">Deck Churrascaria</h1>
-        <p class="survey-subtitle" style="font-size: 1.6rem; color: #ffffff; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">PESQUISA DE SATISFAÇÃO</p>
-
-
+        <p class="survey-subtitle">PESQUISA DE SATISFAÇÃO</p>
     </div>
 
     <div class="container">
         <div class="card" data-aos="zoom-in" id="card-principal">
-            <h2>Como foi sua experiência hoje</h2>
+            <h2>Sua experiência hoje</h2>
             
             <form id="feedback-form">
                 <label><i class="fas fa-user"></i> Qual o seu nome?</label>
-                <input type="text" placeholder="Digite Seu nome">
+                <input type="text" name="nome" placeholder="Digite seu nome" required>
                 
-                <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
-                <input type="text" placeholder="Digite Seu número">
+                <label><i class="fab fa-whatsapp"></i> Qual o seu número de WhatsApp?</label>
+                <input type="tel" name="whatsapp" placeholder="(19) 99999-9999" required>
               
                 <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
-                <select required>
-                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
-                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
-                    <option value="3">⭐⭐⭐ (Regular)</option>
-                    <option value="2">⭐⭐ (Pode melhorar)</option>
-                    <option value="1">⭐ (Ruim)</option>
-                </select>
+                <div class="stars-container">
+                    <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
+                    <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
+                </div>
 
                 <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
-                <select required>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="3">⭐⭐⭐ (Normal)</option>
-                    <option value="1">⭐ (Lento/Ruim)</option>
-                </select>
+                <div class="stars-container">
+                    <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a3" value="3"><label for="a3" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a2" value="2"><label for="a2" class="fas fa-star"></label>
+                    <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
+                </div>
 
                 <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
-                <select required>
+                <select name="bebidas" required>
+                    <option value="" disabled selected>Selecione</option>
                     <option value="Sim">Sim, no ponto!</option>
                     <option value="Nao">Poderiam estar mais geladas</option>
                 </select>
 
                 <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
-                <select required>
-                    <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
-                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
-                    <option value="1">⭐ (Regular/Ruim)</option>
-                </select>
+                <div class="stars-container">
+                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
+                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
+                </div>
 
                 <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
-                <select required>
+                <select name="recomendacao" required>
+                    <option value="" disabled selected>Selecione</option>
                     <option value="Sim">Com certeza!</option>
                     <option value="Talvez">Talvez</option>
                     <option value="Nao">Não</option>
                 </select>
 
                 <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
-                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
+                <textarea name="comentario" rows="3" placeholder="Conte-nos sua experiência..."></textarea>
 
-                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h3>Obrigado!</h3>
-                <p style="color: #aaa;">Sua opinião ajuda a manter nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
+                <h3>VALEU, <span id="span-nome" style="color: var(--deck-highlight);"></span>!</h3>
+                <p style="color: #ccc;">Sua avaliação ajuda a manter nossa qualidade.</p>
+                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-highlight); color:#fff; padding:12px 20px; border-radius:12px; margin-top:25px; cursor:pointer; font-weight: bold;">FAZER OUTRA</button>
             </div>
         </div>
     </div>
@@ -244,16 +294,38 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true });
+        
         const f = document.getElementById('feedback-form');
+        const btnSubmit = document.getElementById('btn-submit');
+
+        // SUBSTITUA PELO SEU LINK DO GOOGLE SCRIPT DO DECK
+        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
+
         f.onsubmit = (e) => {
             e.preventDefault();
-            document.getElementById('btn-demo').innerText = "ENVIANDO...";
-            setTimeout(() => {
-                f.style.display = 'none';
-                document.querySelector('h2').style.display = 'none';
-                document.getElementById('sucesso').style.display = 'block';
-                AOS.refresh();
-            }, 1500);
+            
+            btnSubmit.innerText = "ENVIANDO...";
+            btnSubmit.disabled = true;
+
+            // Pega o primeiro nome para a tela de sucesso
+            const nomeCompleto = f.nome.value;
+            const primeiroNome = nomeCompleto.split(' ')[0].toUpperCase();
+            document.getElementById('span-nome').innerText = primeiroNome;
+
+            // Envia para o Google Sheets
+            fetch(scriptURL, { method: 'POST', body: new FormData(f) })
+                .then(response => {
+                    // Mostra a tela de sucesso
+                    f.style.display = 'none';
+                    document.getElementById('card-principal').querySelector('h2').style.display = 'none';
+                    document.getElementById('sucesso').style.display = 'block';
+                    window.scrollTo(0,0);
+                })
+                .catch(error => {
+                    btnSubmit.innerText = "ERRO! TENTE NOVAMENTE.";
+                    btnSubmit.disabled = false;
+                    console.error('Erro!', error.message);
+                });
         };
     </script>
 </body>
