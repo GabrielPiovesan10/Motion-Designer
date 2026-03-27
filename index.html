@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Avaliação</title>
+    <title>Deck Churrascaria | Pesquisa</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,15 +11,22 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-        :root { --deck-orange: #ff9f43; --star-gold: #ffc107; }
+        :root { --deck-orange: #ff9f43; }
 
-        html, body { width: 100%; overflow-x: hidden; background-color: #000; }
+        html, body { 
+            width: 100%; 
+            min-height: 100vh;
+            background-color: #000;
+        }
 
         body {
-            font-family: 'Segoe UI', sans-serif; color: white;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            /* FUNDO DE MADEIRA RÚSTICO E FIXO (Como você queria) */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* O FUNDO DE MADEIRA QUE VOCÊ QUERIA */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
             background-position: center;
@@ -27,46 +34,45 @@
         }
 
         header {
-            width: 100%; padding: 30px 20px;
-            display: flex; align-items: center; justify-content: center;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
         }
         
-        .header-logo-img {
-            max-width: 250px;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(2px 2px 10px rgba(0,0,0,0.8));
+        .logo-img {
+            max-width: 220px;
+            filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8));
         }
 
-        .container { width: 92%; max-width: 450px; margin: 0 auto 50px; }
+        .container { width: 92%; max-width: 450px; margin-bottom: 50px; }
 
-        /* CARDS TRANSPARENTES (Como você queria) */
+        /* O LUGAR DAS PERGUNTAS TRANSPARENTE */
         .card {
-            background: rgba(10, 10, 10, 0.8); /* Preto bem transparente e sólido (não trava) */
-            padding: 30px; border-radius: 25px;
+            background: rgba(0, 0, 0, 0.75); /* Transparência forte e elegante */
+            padding: 30px;
+            border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9);
             text-align: center;
         }
 
         .pergunta-label {
             display: block;
-            margin: 20px 0 10px;
+            text-align: left;
+            margin: 20px 0 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--deck-orange);
             text-transform: uppercase;
-            text-align: left;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
-        /* ESTRELAS QUE FUNCIONAM */
-        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 25px; }
-        .stars-container input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-        .stars-container label { font-size: 2.8rem; color: #444; cursor: pointer; transition: 0.2s; }
+        /* ESTRELAS */
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 20px; }
+        .stars-container input { display: none; }
+        .stars-container label { font-size: 2.6rem; color: #333; cursor: pointer; transition: 0.2s; }
         
-        .stars-container input:checked ~ label,
-        .stars-container label:hover,
+        .stars-container input:checked ~ label, 
+        .stars-container label:hover, 
         .stars-container label:hover ~ label {
             color: var(--deck-orange);
             text-shadow: 0 0 15px rgba(255, 159, 67, 0.5);
@@ -74,51 +80,46 @@
 
         input, textarea {
             width: 100%;
-            padding: 16px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05); /* Input também transparente */
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             color: white;
             font-size: 1rem;
-            margin-bottom: 15px;
             outline: none;
+            margin-bottom: 10px;
         }
 
         .btn-enviar {
             background: var(--deck-orange);
-            color: #fff;
+            color: white;
             border: none;
             padding: 20px;
             width: 100%;
             border-radius: 15px;
             font-weight: 900;
-            font-size: 1.3rem;
-            margin-top: 30px;
+            font-size: 1.2rem;
+            margin-top: 25px;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(255, 159, 67, 0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
 
-        #sucesso { display: none; padding: 30px 0; text-align: center; }
-        .check-icon { font-size: 6rem; color: #2ecc71; margin-bottom: 20px; }
-        
+        #sucesso { display: none; padding: 30px 0; }
+        .check-icon { font-size: 5rem; color: #27c93f; margin-bottom: 20px; }
+
         #msg-erro-zap {
-            display: none; background: rgba(255, 0, 0, 0.2); border: 2px solid red;
-            color: #fff; padding: 15px; border-radius: 12px; margin-top: 15px; font-weight: bold;
+            display: none; background: rgba(255, 0, 0, 0.2); border: 1px solid red;
+            color: #fff; padding: 12px; border-radius: 8px; margin-top: 10px; font-weight: bold;
         }
 
-        footer {
-            padding: 30px;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-        }
+        footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; }
     </style>
 </head>
 <body>
 
     <header data-aos="fade-down">
-        <img src="logo_deck.JPG" alt="Logo Deck Churrascaria" class="header-logo-img">
+        <img src="logo_deck.PNG" alt="Deck Churrascaria" class="logo-img">
     </header>
 
     <div class="container">
@@ -126,7 +127,7 @@
             
             <form id="feedback-form">
                 
-                <label class="pergunta-label"><i class="fas fa-drumstick-bite"></i> Qual nota para a nossa Carne?</label>
+                <label class="pergunta-label"><i class="fas fa-utensils"></i> Nota para a Carne:</label>
                 <div class="stars-container">
                     <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
                     <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
@@ -135,7 +136,7 @@
                     <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label"><i class="fas fa-concierge-bell"></i> Nota para o Atendimento:</label>
+                <label class="pergunta-label"><i class="fas fa-star"></i> Atendimento:</label>
                 <div class="stars-container">
                     <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
                     <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
@@ -144,7 +145,7 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Ambiente:</label>
+                <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Organização:</label>
                 <div class="stars-container">
                     <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
                     <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
@@ -162,26 +163,26 @@
                     <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
                 </div>
                 
-                <label class="pergunta-label">Sugestões e Elogios:</label>
-                <textarea name="sugestoes" rows="3" placeholder="Opcional..."></textarea>
+                <label class="pergunta-label">Sugestões:</label>
+                <textarea name="sugestoes" rows="2" placeholder="Sua opinião..."></textarea>
 
                 <label class="pergunta-label">Seu Nome:</label>
-                <input type="text" name="nome" id="input-nome" placeholder="Nome completo" required>
+                <input type="text" name="nome" id="input-nome" placeholder="Digite seu nome" required>
 
-                <label class="pergunta-label">Seu WhatsApp:</label>
+                <label class="pergunta-label">WhatsApp:</label>
                 <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
 
-                <div id="msg-erro-zap">Este número de WhatsApp já avaliou hoje!</div>
+                <div id="msg-erro-zap">Você já enviou uma avaliação com este número!</div>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h2 style="font-size: 2rem; color: var(--deck-orange);">OBRIGADO, <span id="nome-sucesso"></span>!</h2>
-                <p style="margin-top: 20px; color: #eee; font-size: 1.1rem; line-height: 1.5;">Sua avaliação ajuda o Deck a ser cada vez melhor.</p>
-                <button onclick="location.reload();" style="background:none; border:2px solid var(--deck-orange); color:var(--deck-orange); padding:12px 25px; border-radius:15px; margin-top:40px; cursor:pointer; font-weight: bold; text-transform: uppercase;">
-                    Fazer Nova Avaliação (Outra Pessoa)
+                <h2 style="color: var(--deck-orange);">VALEU, <span id="nome-sucesso"></span>!</h2>
+                <p style="margin-top: 15px; color: #ccc;">Sua avaliação foi enviada com sucesso.</p>
+                <button onclick="location.reload();" style="background:none; border:2px solid var(--deck-orange); color:var(--deck-orange); padding:10px 20px; border-radius:12px; margin-top:30px; cursor:pointer; font-weight: bold;">
+                    NOVA AVALIAÇÃO
                 </button>
             </div>
         </div>
@@ -201,52 +202,37 @@
         const inputZap = document.getElementById('input-zap');
         const msgErroZap = document.getElementById('msg-erro-zap');
 
-        // SUBSTITUA PELO LINK DA NOVA PLANILHA DO DECK
+        // SUBSTITUA PELO SEU LINK DA NOVA PLANILHA
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
             
-            // Lógica antifraude (mesmo zap no mesmo celular)
             let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
-            let zapAtual = inputZap.value.replace(/\D/g,''); // Limpa tudo que não é número
-
-            if(zapAtual === '') {
-                 alert("Por favor, preencha o WhatsApp corretamente.");
-                 return;
-            }
+            let zapAtual = inputZap.value.replace(/\D/g,'');
 
             if(zaps.includes(zapAtual)) {
                 msgErroZap.style.display = 'block';
                 return;
             }
 
-            msgErroZap.style.display = 'none';
             btnSubmit.innerText = "ENVIANDO...";
             btnSubmit.disabled = true;
 
-            // Pega o primeiro nome para a tela final
-            const nomeCompleto = document.getElementById('input-nome').value;
-            const primeiroNome = nomeCompleto.split(' ')[0].toUpperCase();
-            document.getElementById('nome-sucesso').innerText = primeiroNome;
+            const nome = document.getElementById('input-nome').value.split(' ')[0].toUpperCase();
+            document.getElementById('nome-sucesso').innerText = nome;
 
-            // Envia para o Google Sheets
             fetch(scriptURL, { method: 'POST', body: new FormData(f) })
                 .then(response => {
-                    // Guarda o número na memória local
                     zaps.push(zapAtual);
                     localStorage.setItem('deckZaps', JSON.stringify(zaps));
-                    
-                    // Mostra a tela de sucesso
                     f.style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
-                    AOS.refresh();
                     window.scrollTo(0,0);
                 })
                 .catch(error => {
                     btnSubmit.innerText = "ERRO! TENTE NOVAMENTE.";
                     btnSubmit.disabled = false;
-                    console.error('Erro!', error.message);
                 });
         };
     </script>
