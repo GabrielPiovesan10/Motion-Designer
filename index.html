@@ -1,270 +1,253 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH1GH7YKWQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XH1GH7YKWQ');
+    </script>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa e Sorteio Premium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Piovesan | Especialista em Motion Design</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: sans-serif; margin: 0; background: #050505; color: white; text-align: center; overflow-x: hidden; }
+        
+        /* Tela de Bloqueio */
+        #bloqueio { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #000; position: fixed; width: 100%; z-index: 99; top: 0; transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        #site { display: none; }
+        
+        .vermelho { color: #ff3e3e; font-size: 2.8rem; text-transform: uppercase; font-weight: bold; margin: 5px 0; }
+        .caixa { background: #111; padding: 25px; border-radius: 15px; border: 2px solid #ff3e3e; width: 280px; box-shadow: 0 0 20px rgba(255,62,62,0.2); }
+        input[type="text"] { background: #000; border: 1px solid #333; color: white; padding: 12px; margin-bottom: 15px; text-align: center; width: 85%; border-radius: 8px; outline: none; }
+        
+        /* Terminal Card */
+        .minha-história { margin: 40px 20px; display: flex; justify-content: center; }
+        .terminal-card { background: #1a1a1a; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.7); max-width: 450px; width: 100%; overflow: hidden; border: 1px solid #333; text-align: left; }
+        .terminal-topo { background: #2d2d2d; padding: 12px; display: flex; align-items: center; gap: 8px; }
+        .ponto { height: 12px; width: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        .txt-topo { color: #aaa; font-size: 0.75rem; font-family: monospace; margin-left: 5px; }
+        .terminal-corpo { padding: 25px; font-family: 'Courier New', Courier, monospace; color: #ddd; line-height: 1.6; }
+        .terminal-corpo h2 { color: #27c93f; font-size: 1.1rem; margin-bottom: 15px; }
+        .terminal-corpo strong { color: #ff3e3e; }
+        .blink { color: #27c93f; font-weight: bold; animation: pisca 1s infinite; }
+        @keyframes pisca { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        :root {
-            --deck-wood: #d2995e; 
-            --star-active: #f1c40f;
-        }
+        /* Botões */
+        .btn-whats { background: #25d366; color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); } 70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(0.95); } }
 
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #1a1a1a; }
+        .video-clean { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; max-width: 400px; margin: 20px auto; border-radius: 15px; pointer-events: none; }
+        .video-clean iframe { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; }
+        .servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background: #111; padding: 30px; border-radius: 15px; border-bottom: 4px solid #ff3e3e; text-align: left; }
+        .card i { color: #ff3e3e; font-size: 2rem; margin-bottom: 15px; }
 
-        body {
-            font-family: 'Segoe UI', sans-serif; color: white;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
-            background-size: 350px; background-repeat: repeat; background-attachment: fixed;
-        }
+        summary { list-style: none; cursor: pointer; outline: none; }
+        summary::-webkit-details-marker { display: none; }
+        .detalhes-combo { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; text-align: left; }
+        .detalhes-combo li { font-size: 1em; margin-bottom: 8px; color: #ff3e3e; font-weight: bold; list-style: none; }
 
-        header { width: 100%; padding: 15px 10px 0; text-align: center; }
-        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); }
+        footer { padding: 50px; color: #555; font-size: 0.8rem; border-top: 1px solid #111; background: #000; text-align: center; }
 
-        .page-titles { text-align: center; margin: 5px 0 10px; }
-        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-wood); text-transform: uppercase; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 10px rgba(0,0,0,1); }
-        .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; text-shadow: 1px 1px 4px rgba(0,0,0,1); }
+        /* IA GABRIEL MOTION */
+        #chat-icon { position: fixed; top: 80px; right: 15px; background: #ff3e3e; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1001; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); }
+        #chat-window { display: none; position: fixed; top: 140px; right: 15px; width: 280px; background: rgba(20, 20, 20, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 62, 62, 0.3); border-top: 4px solid #ff3e3e; border-radius: 12px; z-index: 1000; font-family: 'Courier New', Courier, monospace; overflow: hidden; }
+        #chat-content { height: 250px; padding: 15px; overflow-y: auto; color: white; font-size: 13px; text-align: left; }
+        .chat-input-area { padding: 10px; border-top: 1px solid #333; display: flex; background: #111; }
+        .chat-input-area input { flex: 1; background: #000; color: #fff; border: 1px solid #444; padding: 5px; border-radius: 5px; outline: none; font-size: 12px; }
+        .chat-input-area button { background: #ff3e3e; color: white; border: none; margin-left: 5px; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
-
-        @keyframes promoPulsar {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes bordaBrilhante {
-            0% { box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); border-color: var(--deck-wood); }
-            50% { box-shadow: 0 0 30px rgba(210, 153, 94, 0.9); border-color: #fff; }
-            100% { box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); border-color: var(--deck-wood); }
-        }
-
-        .promo-card {
-            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-wood);
-            border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
-            animation: promoPulsar 2s ease-in-out infinite, bordaBrilhante 1.5s ease-in-out infinite;
-        }
-
-        .promo-icon { font-size: 1.6rem; color: var(--deck-wood); margin-bottom: 5px; }
-        .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
-        .promo-prize { font-size: 1rem; color: var(--deck-wood); font-weight: 900; text-transform: uppercase; text-shadow: 1px 1px 4px #000; }
-
-        .card {
-            background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-            padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        #alerta-zap {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            border: 2px solid var(--deck-wood);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(210, 153, 94, 0.3);
-        }
-
-        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; text-shadow: 1px 1px 3px #000; }
-        .pergunta-label i { color: var(--deck-wood); margin-right: 8px; font-size: 0.9rem; }
-
-        .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 10px; }
-        .stars input { display: none; }
-        .stars label { font-size: 2rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
-        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: var(--star-active); text-shadow: 0 0 8px rgba(241, 196, 15, 0.5); }
-
-        input, select, textarea {
-            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; color: white; font-size: 1rem; outline: none; margin-bottom: 10px;
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
-
-        .btn-enviar {
-            background: var(--deck-wood); color: #000; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
-        }
-
-        #sucesso { display: none; padding: 30px 10px; }
-        .check-icon { font-size: 4rem; color: #2ecc71; margin-bottom: 15px; }
-
-        footer { 
-            padding: 25px 15px; 
-            font-size: 0.7rem; 
-            color: #bbb; 
-            text-align: center; 
-            width: 100%; 
-            line-height: 1.6;
-        }
-        footer strong { color: #fff; }
+        .typing { color: #888; font-style: italic; margin-bottom: 10px; }
+        .typing span { animation: blink 1.4s infinite both; }
+        .typing span:nth-child(2) { animation-delay: .2s; }
+        .typing span:nth-child(3) { animation-delay: .4s; }
+        @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo-deck.PNG" alt="Logo Deck" class="logo-img">
-    </header>
+    <audio id="meusom" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    <button id="btnMudo" onclick="alternarSom()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: rgba(0,0,0,0.5); border: 1px solid #ff3e3e; color: white; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px;">🔊</button>
 
-    <div class="page-titles" id="titles">
-        <h1 class="main-title">Deck Churrascaria</h1>
-        <p class="sub-title">Pesquisa de Satisfação</p>
-    </div>
-
-    <div class="container">
-        
-        <div class="promo-card" id="promo-card">
-            <i class="fas fa-gift promo-icon"></i>
-            <p class="promo-txt">RESPONDA NOSSA AVALIAÇÃO PARA CONCORRER A UMA</p>
-            <p class="promo-prize">PICANHA P/2 MAIS ACOMPANHAMENTO</p>
-        </div>
-
-        <div class="card" id="card-principal">
-            
-            <div id="alerta-zap">
-                <i class="fas fa-user-check" style="color: var(--deck-wood); font-size: 2rem; margin-bottom: 15px;"></i>
-                <p style="margin: 0; font-weight: bold; font-size: 1rem;">ESTE WHATSAPP JÁ PARTICIPOU!</p>
-                <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 10px; line-height: 1.4;">Agradecemos sua participação. Deseja realizar uma nova avaliação com outro nome?</p>
-                <button onclick="location.reload()" style="background:var(--deck-wood); border:none; color:#000; padding:12px 20px; border-radius:10px; margin-top:20px; cursor:pointer; font-weight: 900; width: 100%; text-transform: uppercase;">OUTRA PESSOA PREENCHER</button>
-            </div>
-
-            <form id="feedback-form">
-                
-                <label class="pergunta-label"><i class="fas fa-utensils"></i>O que você achou da Refeição?</label>
-                <div class="stars">
-                    <input type="radio" name="refeicao" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
-                    <input type="radio" name="refeicao" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
-                    <input type="radio" name="refeicao" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
-                    <input type="radio" name="refeicao" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
-                    <input type="radio" name="refeicao" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
-                </div>
-
-                <label class="pergunta-label"><i class="fas fa-concierge-bell"></i>Nota para o Atendimento:</label>
-                <div class="stars">
-                    <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a3" value="3"><label for="a3" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a2" value="2"><label for="a2" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
-                </div>
-
-                <label class="pergunta-label"><i class="fas fa-broom"></i>Limpeza e Organização:</label>
-                <div class="stars">
-                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
-                </div>
-
-                <label class="pergunta-label"><i class="fas fa-thumbs-up"></i>Recomendaria o Deck?</label>
-                <div class="stars">
-                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
-                </div>
-
-                <label class="pergunta-label"><i class="fas fa-comment-dots"></i>Sugestões e Elogios:</label>
-                <textarea name="sugestoes" rows="2" placeholder="Sua opinião..."></textarea>
-
-                <label class="pergunta-label"><i class="fas fa-user"></i>Seu Nome:</label>
-                <input type="text" name="nome" placeholder="Digite seu nome" required>
-
-                <label class="pergunta-label"><i class="fab fa-whatsapp"></i>Seu WhatsApp:</label>
-                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" maxlength="15" required>
-
-                <label class="pergunta-label"><i class="fas fa-birthday-cake"></i>Sua Data de Nascimento:</label>
-                <input type="date" name="nascimento" required>
-
-                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR E CONCORRER</button>
-            </form>
-
-            <div id="sucesso">
-                <i class="fas fa-check-circle check-icon"></i>
-                <h2 style="color: var(--deck-wood); margin-bottom: 10px;">OBRIGADO, <span id="span-nome"></span>!</h2>
-                <p id="msg-agradecimento"></p>
-                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-wood); color:#fff; padding:10px 20px; border-radius:10px; margin-top:25px; cursor:pointer; font-weight: bold;">NOVA AVALIAÇÃO</button>
-            </div>
+    <div id="chat-icon" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
+    <div id="chat-window">
+        <div style="background:#ff3e3e; color:white; padding:10px; text-align:center; font-weight:bold; font-size:12px;">GABRIEL MOTION IA</div>
+        <div id="chat-content"><p><strong>Robô:</strong> Olá! Como posso te chamar?</p></div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Diga algo...">
+            <button onclick="sendMessage()">OK</button>
         </div>
     </div>
 
-    <footer>
-        Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        © 2026 Deck Churrascaria | Todos os Direitos Reservados.
-    </footer>
+    <div id="bloqueio">
+        <h1 style="color:#ff3e3e; letter-spacing: 4px; font-size: 1.8rem;">GABRIEL PIOVESAN</h1>
+        <p style="color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;">Especialista em Motion Design e ADS</p>
+        <div class="caixa">
+            <input type="text" id="userIn" placeholder="Seu nome/Empresa...">
+            <button onclick="start()" style="background:#ff3e3e;color:white;border:none;padding:12px;width:95%;font-weight:bold;border-radius:8px;cursor:pointer;">CONHEÇA MEU TRABALHO</button>
+        </div>
+    </div>
+
+    <div id="site">
+        <header style="padding: 60px 20px 20px;">
+            <p id="msg-boasvindas" style="color: #888;"></p>
+            <h1 class="vermelho" data-aos="zoom-in">GABRIEL PIOVESAN</h1>
+            <p style="letter-spacing: 3px; font-weight: bold; color: #eee; font-size: 0.9rem;">ESPECIALISTA EM MOTION DESIGN & ADS</p>
+            <div style="margin-top: 25px;"><a href="https://wa.me/5519993405480" class="btn-whats"><i class="fab fa-whatsapp"></i> WHATSAPP</a></div>
+        </header>
+
+        <section class="minha-história" data-aos="fade-up">
+            <div class="terminal-card">
+                <div class="terminal-topo"><span class="ponto red"></span><span class="ponto yellow"></span><span class="ponto green"></span><span class="txt-topo">gabriel@iphone: ~/cordeiropolis</span></div>
+                <div class="terminal-corpo">
+                    <h2>> Prazer, me chamo Gabriel</h2>
+                    <p>Sou <strong>Motion Designer</strong> e ajudo suas imagens a ganharem vida através do movimento.</p>
+                    <p>Eu só tinha um <strong>celular</strong> e um <strong>sonho</strong> de criar um site...</p>
+                    <p>Aqui está o resultado: programando <strong>Python</strong> direto do meu bolso.</p>
+                    <p>Achou <strong>interessante</strong> e quer ter seu próprio site? Me chame no WhatsApp e me conte sua ideia!</p>
+                    <span class="blink">_</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="video-clean" data-aos="zoom-in">
+            <iframe src="https://www.youtube.com/embed/wgHOlGTqmIU?autoplay=1&mute=1&loop=1&playlist=wgHOlGTqmIU&controls=0&modestbranding=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 10px; margin-bottom: 30px;" data-aos="fade-up">
+          <p style="color: #ffffff; font-family: sans-serif; font-size: 16px; font-weight: bold; margin:0;">Esse foi um dos vídeos que fiz.</p>
+          <span style="color: #ff3e3e; font-size: 14px;">Motion Design | Edição & Sonorização</span>
+        </div>
+
+        <h2 style="color: #ff3e3e; margin-top: 50px;">O QUE EU FAÇO?</h2>
+        <div class="servicos">
+            <div class="card" data-aos="fade-up"><i class="fas fa-play-circle"></i><h3>Motion Ads</h3><p>Anúncios animados de alta conversão.</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-bolt"></i><h3>Vídeos Dinâmicos</h3><p>Edição moderna que prende a atenção.</p></div>
+        </div>
+
+        <div class="card" data-aos="fade-up" style="margin: 20px;">
+            <h3 style="text-align: center; color: #ff3e3e;"><i class="fas fa-layer-group"></i> Meus Pacotes</h3>
+            <div class="tabela-precos">
+                <details class="item-preco">
+                    <summary style="background:#222; padding:15px; border-radius:8px; margin-bottom:10px;">
+                        <h4>Combo Essencial - <span style="color:#ff3e3e;">R$ 27</span></h4>
+                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
+                    </summary>
+                    <div class="detalhes-combo"><ul><li>✅ 3 Artes Estáticas</li><li>✅ Entrega em 48h</li></ul></div>
+                </details>
+                <details class="item-preco">
+                    <summary style="background:#222; padding:15px; border-radius:8px; border: 2px solid #ff3e3e;">
+                        <h4>Combo Profissional - <span style="color:#ff3e3e;">R$ 45</span></h4>
+                        <small style="color:#888;">Clique aqui para ver os detalhes</small>
+                    </summary>
+                    <div class="detalhes-combo"><ul><li>✅ 5 Artes Estáticas</li><li>✅ 1 Ajuste por arte</li></ul></div>
+                </details>
+            </div>
+        </div>
+
+        <footer>© 2026 <span style="color: #ff3e3e; font-weight: bold;">GABRIEL PIOVESAN</span><br>Desenvolvido via ISH. Cordeiropolis-SP</footer>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
-        const f = document.getElementById('feedback-form');
-        const btn = document.getElementById('btn-submit');
-        const alertaZap = document.getElementById('alerta-zap');
-        const inputZap = document.getElementById('input-zap');
+        AOS.init();
+        let nomeUser = "Visitante";
 
-        // MÁSCARA DE TELEFONE (FORMATO: (19) 99999-9999)
-        inputZap.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, "");
-            if (value.length > 11) value = value.slice(0, 11);
-            
-            if (value.length > 10) {
-                value = value.replace(/^(\22)(\d{5})(\d{4}).*/, "($1) $2-$3");
-                // Ajuste dinâmico para celular com 9 dígitos
-                e.target.value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
-            } else if (value.length > 6) {
-                e.target.value = value.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
-            } else if (value.length > 2) {
-                e.target.value = value.replace(/^(\d{2})(\d{0,5})$/, "($1) $2");
-            } else {
-                e.target.value = value.replace(/^(\d*)$/, "($1");
-            }
-        });
-        
-        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
+        function start() {
+            const campo = document.getElementById("userIn");
+            const nome = campo.value.trim();
+            if(nome !== "") {
+                nomeUser = nome;
+                const chat = document.getElementById("chat-content");
+                chat.innerHTML = `<p><strong>Robô:</strong> Olá, ${nomeUser}! 😊 Vi que você chegou. No que posso te ajudar?</p>`;
+                document.getElementById("meusom").play();
+                document.getElementById("msg-boasvindas").innerText = "Bem-vindo, " + nomeUser + "!";
+                document.getElementById("bloqueio").style.top = "-110vh";
+                document.getElementById("site").style.display = "block";
+            } else { alert("Digite seu nome!"); }
+        }
 
-        f.onsubmit = (e) => {
-            e.preventDefault();
-            let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
-            let zapAtual = inputZap.value.replace(/\D/g,'');
+        function alternarSom() {
+            var m = document.getElementById("meusom");
+            var b = document.getElementById("btnMudo");
+            if (m.paused) { m.play(); b.innerHTML = "🔊"; } else { m.muted = !m.muted; b.innerHTML = m.muted ? "🔇" : "🔊"; }
+        }
 
-            if(zaps.includes(zapAtual)) {
-                document.getElementById('promo-card').style.display = 'none';
-                document.getElementById('titles').style.display = 'none';
-                alertaZap.style.display = 'block';
-                f.style.display = 'none'; 
-                window.scrollTo(0, 0);
-                return;
-            }
+        function toggleChat() {
+            const j = document.getElementById('chat-window');
+            j.style.display = (j.style.display === 'none' || j.style.display === '') ? 'block' : 'none';
+        }
 
-            btn.innerText = "ENVIANDO...";
-            btn.disabled = true;
+        function sendMessage() {
+    const input = document.getElementById('user-input');
+    const area = document.getElementById('chat-content');
+    const msgOrig = input.value.trim();
+    const msg = msgOrig.toLowerCase();
 
-            const nomeUsuario = f.nome.value.split(' ')[0].toUpperCase();
+    if (!msg) return;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(f) })
-                .then(response => {
-                    zaps.push(zapAtual);
-                    localStorage.setItem('deckZaps', JSON.stringify(zaps));
-                    
-                    document.getElementById('promo-card').style.display = 'none';
-                    document.getElementById('titles').style.display = 'none';
-                    
-                    document.getElementById('span-nome').innerText = nomeUsuario;
-                    document.getElementById('msg-agradecimento').innerText = "Sua avaliação foi enviada. agora você está concorrendo a uma picanha P/2 caso você seja sorteado entraremos em contato por WhatsApp";
-                    
-                    f.style.display = 'none';
-                    document.getElementById('sucesso').style.display = 'block';
-                })
-                .catch(error => {
-                    btn.innerText = "ERRO! TENTE NOVAMENTE.";
-                    btn.disabled = false;
-                });
-        };
+    area.innerHTML += `<p style="text-align:right;"><strong>Você:</strong> ${msgOrig}</p>`;
+    input.value = "";
+
+    const tid = "t-" + Date.now();
+    area.innerHTML += `<div id="${tid}" class="typing">Robô está digitando<span>.</span><span>.</span><span>.</span></div>`;
+    area.scrollTop = area.scrollHeight;
+
+    setTimeout(() => {
+        const te = document.getElementById(tid); if (te) te.remove();
+        let r = ""; 
+        let btn = false; // Controla se o botão de Zap aparece
+
+        // 1. Respostas para SIM ou OK
+        if (msg === "sim" || msg === "pode ser" || msg === "quero" || msg === "ok") {
+            r = `Perfeito, ${nomeUser}! Só clicar no botão abaixo para chamar o Gabriel:`;
+            btn = true;
+        }
+        // 2. Respostas para NÃO
+        else if (msg === "não" || msg === "nao" || msg === "agora não") {
+            r = `Sem problemas! Se mudar de ideia ou quiser saber sobre **preços** e **prazos**, é só digitar.`;
+        }
+        // 3. Palavras-chave que já tínhamos
+        else if (msg.includes("valor") || msg.includes("preço") || msg.includes("quanto") || msg.includes("preco")) {
+            r = `${nomeUser}, meus pacotes começam em R$ 27! Veja a tabela abaixo.`;
+        }
+        else if (msg.includes("prazo") || msg.includes("tempo")) {
+            r = "Consigo te entregar artes em 48h! Vídeos a gente combina no Zap.";
+        }
+        else if (msg.includes("onde") || msg.includes("mora") || msg.includes("cidade")) {
+            r = "Moro em **Cordeirópolis-SP**, mas atendo o Brasil todo!";
+        }
+        // 4. Resposta padrão se ele não entender
+        else {
+            r = `Entendi, ${nomeUser}! Como ainda estou aprendendo, o Gabriel pode te explicar isso melhor no WhatsApp. Quer o link?`;
+        }
+
+        area.innerHTML += `<p><strong>Robô:</strong> ${r}</p>`;
+
+        // Se a resposta pediu o botão, ele aparece aqui
+        if (btn) {
+            area.innerHTML += `
+                <div style="text-align:center; margin: 10px 0;">
+                    <a href="https://wa.me/5519993405480?text=Olá Gabriel, vim pelo site!" 
+                       target="_blank" 
+                       style="background:#25d366; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:12px; display:inline-block;">
+                       <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+                    </a>
+                </div>`;
+        }
+        area.scrollTop = area.scrollHeight;
+    }, 1200);
+}
+
     </script>
 </body>
 </html>
