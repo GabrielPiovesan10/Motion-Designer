@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,6 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            /* COR DA MADEIRA EXTRAÍDA DA LOGO */
             --deck-wood: #d2995e; 
             --star-active: #f1c40f;
         }
@@ -22,14 +21,12 @@
         body {
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            /* FUNDO DE MADEIRA SEM PIXELAR */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: 350px; background-repeat: repeat; background-attachment: fixed;
         }
 
         header { width: 100%; padding: 15px 10px 0; text-align: center; }
         
-        /* LOGO SEM ANIMAÇÃO */
         .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
@@ -38,7 +35,6 @@
 
         .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
 
-        /* --- ANIMAÇÕES DA CAIXA DO SORTEIO --- */
         @keyframes promoPulsar {
             0% { transform: scale(1); }
             50% { transform: scale(1.04); }
@@ -99,14 +95,14 @@
         <img src="logo-deck.PNG" alt="Logo Deck" class="logo-img">
     </header>
 
-    <div class="page-titles">
+    <div class="page-titles" id="titles">
         <h1 class="main-title">Deck Churrascaria</h1>
         <p class="sub-title">Pesquisa de Satisfação</p>
     </div>
 
     <div class="container">
         
-        <div class="promo-card" data-aos="zoom-in">
+        <div class="promo-card" data-aos="zoom-in" id="promo-card">
             <i class="fas fa-gift promo-icon"></i>
             <p class="promo-txt">RESPONDA NOSSA AVALIAÇÃO PARA CONCORRER A UMA</p>
             <p class="promo-prize">PICANHA P/2 MAIS ACOMPANHAMENTO</p>
@@ -204,6 +200,11 @@
                 .then(response => {
                     zaps.push(zapAtual);
                     localStorage.setItem('deckZaps', JSON.stringify(zaps));
+                    
+                    // Esconde a caixa do sorteio e os títulos ao enviar
+                    document.getElementById('promo-card').style.display = 'none';
+                    document.getElementById('titles').style.display = 'none';
+                    
                     f.style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
                 })
