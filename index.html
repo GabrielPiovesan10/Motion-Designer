@@ -16,7 +16,14 @@
             --star-gold: #f1c40f;
         }
 
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #000; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            background-color: #000; /* Fundo de segurança */
+        }
 
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -26,20 +33,41 @@
             align-items: center;
             min-height: 100vh;
             
-            /* FUNDO DE MADEIRA - AJUSTE PARA NÃO PIXELAR (CAMINHO B) */
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
-            
-            /* Em vez de esticar (cover), vamos repetir (repeat) a imagem no tamanho original dela.
-               Isso impede que ela fique pixelada, mas muda o padrão visual.
-               Usei background-attachment: scroll para iPhone lidar melhor com o repeat. */
-            background-size: 300px; /* Força um tamanho pequeno nativo. Ajuste se as tábuas ficarem muito grandes ou pequenas */
-            background-position: top left;
-            background-repeat: repeat; 
-            background-attachment: scroll; 
+            /* MADEIRA ATÉ O TOPO: O fundo cobrirá o site inteiro */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); /* Usei o overlay de 0.5 para escurecer ligeiramente */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
         }
 
-        header { width: 100%; background: #000; text-align: center; line-height: 0; }
-        .header-logo-img { width: 100%; max-width: 100%; height: auto; display: block; }
+        header {
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+            /* Fundo transparente para flutuar sobre a madeira */
+            background: transparent;
+            line-height: 0;
+        }
+
+        /* ANIMAÇÃO PULSAR */
+        @keyframes pulsar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); } /* Aumento sutil de 5% */
+            100% { transform: scale(1); }
+        }
+
+        .header-logo-img {
+            /* DIMINUI A LOGO: Reduzi de 100% para 65% */
+            width: 65%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            /* LOGO POR CIMA: filter drop-shadow dá profundidade sobre a madeira */
+            filter: drop-shadow(0px 8px 20px rgba(0,0,0,0.9));
+            /* APLICAÇÃO DA ANIMAÇÃO */
+            animation: pulsar 2s ease-in-out infinite;
+        }
 
         .page-titles { text-align: center; margin: 30px 20px 10px; }
         .main-brand-title { font-size: 2.2rem; font-weight: 900; color: var(--deck-highlight); text-transform: uppercase; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 10px rgba(0,0,0,0.9); }
@@ -82,14 +110,21 @@
         #sucesso { display: none; padding: 40px 10px; }
         .check-icon { font-size: 5rem; color: #2ecc71; margin-bottom: 20px; }
 
-        footer { padding: 30px; font-size: 0.8rem; color: #aaa; text-align: center; background: rgba(0,0,0,0.7); width: 100%; }
+        footer {
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+            background: rgba(0,0,0,0.7);
+            width: 100%;
+        }
         .footer-highlight { color: var(--deck-highlight); font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo-deck.PNG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
+        <img src="logo-deck.png" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
     <div class="page-titles" data-aos="fade-up">
@@ -126,13 +161,6 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-beer"></i> Bebidas geladas?</label>
-                <select name="bebidas" required>
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="Sim">Sim, no ponto!</option>
-                    <option value="Nao">Poderiam estar mais geladas</option>
-                </select>
-
                 <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
                 <div class="stars-container">
                     <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
@@ -141,14 +169,6 @@
                     <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
                     <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
                 </div>
-
-                <label><i class="fas fa-heart"></i> Recomendaria o Deck?</label>
-                <select name="recomendacao" required>
-                    <option value="" disabled selected>Selecione</option>
-                    <option value="Sim">Com certeza!</option>
-                    <option value="Talvez">Talvez</option>
-                    <option value="Nao">Não</option>
-                </select>
 
                 <label><i class="fas fa-comment"></i> Alguma sugestão?</label>
                 <textarea name="comentario" rows="2" placeholder="Opcional..."></textarea>
