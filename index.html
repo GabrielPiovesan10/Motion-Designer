@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Deck Churrascaria | Pesquisa e Sorteio</title>
+    <title>Deck Churrascaria | Pesquisa e Sorteio Premium</title>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,41 +22,78 @@
         body {
             font-family: 'Segoe UI', sans-serif; color: white;
             display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            /* FUNDO DE MADEIRA SEM PIXELAR */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
             background-size: 350px; background-repeat: repeat; background-attachment: fixed;
         }
 
         header { width: 100%; padding: 15px 10px 0; text-align: center; }
         
-        @keyframes pulsar {
+        @keyframes pulsarLogo {
             0% { transform: scale(1); }
             50% { transform: scale(1.06); }
             100% { transform: scale(1); }
         }
 
-        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); animation: pulsar 2.5s ease-in-out infinite; }
+        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); animation: pulsarLogo 2.5s ease-in-out infinite; }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
-        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-wood); text-transform: uppercase; margin: 0; letter-spacing: 1px; }
-        .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; }
+        .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-wood); text-transform: uppercase; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 10px rgba(0,0,0,1); }
+        .sub-title { font-size: 1rem; color: #fff; text-transform: uppercase; font-weight: bold; margin-top: 2px; opacity: 0.9; text-shadow: 1px 1px 4px rgba(0,0,0,1); }
 
         .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
 
-        .promo-card {
-            background: rgba(0, 0, 0, 0.85); border: 2px solid var(--deck-wood);
-            border-radius: 18px; padding: 12px; margin-bottom: 15px; text-align: center;
-            box-shadow: 0 0 15px rgba(210, 153, 94, 0.3);
+        /* --- INÍCIO DA MUDANÇA NA CAIXA DO SORTEIO --- */
+
+        /* 1. ANIMAÇÃO PULSAR DA CAIXA (SUTIL - 4% APENAS) */
+        @keyframes promoPulsar {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); } /* Aumenta 4% */
+            100% { transform: scale(1); }
         }
+
+        /* 2. ANIMAÇÃO BRILHO NEON DA BORDA (ALTERNANDO INTENSIDADE) */
+        @keyframes bordaBrilhante {
+            0% { 
+                box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); 
+                border-color: var(--deck-wood);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(210, 153, 94, 0.9); /* Brilho neon intenso */
+                border-color: #fff; /* A borda fica branca sutilmente para dar o 'estouro' de luz */
+            }
+            100% { 
+                box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); 
+                border-color: var(--deck-wood);
+            }
+        }
+
+        .promo-card {
+            background: rgba(0, 0, 0, 0.85); 
+            border: 2px solid var(--deck-wood);
+            border-radius: 18px; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            text-align: center;
+            transform-origin: center; /* Garante que o pulsar saia do centro */
+            
+            /* APLICAÇÃO DAS ANIMAÇÕES COMBINADAS: Pulsar (2s) e Brilho (1.5s) */
+            animation: promoPulsar 2s ease-in-out infinite, bordaBrilhante 1.5s ease-in-out infinite;
+        }
+
+        /* --- FIM DA MUDANÇA NA CAIXA DO SORTEIO --- */
+
         .promo-icon { font-size: 1.6rem; color: var(--deck-wood); margin-bottom: 5px; }
         .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
-        .promo-prize { font-size: 1rem; color: var(--deck-wood); font-weight: 900; text-transform: uppercase; }
+        .promo-prize { font-size: 1rem; color: var(--deck-wood); font-weight: 900; text-transform: uppercase; text-shadow: 1px 1px 4px #000; }
 
         .card {
             background: rgba(0, 0, 0, 0.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
             padding: 20px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; }
+        .pergunta-label { display: block; text-align: left; margin: 15px 0 5px; font-weight: bold; font-size: 0.85rem; color: #fff; text-shadow: 1px 1px 3px #000; }
 
         .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 10px; }
         .stars input { display: none; }
@@ -69,13 +106,13 @@
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
         .btn-enviar {
-            background: var(--deck-wood); color: #000; border: none; padding: 16px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
+            background: var(--deck-wood); color: #000; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.1rem; margin-top: 20px; cursor: pointer; text-transform: uppercase;
         }
 
         #sucesso { display: none; padding: 30px 10px; }
         .check-icon { font-size: 4rem; color: #2ecc71; margin-bottom: 15px; }
 
-        footer { padding: 25px; font-size: 0.75rem; color: #888; text-align: center; width: 100%; }
+        footer { padding: 25px; font-size: 0.75rem; color: #888; text-align: center; width: 100%; background: rgba(0,0,0,0.7); }
     </style>
 </head>
 <body>
@@ -169,6 +206,8 @@
         AOS.init({ once: true });
         const f = document.getElementById('feedback-form');
         const btn = document.getElementById('btn-submit');
+        
+        // TROQUE PELO SEU LINK DA PLANILHA DO DECK
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
