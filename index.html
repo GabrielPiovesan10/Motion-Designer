@@ -9,231 +9,251 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        /* Trava Global para não vazar nada pro lado */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        :root { --deck-orange: #ff9f43; }
+        :root {
+            --deck-red: #e63946;
+            --deck-dark: #121212;
+        }
 
-        html, body { 
-            width: 100%; 
-            min-height: 100vh;
-            background-color: #000;
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden; /* A VACINA contra o erro de arrastar pro lado */
+            position: relative;
+            background-color: #1a1a1a;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fundo de Madeira Local */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('madeira.JPG'); 
+            background-size: contain;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: repeat;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* O FUNDO DE MADEIRA QUE VOCÊ QUERIA */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            min-height: 100vh;
         }
 
+        /* Topo sem a linha vermelha */
         header {
             width: 100%;
-            padding: 40px 20px;
+            padding: 0; 
+            background: #000;
             text-align: center;
-        }
-        
-        .logo-img {
-            max-width: 220px;
-            filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8));
+            border-bottom: none; /* LINHA REMOVIDA */
+            line-height: 0;
         }
 
-        .container { width: 92%; max-width: 450px; margin-bottom: 50px; }
+        .header-logo-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-        /* O LUGAR DAS PERGUNTAS TRANSPARENTE */
+        .page-titles {
+            text-align: center;
+            margin: 30px 20px 10px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+        }
+
+        .main-brand-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--deck-red);
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .survey-subtitle {
+            font-size: 1rem;
+            color: #fff;
+            margin-top: 5px;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            margin: 10px auto 40px;
+        }
+
+        /* Efeito Transparente Glassmorphism */
         .card {
-            background: rgba(0, 0, 0, 0.75); /* Transparência forte e elegante */
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 25px;
             border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             text-align: center;
         }
 
-        .pergunta-label {
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 57, 70, 0.3); padding-bottom: 10px; }
+
+        label {
             display: block;
             text-align: left;
             margin: 20px 0 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--deck-orange);
-            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #eee;
+            font-weight: bold;
         }
 
-        /* ESTRELAS */
-        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 20px; }
-        .stars-container input { display: none; }
-        .stars-container label { font-size: 2.6rem; color: #333; cursor: pointer; transition: 0.2s; }
-        
-        .stars-container input:checked ~ label, 
-        .stars-container label:hover, 
-        .stars-container label:hover ~ label {
-            color: var(--deck-orange);
-            text-shadow: 0 0 15px rgba(255, 159, 67, 0.5);
-        }
-
-        input, textarea {
+        input, select, textarea {
             width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05); /* Input também transparente */
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             color: white;
             font-size: 1rem;
+            box-sizing: border-box;
             outline: none;
-            margin-bottom: 10px;
+            transition: 0.3s;
         }
+
+        input:focus, select:focus { border-color: var(--deck-red); background: rgba(0,0,0,0.8); }
 
         .btn-enviar {
-            background: var(--deck-orange);
+            background: var(--deck-red);
             color: white;
             border: none;
-            padding: 20px;
+            padding: 18px;
             width: 100%;
-            border-radius: 15px;
-            font-weight: 900;
+            border-radius: 12px;
+            font-weight: bold;
             font-size: 1.2rem;
-            margin-top: 25px;
+            margin-top: 30px;
             cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
         }
 
-        #sucesso { display: none; padding: 30px 0; }
-        .check-icon { font-size: 5rem; color: #27c93f; margin-bottom: 20px; }
+        .btn-enviar:active { transform: scale(0.96); }
 
-        #msg-erro-zap {
-            display: none; background: rgba(255, 0, 0, 0.2); border: 1px solid red;
-            color: #fff; padding: 12px; border-radius: 8px; margin-top: 10px; font-weight: bold;
+        #sucesso { display: none; padding: 40px 20px; }
+        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
+
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+            background: rgba(0,0,0,0.8);
+            width: 100%;
         }
 
-        footer { padding: 30px; font-size: 0.8rem; color: #666; text-align: center; }
+        .footer-highlight { color: var(--deck-red); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header data-aos="fade-down">
-        <img src="logo_deck.JPG" alt="Deck Churrascaria" class="logo-img">
+    <header>
+        <img src="logo-deck.JPG" alt="Deck Logo" class="header-logo-img" data-aos="fade-down">
     </header>
 
+    <div class="page-titles" data-aos="fade-up">
+        <h1 class="main-brand-title">Deck Churrascaria</h1>
+        <p class="survey-subtitle" style="font-size: 1.6rem; color: #ffffff; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">PESQUISA DE SATISFAÇÃO</p>
+
+
+    </div>
+
     <div class="container">
-        <div class="card" data-aos="zoom-in">
+        <div class="card" data-aos="zoom-in" id="card-principal">
+            <h2>Como foi sua experiência hoje</h2>
             
             <form id="feedback-form">
+                <label><i class="fas fa-user"></i> Qual o seu nome?</label>
+                <input type="text" placeholder="Digite Seu nome">
                 
-                <label class="pergunta-label"><i class="fas fa-utensils"></i> Nota para a Carne:</label>
-                <div class="stars-container">
-                    <input type="radio" name="carne" id="c5" value="5" required><label for="c5" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c4" value="4"><label for="c4" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c3" value="3"><label for="c3" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c2" value="2"><label for="c2" class="fas fa-star"></label>
-                    <input type="radio" name="carne" id="c1" value="1"><label for="c1" class="fas fa-star"></label>
-                </div>
+                <label><i class="fab fa-whatsapp"></i> Qual o seu número de telefone?</label>
+                <input type="text" placeholder="Digite Seu número">
+              
+                <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Perfeito)</option>
+                    <option value="4">⭐⭐⭐⭐ (Muito bom)</option>
+                    <option value="3">⭐⭐⭐ (Regular)</option>
+                    <option value="2">⭐⭐ (Pode melhorar)</option>
+                    <option value="1">⭐ (Ruim)</option>
+                </select>
 
-                <label class="pergunta-label"><i class="fas fa-star"></i> Atendimento:</label>
-                <div class="stars-container">
-                    <input type="radio" name="atendimento" id="a5" value="5" required><label for="a5" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a4" value="4"><label for="a4" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a3" value="3"><label for="a3" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a2" value="2"><label for="a2" class="fas fa-star"></label>
-                    <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
-                </div>
+                <label><i class="fas fa-concierge-bell"></i> Como avalia nosso atendimento?</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excepcional)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="3">⭐⭐⭐ (Normal)</option>
+                    <option value="1">⭐ (Lento/Ruim)</option>
+                </select>
 
-                <label class="pergunta-label"><i class="fas fa-broom"></i> Limpeza e Organização:</label>
-                <div class="stars-container">
-                    <input type="radio" name="limpeza" id="l5" value="5" required><label for="l5" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l4" value="4"><label for="l4" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l3" value="3"><label for="l3" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l2" value="2"><label for="l2" class="fas fa-star"></label>
-                    <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
-                </div>
+                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
+                <select required>
+                    <option value="Sim">Sim, no ponto!</option>
+                    <option value="Nao">Poderiam estar mais geladas</option>
+                </select>
 
-                <label class="pergunta-label"><i class="fas fa-heart"></i> Recomendaria o Deck?</label>
-                <div class="stars-container">
-                    <input type="radio" name="recomenda" id="r5" value="5" required><label for="r5" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r4" value="4"><label for="r4" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r3" value="3"><label for="r3" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r2" value="2"><label for="r2" class="fas fa-star"></label>
-                    <input type="radio" name="recomenda" id="r1" value="1"><label for="r1" class="fas fa-star"></label>
-                </div>
-                
-                <label class="pergunta-label">Sugestões:</label>
-                <textarea name="sugestoes" rows="2" placeholder="Sua opinião..."></textarea>
+                <label><i class="fas fa-broom"></i> Limpeza e Organização:</label>
+                <select required>
+                    <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
+                    <option value="4">⭐⭐⭐⭐ (Bom)</option>
+                    <option value="1">⭐ (Regular/Ruim)</option>
+                </select>
 
-                <label class="pergunta-label">Seu Nome:</label>
-                <input type="text" name="nome" id="input-nome" placeholder="Digite seu nome" required>
+                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
+                <select required>
+                    <option value="Sim">Com certeza!</option>
+                    <option value="Talvez">Talvez</option>
+                    <option value="Nao">Não</option>
+                </select>
 
-                <label class="pergunta-label">WhatsApp:</label>
-                <input type="tel" name="whatsapp" id="input-zap" placeholder="(19) 99999-9999" required>
+                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
+                <textarea rows="3" placeholder="Conte-nos sua experiência..."></textarea>
 
-                <div id="msg-erro-zap">Você já enviou uma avaliação com este número!</div>
-
-                <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
+                <button type="submit" class="btn-enviar" id="btn-demo">ENVIAR AVALIAÇÃO</button>
             </form>
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h2 style="color: var(--deck-orange);">VALEU, <span id="nome-sucesso"></span>!</h2>
-                <p style="margin-top: 15px; color: #ccc;">Sua avaliação foi enviada com sucesso.</p>
-                <button onclick="location.reload();" style="background:none; border:2px solid var(--deck-orange); color:var(--deck-orange); padding:10px 20px; border-radius:12px; margin-top:30px; cursor:pointer; font-weight: bold;">
-                    NOVA AVALIAÇÃO
-                </button>
+                <h3>Obrigado!</h3>
+                <p style="color: #aaa;">Sua opinião ajuda a manter nossa qualidade.</p>
+                <button onclick="location.reload()" style="background:none; border:1px solid #666; color:#fff; padding:8px 15px; border-radius:8px; margin-top:15px; cursor:pointer;">Voltar</button>
             </div>
         </div>
     </div>
 
     <footer>
         Desenvolvido por <strong>Gabriel Piovesan</strong><br>
-        Deck Churrascaria | 2026
+        <span class="footer-highlight">Tecnologia Deck Satisfaction</span> © 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true });
-        
         const f = document.getElementById('feedback-form');
-        const btnSubmit = document.getElementById('btn-submit');
-        const inputZap = document.getElementById('input-zap');
-        const msgErroZap = document.getElementById('msg-erro-zap');
-
-        // SUBSTITUA PELO SEU LINK DA NOVA PLANILHA
-        const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
-
         f.onsubmit = (e) => {
             e.preventDefault();
-            
-            let zaps = JSON.parse(localStorage.getItem('deckZaps') || '[]');
-            let zapAtual = inputZap.value.replace(/\D/g,'');
-
-            if(zaps.includes(zapAtual)) {
-                msgErroZap.style.display = 'block';
-                return;
-            }
-
-            btnSubmit.innerText = "ENVIANDO...";
-            btnSubmit.disabled = true;
-
-            const nome = document.getElementById('input-nome').value.split(' ')[0].toUpperCase();
-            document.getElementById('nome-sucesso').innerText = nome;
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(f) })
-                .then(response => {
-                    zaps.push(zapAtual);
-                    localStorage.setItem('deckZaps', JSON.stringify(zaps));
-                    f.style.display = 'none';
-                    document.getElementById('sucesso').style.display = 'block';
-                    window.scrollTo(0,0);
-                })
-                .catch(error => {
-                    btnSubmit.innerText = "ERRO! TENTE NOVAMENTE.";
-                    btnSubmit.disabled = false;
-                });
+            document.getElementById('btn-demo').innerText = "ENVIANDO...";
+            setTimeout(() => {
+                f.style.display = 'none';
+                document.querySelector('h2').style.display = 'none';
+                document.getElementById('sucesso').style.display = 'block';
+                AOS.refresh();
+            }, 1500);
         };
     </script>
 </body>
