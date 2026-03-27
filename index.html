@@ -9,32 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Trava Global para não vazar nada pro lado */
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            /* NOVA COR DESTAQUE: Dourado Queimado/Madeira Cobre */
-            --deck-highlight: #ff9f43; 
-            --deck-dark: #121212;
-            --star-gold: #f1c40f; /* Amarelo ouro para as estrelas marcadas */
+            --deck-highlight: #ff9f43; /* Cor Madeira/Cobre */
+            --star-gold: #f1c40f;
         }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            position: relative;
-            background-color: #1a1a1a;
-        }
+        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; background-color: #000; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Fundo de Madeira */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('madeira.JPG'); 
+            font-family: 'Segoe UI', sans-serif;
+            /* FUNDO DE MADEIRA COM CAMADA MAIS CLARA PARA APARECER MELHOR */
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('madeira.JPG'); 
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
@@ -45,165 +32,51 @@
             min-height: 100vh;
         }
 
-        header {
-            width: 100%;
-            padding: 0; 
-            background: #000;
-            text-align: center;
-            border-bottom: none;
-            line-height: 0;
-        }
+        header { width: 100%; background: #000; text-align: center; line-height: 0; }
+        .header-logo-img { width: 100%; max-width: 100%; height: auto; display: block; }
 
-        .header-logo-img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+        .page-titles { text-align: center; margin: 30px 20px 10px; }
+        .main-brand-title { font-size: 2.2rem; font-weight: 900; color: var(--deck-highlight); text-transform: uppercase; margin: 0; letter-spacing: 2px; text-shadow: 2px 2px 10px rgba(0,0,0,0.9); }
+        .survey-subtitle { font-size: 1.6rem; color: #fff; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
 
-        .page-titles {
-            text-align: center;
-            margin: 30px 20px 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-        }
+        .container { width: 92%; max-width: 450px; margin: 10px auto 40px; }
 
-        .main-brand-title {
-            font-size: 2.2rem;
-            font-weight: 900;
-            /* Cor Destaque Aplicada no Título */
-            color: var(--deck-highlight);
-            text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        .survey-subtitle {
-            font-size: 1.6rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            margin-top: 5px;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 450px;
-            margin: 10px auto 40px;
-        }
-
-        /* Efeito Transparente Glassmorphism AJUSTADO (Mais visibilidade da madeira) */
+        /* AGORA SIM: TRANSPARÊNCIA DE VIDRO (GLASSMORPHISM) */
         .card {
-            background: rgba(0, 0, 0, 0.65); /* Preto mais transparente */
-            backdrop-filter: blur(8px); /* Blur mais leve para mostrar o fundo */
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.25); /* APENAS 25% DE PRETO - A madeira vai aparecer muito! */
+            backdrop-filter: blur(5px); /* Blur bem leve para não esconder os veios da madeira */
+            -webkit-backdrop-filter: blur(5px);
             padding: 25px;
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Bordinha de vidro */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             text-align: center;
         }
 
-        h2 { 
-            font-size: 1.3rem; 
-            margin-bottom: 25px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            padding-bottom: 10px; 
-            color: var(--deck-highlight); /* Destaque no h2 também */
+        h2 { font-size: 1.3rem; margin-bottom: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; color: var(--deck-highlight); text-shadow: 1px 1px 5px #000; }
+        label { display: block; text-align: left; margin: 25px 0 10px; font-size: 0.95rem; font-weight: bold; text-shadow: 1px 1px 3px #000; }
+
+        /* SISTEMA DE ESTRELINHAS */
+        .stars-container { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; margin-bottom: 15px; }
+        .stars-container input { display: none; }
+        .stars-container label { font-size: 2.5rem; color: rgba(255,255,255,0.2); cursor: pointer; transition: 0.2s; }
+        .stars-container input:checked ~ label, .stars-container label:hover, .stars-container label:hover ~ label {
+            color: var(--star-gold); text-shadow: 0 0 10px rgba(241, 196, 15, 0.6);
         }
 
-        label {
-            display: block;
-            text-align: left;
-            margin: 25px 0 10px; /* Mais espaço pra label */
-            font-size: 0.95rem;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        /* SISTEMA DE ESTRELINHAS (CSS Puro) */
-        .stars-container {
-            display: flex;
-            flex-direction: row-reverse; /* Importante para a lógica do CSS */
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* Esconde os inputs de rádio originais */
-        .stars-container input {
-            display: none;
-        }
-
-        /* Estilo das estrelas apagadas */
-        .stars-container label {
-            font-size: 2.5rem;
-            color: #444; /* Cor da estrela vazia */
-            cursor: pointer;
-            margin: 0; /* Remove a margem da label dentro da container */
-            transition: color 0.2s ease, text-shadow 0.2s ease;
-        }
-
-        /* Lógica para acender as estrelas (hover e checked) */
-        .stars-container input:checked ~ label,
-        .stars-container label:hover,
-        .stars-container label:hover ~ label {
-            color: var(--star-gold);
-            text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
-        }
-
-        /* Estilo para dropdowns e textos remanescentes */
         input, select, textarea {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
+            width: 100%; padding: 14px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: white; font-size: 1rem; outline: none;
         }
-
-        input:focus, select:focus, textarea:focus { 
-            border-color: var(--deck-highlight); 
-            background: rgba(0,0,0,0.8); 
-        }
+        input:focus, select:focus, textarea:focus { border-color: var(--deck-highlight); background: rgba(0,0,0,0.7); }
 
         .btn-enviar {
-            /* Cor Destaque no Botão */
-            background: var(--deck-highlight);
-            color: #000; /* Texto preto no botão claro para contraste */
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 35px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            text-transform: uppercase;
+            background: var(--deck-highlight); color: #000; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 1.2rem; margin-top: 35px; cursor: pointer; text-transform: uppercase;
         }
 
-        .btn-enviar:active { transform: scale(0.96); }
+        #sucesso { display: none; padding: 40px 10px; }
+        .check-icon { font-size: 5rem; color: #2ecc71; margin-bottom: 20px; }
 
-        #sucesso { display: none; padding: 40px 20px; }
-        .check-icon { font-size: 4rem; color: #27c93f; margin-bottom: 20px; }
-
-        footer {
-            margin-top: auto;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #ccc;
-            text-align: center;
-            background: rgba(0,0,0,0.8);
-            width: 100%;
-        }
-
-        /* Cor Destaque no Footer */
+        footer { padding: 30px; font-size: 0.8rem; color: #aaa; text-align: center; background: rgba(0,0,0,0.7); width: 100%; }
         .footer-highlight { color: var(--deck-highlight); font-weight: bold; }
     </style>
 </head>
@@ -226,7 +99,7 @@
                 <label><i class="fas fa-user"></i> Qual o seu nome?</label>
                 <input type="text" name="nome" placeholder="Digite seu nome" required>
                 
-                <label><i class="fab fa-whatsapp"></i> Qual o seu número de WhatsApp?</label>
+                <label><i class="fab fa-whatsapp"></i> WhatsApp:</label>
                 <input type="tel" name="whatsapp" placeholder="(19) 99999-9999" required>
               
                 <label><i class="fas fa-drumstick-bite"></i> O ponto da carne estava correto?</label>
@@ -247,7 +120,7 @@
                     <input type="radio" name="atendimento" id="a1" value="1"><label for="a1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-beer"></i> As bebidas estavam geladas?</label>
+                <label><i class="fas fa-beer"></i> Bebidas geladas?</label>
                 <select name="bebidas" required>
                     <option value="" disabled selected>Selecione</option>
                     <option value="Sim">Sim, no ponto!</option>
@@ -263,7 +136,7 @@
                     <input type="radio" name="limpeza" id="l1" value="1"><label for="l1" class="fas fa-star"></label>
                 </div>
 
-                <label><i class="fas fa-heart"></i> Recomendaria para amigos ou família?</label>
+                <label><i class="fas fa-heart"></i> Recomendaria o Deck?</label>
                 <select name="recomendacao" required>
                     <option value="" disabled selected>Selecione</option>
                     <option value="Sim">Com certeza!</option>
@@ -271,8 +144,8 @@
                     <option value="Nao">Não</option>
                 </select>
 
-                <label><i class="fas fa-comment"></i> Deixe um comentário ou sugestão:</label>
-                <textarea name="comentario" rows="3" placeholder="Conte-nos sua experiência..."></textarea>
+                <label><i class="fas fa-comment"></i> Alguma sugestão?</label>
+                <textarea name="comentario" rows="2" placeholder="Opcional..."></textarea>
 
                 <button type="submit" class="btn-enviar" id="btn-submit">ENVIAR AVALIAÇÃO</button>
             </form>
@@ -280,8 +153,8 @@
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
                 <h3>VALEU, <span id="span-nome" style="color: var(--deck-highlight);"></span>!</h3>
-                <p style="color: #ccc;">Sua avaliação ajuda a manter nossa qualidade.</p>
-                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-highlight); color:#fff; padding:12px 20px; border-radius:12px; margin-top:25px; cursor:pointer; font-weight: bold;">FAZER OUTRA</button>
+                <p>Sua avaliação ajuda a manter nossa qualidade.</p>
+                <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-highlight); color:#fff; padding:12px 25px; border-radius:12px; margin-top:25px; cursor:pointer; font-weight: bold;">FAZER OUTRA</button>
             </div>
         </div>
     </div>
@@ -298,24 +171,19 @@
         const f = document.getElementById('feedback-form');
         const btnSubmit = document.getElementById('btn-submit');
 
-        // SUBSTITUA PELO SEU LINK DO GOOGLE SCRIPT DO DECK
+        // TROQUE PELO SEU LINK DA PLANILHA DO DECK
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
             e.preventDefault();
-            
             btnSubmit.innerText = "ENVIANDO...";
             btnSubmit.disabled = true;
 
-            // Pega o primeiro nome para a tela de sucesso
-            const nomeCompleto = f.nome.value;
-            const primeiroNome = nomeCompleto.split(' ')[0].toUpperCase();
-            document.getElementById('span-nome').innerText = primeiroNome;
+            const nome = f.nome.value.split(' ')[0].toUpperCase();
+            document.getElementById('span-nome').innerText = nome;
 
-            // Envia para o Google Sheets
             fetch(scriptURL, { method: 'POST', body: new FormData(f) })
                 .then(response => {
-                    // Mostra a tela de sucesso
                     f.style.display = 'none';
                     document.getElementById('card-principal').querySelector('h2').style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
@@ -324,7 +192,6 @@
                 .catch(error => {
                     btnSubmit.innerText = "ERRO! TENTE NOVAMENTE.";
                     btnSubmit.disabled = false;
-                    console.error('Erro!', error.message);
                 });
         };
     </script>
