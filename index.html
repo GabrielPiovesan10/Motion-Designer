@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -27,6 +27,7 @@
 
         header { width: 100%; padding: 15px 10px 0; text-align: center; }
         
+        /* LOGO PARADA CONFORME PEDIDO ANTERIOR */
         .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
@@ -164,8 +165,8 @@
 
             <div id="sucesso">
                 <i class="fas fa-check-circle check-icon"></i>
-                <h2 style="color: var(--deck-wood); margin-bottom: 10px;">OBRIGADO!</h2>
-                <p>Sua avaliação foi enviada. Boa sorte no sorteio da Picanha!</p>
+                <h2 style="color: var(--deck-wood); margin-bottom: 10px;">OBRIGADO, <span id="span-nome"></span>!</h2>
+                <p id="msg-agradecimento"></p>
                 <button onclick="location.reload()" style="background:none; border:2px solid var(--deck-wood); color:#fff; padding:10px 20px; border-radius:10px; margin-top:25px; cursor:pointer; font-weight: bold;">NOVA AVALIAÇÃO</button>
             </div>
         </div>
@@ -196,14 +197,18 @@
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
+            const nomeUsuario = f.nome.value.split(' ')[0].toUpperCase();
+
             fetch(scriptURL, { method: 'POST', body: new FormData(f) })
                 .then(response => {
                     zaps.push(zapAtual);
                     localStorage.setItem('deckZaps', JSON.stringify(zaps));
                     
-                    // Esconde a caixa do sorteio e os títulos ao enviar
                     document.getElementById('promo-card').style.display = 'none';
                     document.getElementById('titles').style.display = 'none';
+                    
+                    document.getElementById('span-nome').innerText = nomeUsuario;
+                    document.getElementById('msg-agradecimento').innerText = "Sua avaliação foi enviada agora você está concorrendo a uma picanha P/2 caso você seja sorteado entraremos em contato por WhatsApp";
                     
                     f.style.display = 'none';
                     document.getElementById('sucesso').style.display = 'block';
