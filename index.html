@@ -29,13 +29,8 @@
 
         header { width: 100%; padding: 15px 10px 0; text-align: center; }
         
-        @keyframes pulsarLogo {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-            100% { transform: scale(1); }
-        }
-
-        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); animation: pulsarLogo 2.5s ease-in-out infinite; }
+        /* LOGO SEM ANIMAÇÃO */
+        .logo-img { width: 45%; max-width: 160px; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.8)); }
 
         .page-titles { text-align: center; margin: 5px 0 10px; }
         .main-title { font-size: 1.7rem; font-weight: 900; color: var(--deck-wood); text-transform: uppercase; margin: 0; letter-spacing: 1px; text-shadow: 1px 1px 10px rgba(0,0,0,1); }
@@ -43,29 +38,17 @@
 
         .container { width: 92%; max-width: 420px; margin-bottom: 30px; }
 
-        /* --- INÍCIO DA MUDANÇA NA CAIXA DO SORTEIO --- */
-
-        /* 1. ANIMAÇÃO PULSAR DA CAIXA (SUTIL - 4% APENAS) */
+        /* --- ANIMAÇÕES DA CAIXA DO SORTEIO --- */
         @keyframes promoPulsar {
             0% { transform: scale(1); }
-            50% { transform: scale(1.04); } /* Aumenta 4% */
+            50% { transform: scale(1.04); }
             100% { transform: scale(1); }
         }
 
-        /* 2. ANIMAÇÃO BRILHO NEON DA BORDA (ALTERNANDO INTENSIDADE) */
         @keyframes bordaBrilhante {
-            0% { 
-                box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); 
-                border-color: var(--deck-wood);
-            }
-            50% { 
-                box-shadow: 0 0 30px rgba(210, 153, 94, 0.9); /* Brilho neon intenso */
-                border-color: #fff; /* A borda fica branca sutilmente para dar o 'estouro' de luz */
-            }
-            100% { 
-                box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); 
-                border-color: var(--deck-wood);
-            }
+            0% { box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); border-color: var(--deck-wood); }
+            50% { box-shadow: 0 0 30px rgba(210, 153, 94, 0.9); border-color: #fff; }
+            100% { box-shadow: 0 0 15px rgba(210, 153, 94, 0.4); border-color: var(--deck-wood); }
         }
 
         .promo-card {
@@ -75,13 +58,8 @@
             padding: 12px; 
             margin-bottom: 15px; 
             text-align: center;
-            transform-origin: center; /* Garante que o pulsar saia do centro */
-            
-            /* APLICAÇÃO DAS ANIMAÇÕES COMBINADAS: Pulsar (2s) e Brilho (1.5s) */
             animation: promoPulsar 2s ease-in-out infinite, bordaBrilhante 1.5s ease-in-out infinite;
         }
-
-        /* --- FIM DA MUDANÇA NA CAIXA DO SORTEIO --- */
 
         .promo-icon { font-size: 1.6rem; color: var(--deck-wood); margin-bottom: 5px; }
         .promo-txt { font-size: 0.8rem; font-weight: bold; margin: 2px 0; }
@@ -131,8 +109,7 @@
         <div class="promo-card" data-aos="zoom-in">
             <i class="fas fa-gift promo-icon"></i>
             <p class="promo-txt">RESPONDA NOSSA AVALIAÇÃO PARA CONCORRER A UMA</p>
-            <p class="promo-prize">PICANHA P/2 MAIS 
-                ACOMPANHAMENTO</p>
+            <p class="promo-prize">PICANHA P/2 MAIS ACOMPANHAMENTO</p>
         </div>
 
         <div class="card" data-aos="fade-up" id="card-principal">
@@ -208,7 +185,6 @@
         const f = document.getElementById('feedback-form');
         const btn = document.getElementById('btn-submit');
         
-        // TROQUE PELO SEU LINK DA PLANILHA DO DECK
         const scriptURL = 'COLOQUE_AQUI_O_LINK_DO_SCRIPT_DA_PLANILHA_DO_DECK';
 
         f.onsubmit = (e) => {
